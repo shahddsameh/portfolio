@@ -2,7 +2,7 @@
 
 ## Personal
 
-- LinkedIn: https://linkedin.com/in/shahd-sameh-21
+- LinkedIn: https://www.linkedin.com/in/shahd-sameh21
 - GitHub: https://github.com/shahddsameh
 - Behance: https://behance.net/shahddsameh
 

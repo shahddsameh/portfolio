@@ -10,7 +10,7 @@ export const profile = {
   phone: '+20 112 123 8913',
   location: 'Cairo, Egypt',
   links: [
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/shahd-sameh-21' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/shahd-sameh21' },
     { label: 'GitHub', href: 'https://github.com/shahddsameh' },
     { label: 'Behance', href: 'https://behance.net/shahddsameh' },
   ],
