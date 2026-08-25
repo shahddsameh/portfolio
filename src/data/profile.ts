@@ -12,7 +12,7 @@ export const profile = {
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/shahd-sameh21' },
     { label: 'GitHub', href: 'https://github.com/shahddsameh' },
-    { label: 'Behance', href: 'https://behance.net/shahddsameh' },
+    { label: 'Behance', href: 'https://www.behance.net/shahdsameh21' },
   ],
   details: [
     ['Based in', 'Cairo, Egypt'],
