@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Service Hub product screenshot needed</title>
+  <desc id="desc">A labeled placeholder requesting a verified repository screenshot.</desc>
+  <rect width="1600" height="980" fill="#d8d0c3"/>
+  <path d="M1050 0v980M1120 0v980M1190 0v980M1260 0v980M1330 0v980M1400 0v980" stroke="#7a2638" opacity=".12"/>
+  <text x="120" y="180" fill="#7a2638" font-family="Arial,sans-serif" font-size="24" letter-spacing="6">VERIFIED CAPTURE NEEDED</text>
+  <text x="120" y="310" fill="#292625" font-family="Georgia,serif" font-size="82">Service Hub</text>
+  <text x="120" y="390" fill="#665f5b" font-family="Arial,sans-serif" font-size="30">Replace with the real freelancer profile or contact-flow screen.</text>
+  <text x="120" y="850" fill="#665f5b" font-family="Arial,sans-serif" font-size="22">Required file: public/images/projects/service-hub/hero.webp</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Mwasalaty product screenshot needed</title>
+  <desc id="desc">A labeled placeholder requesting a clean passenger application screenshot.</desc>
+  <rect width="1600" height="980" fill="#071b36"/>
+  <path d="M0 820C300 680 470 870 770 720s510-80 830-230" fill="none" stroke="#fbb516" stroke-width="3" stroke-dasharray="9 14" opacity=".8"/>
+  <circle cx="770" cy="720" r="13" fill="#fbb516"/><circle cx="1260" cy="590" r="13" fill="#fbb516"/>
+  <text x="120" y="180" fill="#fbb516" font-family="Arial,sans-serif" font-size="24" letter-spacing="6">VISUAL EVIDENCE PENDING</text>
+  <text x="120" y="310" fill="#fffaf0" font-family="Georgia,serif" font-size="82">Mwasalaty</text>
+  <text x="120" y="390" fill="#bdc7d5" font-family="Arial,sans-serif" font-size="30">Replace with a clean passenger-app hero or route-planning capture.</text>
+  <text x="120" y="850" fill="#bdc7d5" font-family="Arial,sans-serif" font-size="22">Required file: public/images/projects/mwasalaty/hero.webp</text>
+</svg>

@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.*
+!.env.example
+*.local
+.DS_Store
+screenshots/_presentation.zip
+screenshots/_presentation-raw/
+screenshots/_presentation-export/
