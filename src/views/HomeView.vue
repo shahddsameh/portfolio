@@ -12,8 +12,8 @@ import { services } from '@/data/services'
 import { useSeo } from '@/composables/useSeo'
 
 useSeo({
-  title: 'Shahd Sameh — UI/UX & Front-End Developer',
-  description: 'Portfolio of Shahd Sameh, a UI/UX-focused front-end developer building accessible digital products with Vue, TypeScript, product thinking, and full-stack experience.',
+  title: 'Shahd Sameh — UI/UX Designer',
+  description: 'Portfolio of Shahd Sameh, a UI/UX designer working in Figma from user flows and wireframes through prototypes to accessible, developer-ready interfaces, with a front-end background in Vue 3, TypeScript, and Tailwind CSS.',
   path: '/',
   schema: {
     '@context': 'https://schema.org',

@@ -8,7 +8,7 @@ import { useSeo } from '@/composables/useSeo'
 
 useSeo({
   title: 'Résumé — Shahd Sameh',
-  description: 'Experience, education, projects, and technical skills of UI/UX-focused front-end developer Shahd Sameh.',
+  description: 'Experience, education, projects, and technical skills of UI/UX designer Shahd Sameh.',
   path: '/resume',
 })
 </script>
@@ -19,7 +19,7 @@ useSeo({
       <div><p class="eyebrow">Curriculum vitae · 2026</p><h1>Shahd Sameh<br /><em>Ahmed</em></h1></div>
       <div><p>{{ profile.title }}</p><a :href="`mailto:${profile.email}`">{{ profile.email }}</a><p>{{ profile.location }}</p><a class="button button-accent" href="/files/Shahd_Sameh_CV.pdf" download><Download :size="17" /> Download CV</a></div>
     </header>
-    <section class="resume-section"><p class="resume-label">Profile</p><p class="lead">UI/UX-focused front-end developer with a BSc in Business Information Systems and a 3.95 GPA, experienced in designing and delivering responsive, accessible, WCAG-compliant web applications from wireframe to deployment. Recently led a five-person team in completing and deploying Mwasalaty, a multimodal Cairo transit PWA, on AWS. Strong in Figma, Vue 3, TypeScript, Tailwind CSS, and JavaScript, with product thinking across the full software delivery lifecycle.</p></section>
+    <section class="resume-section"><p class="resume-label">Profile</p><p class="lead">UI/UX designer with a BSc in Business Information Systems (GPA 3.95) and hands-on experience taking web products end to end — from user flows and wireframes in Figma through prototypes to polished, developer-ready interfaces. Recently led a five-person team delivering Mwasalaty, a multimodal Cairo transit PWA, in an Agile workflow. Strong in design systems and reusable component libraries, responsive and WCAG 2.1 accessible design, and HTML/CSS fundamentals — with the front-end background (Vue 3, TypeScript, Tailwind) to make design-to-development handoff smooth and implementable.</p></section>
     <section class="resume-section"><p class="resume-label">Education</p><div class="resume-entry"><div><h2>Helwan University</h2><p>BSc in Business Information Systems</p></div><div><p>Aug 2021 — Jun 2025</p><p>GPA: 3.95 / 4.0</p></div></div></section>
     <section class="resume-section"><p class="resume-label">Experience</p><article v-for="item in experience" :key="item.role" class="resume-entry"><div><h2>{{ item.role }}</h2><p>{{ item.company }}</p></div><div><time>{{ item.date }}</time><ul><li v-for="bullet in item.bullets" :key="bullet">{{ bullet }}</li></ul></div></article></section>
     <section class="resume-section"><p class="resume-label">Projects</p><article v-for="project in projects" :key="project.slug" class="resume-entry"><div><h2>{{ project.name }}</h2><p>{{ project.role }}</p></div><div><p>{{ project.summary }}</p><p class="muted">{{ project.technologies.join(' · ') }}</p></div></article></section>
