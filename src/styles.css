@@ -152,7 +152,7 @@ h3 { font-size: 1.35rem; }
 .contact-section .section-heading { display: block; border: 0; margin-bottom: 2rem; }
 .contact-section .section-number { display: block; margin-bottom: 2rem; }
 .contact-links { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; margin-top: 2rem; font-size: .78rem; font-weight: 700; }
-.contact-links a { border-bottom: 1px solid var(--border); }
+.contact-links a { display: inline-flex; align-items: center; gap: .25rem; border-bottom: 1px solid var(--border); }
 .contact-form { padding: clamp(1.5rem, 4vw, 3rem); background: var(--surface); border-top: 4px solid var(--accent); }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .field { margin-bottom: 1.1rem; }

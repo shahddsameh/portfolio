@@ -52,7 +52,7 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
           <a class="text-link" href="#contact">Contact me <Mail :size="17" /></a>
         </div>
         <div class="role-ticker" aria-label="Target roles">
-          <div><span v-for="role in [...profile.roles, ...profile.roles]" :key="`${role}-${Math.random()}`">{{ role }} <b>✦</b></span></div>
+          <div><span v-for="(role, i) in [...profile.roles, ...profile.roles]" :key="`${role}-${i}`">{{ role }} <b>✦</b></span></div>
         </div>
       </Motion>
       <Motion
@@ -122,7 +122,7 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
           <div class="contact-links">
             <a :href="`mailto:${profile.email}`">{{ profile.email }}</a>
             <a :href="`tel:${profile.phone.replaceAll(' ', '')}`">{{ profile.phone }}</a>
-            <a v-for="link in profile.links" :key="link.label" :href="link.href" target="_blank" rel="noreferrer">{{ link.label }} ↗</a>
+            <a v-for="link in profile.links" :key="link.label" :href="link.href" target="_blank" rel="noreferrer">{{ link.label }} <ArrowUpRight :size="13" aria-hidden="true" /></a>
           </div>
         </div>
         <ContactForm />
