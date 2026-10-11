@@ -21,7 +21,7 @@
   --surface-strong: #363230;
   --text: #f1e9dd;
   --muted: #b3aaa3;
-  --accent: #b85b70;
+  --accent: #c67b8c;
   --accent-contrast: #211d1d;
   --border: #4a4541;
   --shadow: rgba(0, 0, 0, 0.35);
@@ -66,7 +66,7 @@ h3 { font-size: 1.35rem; }
 .mobile-nav a:not(.button), .mobile-nav button { padding: 1rem 0; border: 0; border-bottom: 1px solid var(--border); background: none; text-align: left; font-family: "Cormorant Garamond"; font-size: 2rem; }
 
 .button { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 46px; padding: .75rem 1.1rem; border: 1px solid var(--border); background: transparent; font-size: .75rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; }
-.button:hover { transform: translateY(-3px); box-shadow: 4px 5px 0 var(--border); }
+.button:hover, .button:focus-visible { transform: translateY(-3px); box-shadow: 4px 5px 0 var(--border); }
 .button-accent { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
 .button-small { min-height: 39px; padding: .55rem .85rem; }
 .text-link { display: inline-flex; align-items: center; gap: .35rem; padding-block: .25rem; border-bottom: 1px solid currentColor; font-size: .78rem; font-weight: 700; }
@@ -309,4 +309,5 @@ h3 { font-size: 1.35rem; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .role-ticker div { animation: none; }
   .reveal { opacity: 1; transform: none; }
+  .button:hover, .button:focus-visible { transform: none; }
 }
