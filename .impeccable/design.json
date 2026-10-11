@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-11T19:24:34.183Z",
+  "generatedAt": "2026-10-11T19:42:05.187Z",
   "title": "Design System: Shahd Sameh — Portfolio",
   "extensions": {
     "colorMeta": {
@@ -104,12 +104,12 @@
         "role": "neutral",
         "displayName": "Pencil Gray",
         "purpose": "Light muted text (--muted).",
-        "canonical": "#716a65",
+        "canonical": "#6a645f",
         "tonalRamp": [
           "#282624",
           "#46423f",
-          "#645d59",
-          "#817974",
+          "#645e59",
+          "#817a74",
           "#9f9893",
           "#bcb7b4",
           "#d8d6d4",
@@ -279,30 +279,62 @@
       "error-red": {
         "role": "signal",
         "displayName": "Error Red",
-        "purpose": "Form errors (hardcoded).",
-        "canonical": "#b33c3c",
+        "purpose": "Form errors, light (--danger).",
+        "canonical": "#b13b3b",
         "tonalRamp": [
           "#391313",
           "#632121",
-          "#8d2f2f",
-          "#b73d3d",
+          "#8e2f2f",
+          "#b83d3d",
           "#cc6666",
           "#db9494",
           "#ebc2c2",
           "#f9ecec"
         ]
       },
+      "error-red-dark": {
+        "role": "signal",
+        "displayName": "Error Red (dark)",
+        "purpose": "Form errors, dark (--danger).",
+        "canonical": "#d17676",
+        "tonalRamp": [
+          "#391313",
+          "#632121",
+          "#8d2f2f",
+          "#b73e3e",
+          "#cc6666",
+          "#db9494",
+          "#eac2c2",
+          "#f9ecec"
+        ]
+      },
       "success-green": {
         "role": "signal",
         "displayName": "Success Green",
-        "purpose": "Form success (hardcoded).",
-        "canonical": "#3f8051",
+        "purpose": "Form success, light (--success).",
+        "canonical": "#377047",
+        "tonalRamp": [
+          "#193321",
+          "#2c5938",
+          "#3e7f50",
+          "#51a468",
+          "#76bc8a",
+          "#9fd0ad",
+          "#c8e4d0",
+          "#eef7f0"
+        ]
+      },
+      "success-green-dark": {
+        "role": "signal",
+        "displayName": "Success Green (dark)",
+        "purpose": "Form success, dark (--success).",
+        "canonical": "#4fa065",
         "tonalRamp": [
           "#193320",
           "#2c5938",
           "#3e7e50",
-          "#51a468",
-          "#76bc8a",
+          "#51a467",
+          "#76bc89",
           "#9fd0ad",
           "#c8e4d0",
           "#eef7f0"
@@ -352,12 +384,7 @@
       {
         "name": "press-offset-card",
         "value": "8px 8px 0 var(--border)",
-        "purpose": "Project image frames in the editorial frame."
-      },
-      {
-        "name": "press-offset-hero",
-        "value": "12px 12px 0 var(--border)",
-        "purpose": "Case-study hero image (flagged drift vs. The Frame, Not the Work Rule)."
+        "purpose": "Homepage and /projects image frames only; case-study captures use a plain 1px frame."
       },
       {
         "name": "floating-sheet",
@@ -368,13 +395,8 @@
     "motion": [
       {
         "name": "ease-house",
-        "value": "cubic-bezier(.22, 1, .36, 1)",
-        "purpose": "House easing for all new motion; hero entrance 0.5–0.6s."
-      },
-      {
-        "name": "ease-image-legacy",
-        "value": "cubic-bezier(.2, .7, .2, 1)",
-        "purpose": "Legacy image-zoom easing (drift)."
+        "value": "var(--ease) = cubic-bezier(.22, 1, .36, 1)",
+        "purpose": "House easing for every transition; hero entrance 0.5–0.6s."
       },
       {
         "name": "reveal",
@@ -508,7 +530,8 @@
       "**Do** build structure from 1px Proof Rule hairlines and asymmetric grids, and keep corners square (`0`).",
       "**Do** give every hover state a matching `:focus-visible` state, and remove lifts and slides under `prefers-reduced-motion`.",
       "**Do** keep case-study pages calm: ruled sections, muted body text, plain frames around real captures.",
-      "**Do** use the house easing `cubic-bezier(.22, 1, .36, 1)` for any new motion."
+      "**Do** use `var(--ease)` for any new motion.",
+      "**Do** colour form feedback with `--danger` and `--success`, never with literal hex."
     ],
     "donts": [
       "**Don't** put burgundy, badges, tilt, stickers or offset decoration on top of a project screenshot.",

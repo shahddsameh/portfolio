@@ -8,7 +8,7 @@ colors:
   newsprint-fold: "#e9e1d5"
   newsprint-shade: "#ddd2c3"
   press-ink: "#292625"
-  pencil-gray: "#716a65"
+  pencil-gray: "#6a645f"
   proof-rule: "#cfc5b8"
   burgundy-ground-light: "#fff7ec"
   press-black: "#22201f"
@@ -19,8 +19,10 @@ colors:
   night-rule: "#4a4541"
   burgundy-ground-dark: "#211d1d"
   available-green: "#4d8a61"
-  error-red: "#b33c3c"
-  success-green: "#3f8051"
+  error-red: "#b13b3b"
+  error-red-dark: "#d17676"
+  success-green: "#377047"
+  success-green-dark: "#4fa065"
 typography:
   display:
     fontFamily: "Cormorant Garamond, Georgia, serif"
@@ -130,7 +132,7 @@ The pages are dense but the eye has plenty of room. Each section opens with a he
 
 ## Colors
 
-A warm, low-chroma paper palette with a single deep burgundy accent. Each theme is a full set of tokens (`--bg`, `--surface`, `--surface-strong`, `--text`, `--muted`, `--accent`, `--accent-contrast`, `--border`, `--shadow`) swapped on `:root[data-theme='dark']`.
+A warm, low-chroma paper palette with a single deep burgundy accent. Each theme is a full set of tokens (`--bg`, `--surface`, `--surface-strong`, `--text`, `--muted`, `--accent`, `--accent-contrast`, `--border`, `--shadow`, `--danger`, `--success`) swapped on `:root[data-theme='dark']`. The easing token `--ease` is shared by both themes.
 
 ### Primary
 - **Ink Burgundy** (light, `--accent`): the editor's mark. Used for `<em>` emphasis inside h1/h2, the hand-set underline under the hero name, nav underlines, focus outlines, list arrows, section and caption numerals in galleries, the accent button, the portrait note, and the contact panel's top rule. It reaches 8.5:1 on Warm Newsprint, so it is safe as text.
@@ -141,14 +143,14 @@ A warm, low-chroma paper palette with a single deep burgundy accent. Each theme 
 - **Newsprint Fold** (light `--surface`): a second paper tone for full-bleed bands (the projects section, role section), the contact panel, and hover fills.
 - **Newsprint Shade** (light `--surface-strong`): the ghost tone for oversized section numbers, the "PORTFOLIO" watermark, the 404 numerals, and the portrait's backing sheet. It is never used for readable text.
 - **Press Ink** (light `--text`): body and heading text. It also fills the footer and architecture bands, where the page colours invert.
-- **Pencil Gray** (light `--muted`): secondary copy, metadata, captions, dates.
+- **Pencil Gray** (light `--muted`): secondary copy, metadata, captions, dates. It holds 4.5:1 on Newsprint Fold as well as on the page.
 - **Proof Rule** (light `--border`): every 1px rule and border, and the colour of the hard offset shadows.
 - **Press Black / Press Black Fold / Press Black Shade / Chalk / Ash Gray / Night Rule**: the dark-theme counterparts of the six roles above, in that order.
 - **Burgundy Ground** (`--accent-contrast`, light and dark): text placed on the accent fill.
 
-### Signal (hardcoded, outside the token set)
-- **Available Green**: the 7px availability dot in the hero kicker.
-- **Error Red / Success Green**: contact-form validation and status messages. These colours are not themed per mode yet.
+### Signal
+- **Error Red** (`--danger`) and **Success Green** (`--success`): contact-form validation and status messages. Both have a dark-theme value, and each passes 4.5:1 on its theme's page and fold.
+- **Available Green** (hardcoded): the 7px availability dot in the hero kicker. It is decoration, so 3:1 is enough.
 
 ### Named Rules
 **The Editor's Mark Rule.** Burgundy marks something, the way a correction is marked on a proof. Emphasis, focus, the one primary action, a numeral. It never floods a surface larger than a button or a 4px rule, and it never sits on a project screenshot.
@@ -194,14 +196,17 @@ Depth is printed, not lit. There are three devices:
 
 ### Shadow Vocabulary
 - **Press offset (small)** (`box-shadow: 4px 5px 0 var(--border)`): buttons on hover and on keyboard focus.
-- **Press offset (card)** (`box-shadow: 8px 8px 0 var(--border)`): homepage and /projects project image frames, and case-study gallery frames.
-- **Press offset (hero image)** (`box-shadow: 12px 12px 0 var(--border)`): the case-study hero image.
+- **Press offset (card)** (`box-shadow: 8px 8px 0 var(--border)`): homepage and /projects project image frames only. These sit in the editorial frame.
+- **Plain frame** (`border: 1px solid var(--border)`, no shadow): the case-study hero image and gallery frames.
 - **Floating sheet** (`box-shadow: 0 18px 40px var(--shadow)` / `0 22px 50px var(--shadow)`): the portrait photo and its backing sheet, and the mobile menu.
 
 ### Named Rules
 **The Frame, Not the Work Rule.** Tactile depth, tilt and burgundy belong to the editorial frame. On case-study pages the frame recedes. A product capture may sit in a plain frame, but nothing decorative is ever laid over it.
 
-**Known drift (to resolve, not to copy):** the code doesn't fully follow this rule yet. Case-study pages still give screenshots offset shadows (the 12px hero image and the 8px gallery frames). Gallery frames overlay a dark "view" chip on the capture. The homepage placeholder frame overlays a burgundy "Screenshot pending" badge. New work should follow the rule. Changing these existing elements is the owner's decision.
+**Approved exception:** the "Open full capture" chip on gallery frames stays. It is a functional affordance in the inverted ink colour, not decoration, and the owner chose to keep it. The burgundy "Screenshot pending" badge for placeholder frames is inactive, because no project uses a placeholder. Don't revive it.
+
+### Browser Surfaces
+Text selection uses the accent fill with Burgundy Ground text. Scrollbars use Proof Rule on the page colour, and native controls take `accent-color: var(--accent)`.
 
 ## Shapes
 
@@ -215,6 +220,7 @@ Pressed and precise. A square, hairline-ruled slip of type that lifts off the pa
 - **Default:** transparent fill with Manrope 700 at 0.75rem. An icon can sit inline with a 0.55rem gap.
 - **Accent:** an Ink Burgundy fill and border with Burgundy Ground text. Use one per view, for its primary action: View projects, Send message, Download CV, Return home.
 - **Hover / Focus:** lifts 3px and shows the small press-offset shadow. `:focus-visible` gets the same lift and shadow plus the global 3px accent outline at 4px offset. Under `prefers-reduced-motion` the lift is removed and the shadow alone marks the state.
+- **Disabled / busy:** 60% opacity, a progress cursor, and no lift or shadow (for example while the contact form sends).
 - **Icon button:** 42px square with a 1px border. Hover fills it with Newsprint Fold and lifts it 2px. Used for the theme toggle and the menu button.
 - **Text link:** Manrope 700 at 0.78rem with a 1px currentColor underline. Its arrow icon nudges up and to the right on hover.
 
@@ -230,7 +236,8 @@ Pressed and precise. A square, hairline-ruled slip of type that lifts off the pa
 ### Inputs / Fields
 - **Style:** square, with a 1px Proof Rule border, a Warm Newsprint fill inside the Newsprint Fold panel, and 0.85rem padding. Labels sit above in the uppercase label style.
 - **Focus:** the global 3px Ink Burgundy outline at 4px offset.
-- **Error:** Error Red message at 0.7rem below the field. The form status line uses Error Red or Success Green.
+- **Error:** an Error Red (`--danger`) message at 0.7rem below the field. The form status line uses `--danger` or `--success`.
+- **Caret:** the accent colour.
 
 ### Navigation
 - **Desktop:** Manrope 600 at 0.76rem with 0.06em tracking. A 1px burgundy underline wipes in from the left on hover and stays visible on the active route.
@@ -245,7 +252,7 @@ A ghost numeral in Newsprint Shade (clamp up to 8.5rem, lh 0.75) beside the h2. 
 The portrait hangs at +1.8° in front of a Newsprint Shade backing sheet at −4°, both with floating-sheet shadows. An italic Cormorant caption sits below, and a small burgundy note is pinned at +4°. It is the most tactile object on the site, and nothing else repeats it.
 
 ### Motion
-The house easing is `cubic-bezier(.22, 1, .36, 1)`, used for the Motion One hero entrance (0.5s and 0.6s). Other transitions are short (0.18s to 0.55s): scroll reveals rise 30px and fade in, page transitions move 12px, and the menu moves 10px. The role ticker loops for 22s and stops under reduced motion. Image zooms still use `cubic-bezier(.2,.7,.2,1)`, and most other transitions use the browser's default ease. That is drift; new motion should use the house easing. Every effect has a static path under `prefers-reduced-motion`.
+The house easing is `--ease: cubic-bezier(.22, 1, .36, 1)`. Every CSS transition uses it, and the Motion One hero entrance (0.5s and 0.6s) uses the same curve. Other transitions are short (0.18s to 0.55s): scroll reveals rise 30px and fade in, page transitions move 12px, and the menu moves 10px. The role ticker loops for 22s and stops under reduced motion. Every effect has a static path under `prefers-reduced-motion`.
 
 ## Do's and Don'ts
 
@@ -255,7 +262,8 @@ The house easing is `cubic-bezier(.22, 1, .36, 1)`, used for the Motion One hero
 - **Do** build structure from 1px Proof Rule hairlines and asymmetric grids, and keep corners square (`0`).
 - **Do** give every hover state a matching `:focus-visible` state, and remove lifts and slides under `prefers-reduced-motion`.
 - **Do** keep case-study pages calm: ruled sections, muted body text, plain frames around real captures.
-- **Do** use the house easing `cubic-bezier(.22, 1, .36, 1)` for any new motion.
+- **Do** use `var(--ease)` for any new motion.
+- **Do** colour form feedback with `--danger` and `--success`, never with literal hex.
 
 ### Don't:
 - **Don't** put burgundy, badges, tilt, stickers or offset decoration on top of a project screenshot.
