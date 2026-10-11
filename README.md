@@ -61,7 +61,7 @@ The project is prepared for Vercel:
 1. Import the repository into Vercel.
 2. Use `npm run build` as the build command and `dist` as the output directory.
 3. Add `VITE_CONTACT_FORM_ENDPOINT` in project environment variables.
-4. Deploy, then connect `shahd.me`.
+4. Deploy, then connect `shahd.site`.
 
 `vercel.json` rewrites application routes to `index.html`, while static files remain directly cacheable. `robots.txt`, `sitemap.xml`, canonical metadata, Open Graph metadata, Twitter metadata, and route-specific JSON-LD are included.
 

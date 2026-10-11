@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shahd.me/sitemap.xml
+Sitemap: https://shahd.site/sitemap.xml

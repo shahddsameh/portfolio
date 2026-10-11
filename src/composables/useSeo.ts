@@ -11,14 +11,14 @@ export interface SeoData {
 export function useSeo(data: SeoData | Ref<SeoData>) {
   const update = (seo: SeoData) => {
     document.title = seo.title
-    const canonical = `https://shahd.me${seo.path}`
+    const canonical = `https://shahd.site${seo.path}`
     const entries = [
       ['description', seo.description],
       ['og:title', seo.title],
       ['og:description', seo.description],
       ['og:url', canonical],
       ['og:type', seo.path.startsWith('/projects/') ? 'article' : 'website'],
-      ['og:image', seo.image ? `https://shahd.me${seo.image}` : 'https://shahd.me/images/profile/shahd-portrait.png'],
+      ['og:image', seo.image ? `https://shahd.site${seo.image}` : 'https://shahd.site/images/profile/shahd-portrait.png'],
       ['twitter:card', 'summary_large_image'],
       ['twitter:title', seo.title],
       ['twitter:description', seo.description],

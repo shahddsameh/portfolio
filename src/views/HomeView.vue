@@ -19,7 +19,7 @@ useSeo({
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: profile.name,
-    url: 'https://shahd.me',
+    url: 'https://shahd.site',
     jobTitle: profile.title,
     email: `mailto:${profile.email}`,
     address: { '@type': 'PostalAddress', addressLocality: 'Cairo', addressCountry: 'EG' },

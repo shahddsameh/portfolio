@@ -37,7 +37,7 @@ The application must be responsive, accessible, maintainable, and structured as 
 
 The intended production domain is:
 
-shahd.me
+shahd.site
 
 Prepare the application for deployment to Vercel first.
 
