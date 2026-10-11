@@ -1,0 +1,522 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T19:24:34.183Z",
+  "title": "Design System: Shahd Sameh — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "ink-burgundy": {
+        "role": "primary",
+        "displayName": "Ink Burgundy",
+        "purpose": "Light-theme accent (--accent).",
+        "canonical": "#7a2638",
+        "tonalRamp": [
+          "#3a121b",
+          "#651f2e",
+          "#902d42",
+          "#bb3a56",
+          "#cf637a",
+          "#dd92a2",
+          "#ecc1ca",
+          "#f9ecee"
+        ]
+      },
+      "faded-ink": {
+        "role": "primary",
+        "displayName": "Faded Ink",
+        "purpose": "Dark-theme accent (--accent); 5.1:1 on Press Black.",
+        "canonical": "#c67b8c",
+        "tonalRamp": [
+          "#35171e",
+          "#5d2834",
+          "#84394a",
+          "#ab4a60",
+          "#c17183",
+          "#d49ba8",
+          "#e6c6cd",
+          "#f7edef"
+        ]
+      },
+      "warm-newsprint": {
+        "role": "neutral",
+        "displayName": "Warm Newsprint",
+        "purpose": "Light page (--bg).",
+        "canonical": "#f4efe7",
+        "tonalRamp": [
+          "#342a18",
+          "#5b482a",
+          "#81663b",
+          "#a8854d",
+          "#bfa273",
+          "#d2be9d",
+          "#e5dac7",
+          "#f7f3ee"
+        ]
+      },
+      "newsprint-fold": {
+        "role": "neutral",
+        "displayName": "Newsprint Fold",
+        "purpose": "Light surface (--surface).",
+        "canonical": "#e9e1d5",
+        "tonalRamp": [
+          "#32291a",
+          "#57462e",
+          "#7c6441",
+          "#a18254",
+          "#b99f79",
+          "#cebca1",
+          "#e3d9c9",
+          "#f6f3ee"
+        ]
+      },
+      "newsprint-shade": {
+        "role": "neutral",
+        "displayName": "Newsprint Shade",
+        "purpose": "Light ghost tone (--surface-strong); never text.",
+        "canonical": "#ddd2c3",
+        "tonalRamp": [
+          "#31281c",
+          "#554530",
+          "#786244",
+          "#9c8059",
+          "#b59d7d",
+          "#cbbba4",
+          "#e1d8cb",
+          "#f6f3ef"
+        ]
+      },
+      "press-ink": {
+        "role": "neutral",
+        "displayName": "Press Ink",
+        "purpose": "Light text (--text); inverted bands.",
+        "canonical": "#292625",
+        "tonalRamp": [
+          "#282524",
+          "#46413f",
+          "#635c5a",
+          "#817774",
+          "#9e9694",
+          "#bbb6b4",
+          "#d8d5d4",
+          "#f3f2f2"
+        ]
+      },
+      "pencil-gray": {
+        "role": "neutral",
+        "displayName": "Pencil Gray",
+        "purpose": "Light muted text (--muted).",
+        "canonical": "#716a65",
+        "tonalRamp": [
+          "#282624",
+          "#46423f",
+          "#645d59",
+          "#817974",
+          "#9f9893",
+          "#bcb7b4",
+          "#d8d6d4",
+          "#f3f2f2"
+        ]
+      },
+      "proof-rule": {
+        "role": "neutral",
+        "displayName": "Proof Rule",
+        "purpose": "Light rules and offset shadows (--border).",
+        "canonical": "#cfc5b8",
+        "tonalRamp": [
+          "#2e271f",
+          "#4f4435",
+          "#71614c",
+          "#927d63",
+          "#ad9c85",
+          "#c5b9aa",
+          "#ded7ce",
+          "#f5f3f0"
+        ]
+      },
+      "burgundy-ground-light": {
+        "role": "neutral",
+        "displayName": "Burgundy Ground",
+        "purpose": "Text on accent, light (--accent-contrast).",
+        "canonical": "#fff7ec",
+        "tonalRamp": [
+          "#4d2c00",
+          "#854d00",
+          "#bd6d00",
+          "#f58e00",
+          "#ffa933",
+          "#ffc370",
+          "#ffddad",
+          "#fff4e5"
+        ]
+      },
+      "press-black": {
+        "role": "neutral",
+        "displayName": "Press Black",
+        "purpose": "Dark page (--bg).",
+        "canonical": "#22201f",
+        "tonalRamp": [
+          "#282624",
+          "#45413f",
+          "#635d5a",
+          "#807975",
+          "#9e9794",
+          "#bbb7b4",
+          "#d8d6d4",
+          "#f3f2f2"
+        ]
+      },
+      "press-black-fold": {
+        "role": "neutral",
+        "displayName": "Press Black Fold",
+        "purpose": "Dark surface (--surface).",
+        "canonical": "#2c2928",
+        "tonalRamp": [
+          "#282524",
+          "#45413f",
+          "#635c5a",
+          "#807775",
+          "#9e9794",
+          "#bbb6b4",
+          "#d8d5d4",
+          "#f3f2f2"
+        ]
+      },
+      "press-black-shade": {
+        "role": "neutral",
+        "displayName": "Press Black Shade",
+        "purpose": "Dark ghost tone (--surface-strong).",
+        "canonical": "#363230",
+        "tonalRamp": [
+          "#292524",
+          "#46413e",
+          "#645d59",
+          "#827873",
+          "#9f9793",
+          "#bcb6b3",
+          "#d9d5d4",
+          "#f3f2f2"
+        ]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Chalk",
+        "purpose": "Dark text (--text).",
+        "canonical": "#f1e9dd",
+        "tonalRamp": [
+          "#362916",
+          "#5e4827",
+          "#866637",
+          "#ad8547",
+          "#c3a16f",
+          "#d5be9a",
+          "#e7dac5",
+          "#f8f3ed"
+        ]
+      },
+      "ash-gray": {
+        "role": "neutral",
+        "displayName": "Ash Gray",
+        "purpose": "Dark muted text (--muted).",
+        "canonical": "#b3aaa3",
+        "tonalRamp": [
+          "#2a2623",
+          "#49423c",
+          "#675d55",
+          "#86796f",
+          "#a3988f",
+          "#beb7b1",
+          "#dad6d2",
+          "#f3f2f1"
+        ]
+      },
+      "night-rule": {
+        "role": "neutral",
+        "displayName": "Night Rule",
+        "purpose": "Dark rules (--border).",
+        "canonical": "#4a4541",
+        "tonalRamp": [
+          "#292624",
+          "#47423e",
+          "#645e58",
+          "#827a72",
+          "#a09892",
+          "#bcb7b3",
+          "#d9d6d4",
+          "#f3f2f1"
+        ]
+      },
+      "burgundy-ground-dark": {
+        "role": "neutral",
+        "displayName": "Burgundy Ground (dark)",
+        "purpose": "Text on accent, dark (--accent-contrast).",
+        "canonical": "#211d1d",
+        "tonalRamp": [
+          "#292424",
+          "#473e3e",
+          "#645858",
+          "#827373",
+          "#a09292",
+          "#bcb3b3",
+          "#d9d4d4",
+          "#f3f1f1"
+        ]
+      },
+      "available-green": {
+        "role": "signal",
+        "displayName": "Available Green",
+        "purpose": "Hero availability dot (hardcoded).",
+        "canonical": "#4d8a61",
+        "tonalRamp": [
+          "#1b3123",
+          "#2f553c",
+          "#447955",
+          "#589d6e",
+          "#7cb68f",
+          "#a3ccb1",
+          "#cbe2d2",
+          "#eff6f1"
+        ]
+      },
+      "error-red": {
+        "role": "signal",
+        "displayName": "Error Red",
+        "purpose": "Form errors (hardcoded).",
+        "canonical": "#b33c3c",
+        "tonalRamp": [
+          "#391313",
+          "#632121",
+          "#8d2f2f",
+          "#b73d3d",
+          "#cc6666",
+          "#db9494",
+          "#ebc2c2",
+          "#f9ecec"
+        ]
+      },
+      "success-green": {
+        "role": "signal",
+        "displayName": "Success Green",
+        "purpose": "Form success (hardcoded).",
+        "canonical": "#3f8051",
+        "tonalRamp": [
+          "#193320",
+          "#2c5938",
+          "#3e7e50",
+          "#51a468",
+          "#76bc8a",
+          "#9fd0ad",
+          "#c8e4d0",
+          "#eef7f0"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero name and page titles; Cormorant 600, tight tracking."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section h2s; <em> turns burgundy."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card, service, timeline and resume headings."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Intro paragraphs and case subtitles."
+      },
+      "numeral": {
+        "displayName": "Ghost Numeral",
+        "purpose": "Oversized section numbers in Newsprint Shade; decorative only."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, Manrope 15px."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase metadata, dt terms, form labels."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Buttons and text links."
+      }
+    },
+    "shadows": [
+      {
+        "name": "press-offset-sm",
+        "value": "4px 5px 0 var(--border)",
+        "purpose": "Buttons on hover and focus-visible."
+      },
+      {
+        "name": "press-offset-card",
+        "value": "8px 8px 0 var(--border)",
+        "purpose": "Project image frames in the editorial frame."
+      },
+      {
+        "name": "press-offset-hero",
+        "value": "12px 12px 0 var(--border)",
+        "purpose": "Case-study hero image (flagged drift vs. The Frame, Not the Work Rule)."
+      },
+      {
+        "name": "floating-sheet",
+        "value": "0 18px 40px var(--shadow)",
+        "purpose": "Portrait, its backing sheet, and the mobile menu."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-house",
+        "value": "cubic-bezier(.22, 1, .36, 1)",
+        "purpose": "House easing for all new motion; hero entrance 0.5–0.6s."
+      },
+      {
+        "name": "ease-image-legacy",
+        "value": "cubic-bezier(.2, .7, .2, 1)",
+        "purpose": "Legacy image-zoom easing (drift)."
+      },
+      {
+        "name": "reveal",
+        "value": "opacity + translateY(30px), .55s",
+        "purpose": "Scroll reveal on home sections; static under reduced motion."
+      },
+      {
+        "name": "page",
+        "value": "opacity + translateY(12px), .22s",
+        "purpose": "Route transition."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "900px"
+      },
+      {
+        "name": "mobile",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Default square hairline button.",
+      "html": "<button class=\"ds-btn\">View case study</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:46px;padding:.75rem 1.1rem;border:1px solid var(--border,#cfc5b8);border-radius:0;background:transparent;color:var(--text,#292625);font-family:Manrope,Arial,sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:transform .2s cubic-bezier(.22,1,.36,1),box-shadow .2s cubic-bezier(.22,1,.36,1)}.ds-btn:hover,.ds-btn:focus-visible{transform:translateY(-3px);box-shadow:4px 5px 0 var(--border,#cfc5b8)}.ds-btn:focus-visible{outline:3px solid var(--accent,#7a2638);outline-offset:4px}@media (prefers-reduced-motion:reduce){.ds-btn:hover,.ds-btn:focus-visible{transform:none}}"
+    },
+    {
+      "name": "Accent Button",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "One per view, for the primary action.",
+      "html": "<button class=\"ds-btn ds-btn-accent\">Download CV</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:46px;padding:.75rem 1.1rem;border:1px solid var(--border,#cfc5b8);border-radius:0;background:transparent;color:var(--text,#292625);font-family:Manrope,Arial,sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:transform .2s cubic-bezier(.22,1,.36,1),box-shadow .2s cubic-bezier(.22,1,.36,1)}.ds-btn:hover,.ds-btn:focus-visible{transform:translateY(-3px);box-shadow:4px 5px 0 var(--border,#cfc5b8)}.ds-btn:focus-visible{outline:3px solid var(--accent,#7a2638);outline-offset:4px}@media (prefers-reduced-motion:reduce){.ds-btn:hover,.ds-btn:focus-visible{transform:none}}.ds-btn-accent{background:var(--accent,#7a2638);border-color:var(--accent,#7a2638);color:var(--accent-contrast,#fff7ec)}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Underlined inline action with a nudging arrow.",
+      "html": "<a class=\"ds-text-link\" href=\"#\">Read the case study <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17 17 7\"/><path d=\"M7 7h10v10\"/></svg></a>",
+      "css": ".ds-text-link{display:inline-flex;align-items:center;gap:.35rem;padding-block:.25rem;border-bottom:1px solid currentColor;color:var(--text,#292625);font-family:Manrope,Arial,sans-serif;font-size:.78rem;font-weight:700;text-decoration:none}.ds-text-link svg{transition:transform .2s cubic-bezier(.22,1,.36,1)}.ds-text-link:hover svg,.ds-text-link:focus-visible svg{transform:translate(3px,-3px)}.ds-text-link:focus-visible{outline:3px solid var(--accent,#7a2638);outline-offset:4px}@media (prefers-reduced-motion:reduce){.ds-text-link:hover svg,.ds-text-link:focus-visible svg{transform:none}}"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Square ruled field with uppercase label.",
+      "html": "<label class=\"ds-field\"><span>Email</span><input type=\"email\" placeholder=\"you@company.com\"></label>",
+      "css": ".ds-field{display:block;font-family:Manrope,Arial,sans-serif}.ds-field span{display:block;margin-bottom:.35rem;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text,#292625)}.ds-field input{width:100%;box-sizing:border-box;padding:.85rem;border:1px solid var(--border,#cfc5b8);border-radius:0;background:var(--bg,#f4efe7);color:var(--text,#292625);font:inherit}.ds-field input:focus-visible{outline:3px solid var(--accent,#7a2638);outline-offset:4px}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Technology tag: hairline box, no fill.",
+      "html": "<span class=\"ds-tag\">Vue 3</span>",
+      "css": ".ds-tag{display:inline-block;padding:.3rem .55rem;border:1px solid var(--border,#cfc5b8);color:var(--text,#292625);font-family:Manrope,Arial,sans-serif;font-size:.65rem}"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Desktop nav with a burgundy wipe underline.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"is-active\">Projects</a><a href=\"#\">Resume</a><a href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;gap:2rem;font-family:Manrope,Arial,sans-serif}.ds-nav a{position:relative;color:var(--text,#292625);font-size:.76rem;font-weight:600;letter-spacing:.06em;text-decoration:none}.ds-nav a::after{content:\"\";position:absolute;left:0;bottom:-.45rem;width:100%;height:1px;background:var(--accent,#7a2638);transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.22,1,.36,1)}.ds-nav a:hover::after,.ds-nav a:focus-visible::after,.ds-nav a.is-active::after{transform:scaleX(1)}"
+    },
+    {
+      "name": "Section Heading",
+      "kind": "custom",
+      "refersTo": "section-heading",
+      "description": "Ghost numeral beside a serif h2, closed by a proof rule.",
+      "html": "<header class=\"ds-section-heading\"><span>02</span><h2>Selected <em>projects</em></h2></header>",
+      "css": ".ds-section-heading{display:grid;grid-template-columns:minmax(90px,1fr) 4fr;align-items:end;border-bottom:1px solid var(--border,#cfc5b8)}.ds-section-heading span{color:var(--surface-strong,#ddd2c3);font-family:\"Cormorant Garamond\",Georgia,serif;font-size:6rem;line-height:.75}.ds-section-heading h2{margin:0 0 1.5rem;font-family:\"Cormorant Garamond\",Georgia,serif;font-weight:600;font-size:3rem;line-height:1;letter-spacing:-.035em;color:var(--text,#292625)}.ds-section-heading em{color:var(--accent,#7a2638);font-weight:500}"
+    },
+    {
+      "name": "Contact Panel",
+      "kind": "card",
+      "refersTo": "contact-panel",
+      "description": "Fold-toned panel with a 4px burgundy top rule.",
+      "html": "<div class=\"ds-panel\">Contact form fields sit here.</div>",
+      "css": ".ds-panel{padding:2rem;background:var(--surface,#e9e1d5);border-top:4px solid var(--accent,#7a2638);color:var(--text,#292625);font-family:Manrope,Arial,sans-serif}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Editorial Proof",
+    "overview": "The site reads like a magazine spread at the proof stage. It sits on warm newsprint (or press black at night), uses big Cormorant Garamond display type, thin proof rules between every block, oversized section numbers in a barely-there tone, and burgundy marks where an editor would pencil corrections. Depth is printed: hard offset shadows like stacked card stock, a fine paper grain over the whole page, and a portrait clipped slightly askew on a tilted backing sheet. The tone is elegant and calm, never playful. The tactility is in the craft, not in props.\n\nThe proof is a **frame**, and the work inside it stays quiet. The tactile marks belong to the editorial chrome: the header, section numbers, the homepage project cards, the hero, the contact panel and the footer. Case-study pages step down into a calmer monograph register, with long ruled sections, generous measure and muted body text. Project screenshots are never marked up. No burgundy, tilt or decoration is ever laid on top of a product capture.\n\nThe pages are dense but the eye has plenty of room. Each section opens with a heading paired with its number and closes with a rule. The grids are deliberately uneven: 1.16 / .84 in the hero, 1 / 3 in case sections, and a staggered third project card. That unevenness keeps the page editorial rather than templated, while the content still scans in seconds.",
+    "keyCharacteristics": [
+      "Warm two-theme paper world: Warm Newsprint by day, Press Black by night, both with grain.",
+      "Serif display (Cormorant Garamond 600, tight -0.035em tracking) over a small, precise sans (Manrope).",
+      "One accent, Ink Burgundy, used as an editor's mark: emphasis in headlines, underlines, focus rings, one primary button per view.",
+      "Square corners everywhere. Hairline 1px rules carry the structure.",
+      "Hard print-offset shadows in the frame, never on top of the work.",
+      "Motion is small and quick, and it always has a static path."
+    ],
+    "rules": [
+      {
+        "name": "The Editor's Mark Rule",
+        "body": "Burgundy marks something, the way a correction is marked on a proof. Emphasis, focus, the one primary action, a numeral. It never floods a surface larger than a button or a 4px rule, and it never sits on a project screenshot.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ghost Numeral Rule",
+        "body": "Newsprint Shade exists for huge decorative type (section numbers, the watermark, the 404). Anything meant to be read uses Press Ink or Pencil Gray.",
+        "section": "colors"
+      },
+      {
+        "name": "The Speak / Annotate Rule",
+        "body": "Cormorant sets anything meant to be felt: names, headlines, numerals, the lead, the mobile menu items. Manrope sets anything meant to be used: controls, metadata, body copy. Never set a control in the serif or a headline in the sans.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two Fonts Rule",
+        "body": "Cormorant Garamond and Manrope are the whole type system. Don't add a third family, and don't use monospace as decoration.",
+        "section": "typography"
+      },
+      {
+        "name": "The Frame, Not the Work Rule",
+        "body": "Tactile depth, tilt and burgundy belong to the editorial frame. On case-study pages the frame recedes. A product capture may sit in a plain frame, but nothing decorative is ever laid over it.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** use only the token variables in both themes. Check every new colour against Warm Newsprint and against Press Black.",
+      "**Do** keep text on Faded Ink and Ink Burgundy at 4.5:1 or better.",
+      "**Do** build structure from 1px Proof Rule hairlines and asymmetric grids, and keep corners square (`0`).",
+      "**Do** give every hover state a matching `:focus-visible` state, and remove lifts and slides under `prefers-reduced-motion`.",
+      "**Do** keep case-study pages calm: ruled sections, muted body text, plain frames around real captures.",
+      "**Do** use the house easing `cubic-bezier(.22, 1, .36, 1)` for any new motion."
+    ],
+    "donts": [
+      "**Don't** put burgundy, badges, tilt, stickers or offset decoration on top of a project screenshot.",
+      "**Don't** round corners, add soft drop shadows to cards, or use glassmorphism beyond the header's functional blur.",
+      "**Don't** add a third typeface, set controls in Cormorant, or set headlines in Manrope.",
+      "**Don't** use Newsprint Shade (or its dark counterparts) for text anyone needs to read.",
+      "**Don't** use bright gradients, cartoonish scrapbook props, or stock imagery.",
+      "**Don't** use more than one accent-filled button in a single view."
+    ]
+  }
+}
