@@ -33,7 +33,7 @@ There is no linter and no test suite. Verification is `typecheck` + `build`, the
 
 These come from the spec and from the owner, and override stylistic judgment:
 
-- **Contribution honesty**: never present Shahd as the sole or visual designer where design was shared; follow the "Accurate role description" / "Personal contributions" sections of `CODEX_PROMPT.md` per project. Don't claim unverified features or present unsourced statistics as fact. The Mwasalaty admin dashboard must never get access instructions or secrets anywhere (UI, source, README, screenshots).
+- **Contribution honesty**: never present Shahd as the sole or visual designer where design was shared; the master CV (`materials/Shahd_Sameh_CV.pdf`) is the source of truth for experience, profile and project credits, and the PwC case study comes from the owner's `pwc-case-study.md` (copied into `content/`); `CODEX_PROMPT.md` role descriptions are superseded where they disagree. Don't claim unverified features or present unsourced statistics as fact. The Mwasalaty admin dashboard must never get access instructions or secrets anywhere (UI, source, README, screenshots).
 - **Do not invent text**: no new bio lines, skills, stats, or project copy — content comes from `src/data/*` or from the owner.
 - **Keep the identity**: use only the existing CSS variables (both themes), the two fonts, and the shared easing `var(--ease)` (`cubic-bezier(.22,1,.36,1)`). Enhancements should not change layout, spacing, or tone (editorial, calm). Ask before adding dependencies.
 - Use real product captures only — no stock imagery or blurry video frames as project screenshots.
