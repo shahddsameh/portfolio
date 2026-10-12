@@ -71,7 +71,7 @@ export const projects: Project[] = [
         items: ['Passenger PWA → Vue 3 + TypeScript', 'Vue client → Node.js + Express API', 'API → Supabase authentication and database', 'Routing → OpenTripPlanner + GTFS + OpenStreetMap', 'Language requests → Groq', 'Payments → PayMob → ticketing system', 'Tickets → operator scanner', 'Resilience → IndexedDB + Workbox', 'Deployment → AWS EC2'],
       },
       { title: 'Team contributions', body: 'The completed product also includes favorite places, support and notifications, step-by-step live navigation, and an admin dashboard. These are presented as outcomes of the five-person team; the admin dashboard and live navigation are not claimed as Shahd’s individual contribution.' },
-      { title: 'Challenges & limitations', body: 'The project had to coordinate several external systems, imperfect transit data, bilingual responsive UI, and offline synchronization. Current case-study imagery is limited because clean application captures were not supplied.' },
+      { title: 'Challenges & limitations', body: 'The project had to coordinate several external systems, imperfect transit data, bilingual responsive UI, and offline synchronization.' },
       { title: 'Future improvements', body: 'These are concepts for future exploration and are not completed product features.', items: ['Live vehicle tracking', 'Seat booking', 'Voice-assistant support', 'Operator usage analytics', 'Social trip sharing', 'Expanded city coverage'] },
       { title: 'Reflection', body: 'Mwasalaty strengthened my ability to lead delivery while staying close to implementation detail. It also reinforced that resilient product behavior, clear ownership, and integration planning matter as much as any single interface.' },
       { title: 'Project links', body: 'Explore the public references below. The admin URL is listed only as a protected project reference; no credentials or access instructions are provided.' },
@@ -112,7 +112,7 @@ export const projects: Project[] = [
       { title: 'Security', body: 'JWT protects authenticated requests while bcrypt supports password hashing. Access rules are designed around the platform’s multiple user roles.' },
       { title: 'Team collaboration', body: 'The platform was produced by two contributors. This case study distinguishes my scheduling and assessment work from the broader shared product.' },
       { title: 'Reflection', body: 'The project developed my ability to translate a stateful real-world process—availability, booking, change, and refund—into reliable data and interface behavior.' },
-      { title: 'Demo link', body: 'The LinkedIn demo remains the primary public product reference. Clean exported frames are still needed for this portfolio.' },
+      { title: 'Demo link', body: 'The LinkedIn demo remains the primary public product reference.' },
     ],
   },
   {
