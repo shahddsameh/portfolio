@@ -167,7 +167,7 @@ A warm, low-chroma paper palette with a single deep burgundy accent. Each theme 
 ### Hierarchy
 - **Display** (600, clamp(5rem → 8.25rem), lh 1, -0.035em): the hero name only. Interior page titles use larger clamps (up to 10rem on intros, 13rem on case-study titles), and the 404 numerals reach 25rem.
 - **Headline** (600, clamp(2.35rem → 4.6rem), lh 1): section h2s. An `<em>` inside turns Ink Burgundy at weight 500.
-- **Title** (Cormorant, ~2rem): card, service, timeline and resume-entry headings. Project-card titles scale up to 4.7rem.
+- **Title** (Cormorant, ~2rem): card, timeline and resume-entry headings. Project-card titles scale up to 4.7rem.
 - **Lead** (Cormorant 500, clamp(1.25rem → 1.85rem), lh 1.45): intro paragraphs and case subtitles. Bio and role paragraphs switch to Manrope for readability at length.
 - **Body** (Manrope 400, 15px, lh 1.7): running text. Long-form blocks cap at 62–70ch.
 - **Label** (Manrope 700, 0.65–0.72rem, 0.08–0.19em tracking, uppercase): metadata, dt terms, form labels, dates, the scroll cue.
@@ -183,7 +183,6 @@ A warm, low-chroma paper palette with a single deep burgundy accent. Each theme 
 - **Container:** `min(1280px, 100% − 3rem)` (`.page-shell`), shrinking to a 1rem gutter under 600px. Full-bleed bands (header, footer, role and architecture sections) pad their content to the same 1280px column with `max(1.5rem, (100vw − 1280px) / 2)`.
 - **Vertical rhythm:** home sections use `clamp(6rem, 11vw, 11rem)` padding, case sections `clamp(5rem, 9vw, 9rem)`. Section headings leave `clamp(3rem, 7vw, 6rem)` below their rule.
 - **Grids are asymmetric by default:** hero 1.16fr / .84fr, about and contact .9 / 1.1, section heading 1 / 4 (numeral and title), case section 1 / 3, timeline 1 / 3, resume 1 / 4. The featured project spans the full width. The third project card drops 10rem (8rem on /projects) to stagger the column.
-- **Services** sit on a 12-column hairline grid: three at span 4, then two at span 6.
 - **Breakpoints:** 900px collapses two-column grids to one and swaps the desktop nav for the menu button. 600px collapses the remaining grids, tightens the hero type, and sets gallery frames to 4:3.
 - **Header:** sticky, 76px, a three-column grid (wordmark, centred nav, actions) on a 91% bg tint with blur.
 
@@ -229,7 +228,6 @@ Pressed and precise. A square, hairline-ruled slip of type that lifts off the pa
 
 ### Cards / Containers
 - **Project card:** not a box. It is an image frame (Newsprint Shade fill, 8px press offset, 16:10 crop anchored to the top) above an uppercase index label, a large Cormorant title, muted summary text, and tags. On hover the image scales to 1.025.
-- **Service cell:** a cell in the hairline grid, not a floating card. It has a burgundy Cormorant numeral, a Title heading pushed 3.5rem down, and muted text. Hover fills it with Newsprint Fold and lifts it 4px.
 - **Contact panel:** a Newsprint Fold field with a 4px Ink Burgundy top rule and no other border.
 - **Inverted bands:** the footer and the architecture section swap to a Press Ink background with page-colour text. Their rules are drawn in a page-colour mix.
 

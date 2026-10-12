@@ -8,7 +8,6 @@ import SectionHeading from '@/components/SectionHeading.vue'
 import { experience } from '@/data/experience'
 import { profile } from '@/data/profile'
 import { projects } from '@/data/projects'
-import { services } from '@/data/services'
 import { useSeo } from '@/composables/useSeo'
 
 useSeo({
@@ -92,19 +91,8 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
     </RevealOnScroll>
 
     <RevealOnScroll>
-      <section id="services" class="section page-shell">
-        <SectionHeading number="03" eyebrow="Services" title="From early structure to shipped interface." />
-        <div class="services-grid">
-          <article v-for="(service, index) in services" :key="service.title">
-            <span>0{{ index + 1 }}</span><h3>{{ service.title }}</h3><p>{{ service.description }}</p>
-          </article>
-        </div>
-      </section>
-    </RevealOnScroll>
-
-    <RevealOnScroll>
       <section class="section page-shell">
-        <SectionHeading number="04" eyebrow="Experience" title="Learning across products and industries." />
+        <SectionHeading number="03" eyebrow="Experience" title="Learning across products and industries." />
         <div class="timeline">
           <article v-for="item in experience" :key="item.role">
             <time>{{ item.date }}</time><div><h3>{{ item.role }}</h3><p class="company">{{ item.company }}</p><p>{{ item.bullets[0] }}</p></div>
@@ -117,7 +105,7 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
     <RevealOnScroll>
       <section id="contact" class="section contact-section page-shell">
         <div>
-          <SectionHeading number="05" eyebrow="Contact" title="Have a thoughtful problem to solve?" />
+          <SectionHeading number="04" eyebrow="Contact" title="Have a thoughtful problem to solve?" />
           <p class="lead">I’m open to design, front-end, and product-minded software opportunities. Tell me what you’re building.</p>
           <div class="contact-links">
             <a :href="`mailto:${profile.email}`">{{ profile.email }}</a>

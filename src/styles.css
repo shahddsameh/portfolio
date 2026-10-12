@@ -135,13 +135,6 @@ h3 { font-size: 1.35rem; }
 .tag-list span { padding: .3rem .55rem; border: 1px solid var(--border); font-size: .65rem; }
 .section-action { margin-top: 4rem; text-align: right; }
 
-.services-grid { display: grid; grid-template-columns: repeat(12, 1fr); border-top: 1px solid var(--border); }
-.services-grid article { grid-column: span 4; min-height: 250px; padding: 1.8rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background .25s var(--ease), transform .25s var(--ease); }
-.services-grid article:nth-child(4), .services-grid article:nth-child(5) { grid-column: span 6; }
-.services-grid article:hover { background: var(--surface); transform: translateY(-4px); }
-.services-grid span { color: var(--accent); font-family: "Cormorant Garamond"; font-size: 1.2rem; }
-.services-grid h3 { margin-top: 3.5rem; font-family: "Cormorant Garamond"; font-size: 2rem; }
-.services-grid p { color: var(--muted); font-size: .85rem; }
 .timeline { margin-bottom: 2rem; border-top: 1px solid var(--border); }
 .timeline article { display: grid; grid-template-columns: 1fr 3fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
 .timeline time { color: var(--muted); font-size: .72rem; letter-spacing: .08em; }
@@ -268,8 +261,6 @@ h3 { font-size: 1.35rem; }
   .project-editorial, .projects-list { gap: 5rem 2rem; }
   .project-card.featured, .projects-list .featured { grid-template-columns: 1fr; }
   .project-card:nth-child(3), .projects-list .project-card:nth-child(3) { margin-top: 4rem; }
-  .services-grid article { grid-column: span 6; }
-  .services-grid article:nth-child(4), .services-grid article:nth-child(5) { grid-column: span 6; }
   .site-footer { grid-template-columns: 1fr; }
   .case-section, .role-section { grid-template-columns: 1fr; }
   .gallery-heading { grid-template-columns: 1fr 2fr; }
@@ -298,7 +289,6 @@ h3 { font-size: 1.35rem; }
   .details-grid, .project-editorial, .projects-list { grid-template-columns: 1fr; }
   .project-card.featured, .projects-list .featured { grid-column: 1; }
   .project-card:nth-child(3), .projects-list .project-card:nth-child(3) { margin-top: 0; }
-  .services-grid article, .services-grid article:nth-child(4), .services-grid article:nth-child(5) { grid-column: span 12; min-height: 210px; }
   .timeline article { grid-template-columns: 1fr; gap: .5rem; }
   .field-row { grid-template-columns: 1fr; gap: 0; }
   .case-meta { grid-template-columns: 1fr; }

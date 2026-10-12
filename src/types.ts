@@ -27,8 +27,3 @@ export interface Experience {
   date: string
   bullets: string[]
 }
-
-export interface Service {
-  title: string
-  description: string
-}

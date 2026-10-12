@@ -28,7 +28,6 @@ watch(() => route.path, () => (open.value = false))
       <RouterLink to="/">Home</RouterLink>
       <button type="button" @click="goToSection('about')">About</button>
       <RouterLink to="/projects">Projects</RouterLink>
-      <button type="button" @click="goToSection('services')">Services</button>
       <RouterLink to="/resume">Résumé</RouterLink>
       <button type="button" @click="goToSection('contact')">Contact</button>
     </nav>
@@ -49,7 +48,6 @@ watch(() => route.path, () => (open.value = false))
         <RouterLink to="/">Home</RouterLink>
         <button type="button" @click="goToSection('about')">About</button>
         <RouterLink to="/projects">Projects</RouterLink>
-        <button type="button" @click="goToSection('services')">Services</button>
         <RouterLink to="/resume">Résumé</RouterLink>
         <button type="button" @click="goToSection('contact')">Contact</button>
         <a class="button" href="/files/Shahd_Sameh_CV.pdf" download><Download :size="17" /> Download CV</a>
