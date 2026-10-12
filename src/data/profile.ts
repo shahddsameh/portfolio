@@ -1,6 +1,6 @@
 export const profile = {
   name: 'Shahd Sameh Ahmed',
-  title: 'UI/UX Designer',
+  title: 'UI/UX Developer',
   positioning:
     'I take web products end to end — from user flows and wireframes in Figma through prototypes to polished, developer-ready interfaces.',
   biography:
