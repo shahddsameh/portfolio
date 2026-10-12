@@ -6,7 +6,7 @@ export const experience: Experience[] = [
     company: 'Information Technology Institute, ICCP',
     date: 'Jan 2026 — Jun 2026',
     bullets: [
-      'Led a five-person team building Mwasalaty, a multimodal Cairo transit-planning and QR-ticketing PWA; owned end-to-end product design from user flows and wireframes through interactive prototypes to final developer-ready screens, and managed delivery across five phases in Linear using an Agile sprint workflow.',
+      'Led a five-person team building Mwasalaty, an offline-first transit PWA for Cairo; owned business logic and much of the Supabase backend, and adapted the existing UI design while building new screens directly in code.',
       'Designed screen-level interfaces in Figma using established patterns — layout, spacing, hierarchy, interaction states and responsive behaviour — and built a reusable component library that kept screens consistent as the product grew.',
       'Designed bilingual EN/AR interfaces with full RTL support to WCAG 2.1 standards, translating complex multimodal routing, per-leg fare and payment requirements into simple, intuitive user journeys.',
       'Prepared files for handoff with annotations, specifications and asset exports, then implemented the designs in Vue 3, TypeScript and Tailwind CSS — closing the design-to-development loop and resolving implementation questions directly.',
