@@ -131,6 +131,8 @@ h3 { font-size: 1.35rem; }
 .project-index { margin-bottom: .8rem; color: var(--muted); font-size: .67rem; letter-spacing: .1em; text-transform: uppercase; }
 .project-card h3 { margin: 0 0 .8rem; font-family: "Cormorant Garamond"; font-size: clamp(2.3rem, 5vw, 4.7rem); }
 .project-card p { color: var(--muted); }
+.project-card .project-contribution { margin: 0; padding-top: .9rem; border-top: 1px solid var(--border); color: var(--text); font-size: .82rem; font-weight: 600; line-height: 1.6; }
+.project-contribution span { display: block; margin-bottom: .25rem; color: var(--muted); font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .tag-list { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1.2rem 0; }
 .tag-list span { padding: .3rem .55rem; border: 1px solid var(--border); font-size: .65rem; }
 .section-action { margin-top: 4rem; text-align: right; }

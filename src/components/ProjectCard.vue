@@ -13,6 +13,7 @@ defineProps<{ project: Project; featured?: boolean }>()
       <div class="project-index">{{ project.year }} · {{ project.role }}</div>
       <h3><RouterLink :to="`/projects/${project.slug}`">{{ project.name }}</RouterLink></h3>
       <p>{{ project.summary }}</p>
+      <p class="project-contribution"><span>My contribution</span>{{ project.contributions.slice(0, 3).join(' · ') }}</p>
       <div class="tag-list" aria-label="Technologies">
         <span v-for="tech in project.technologies.slice(0, featured ? 6 : 4)" :key="tech">{{ tech }}</span>
       </div>
