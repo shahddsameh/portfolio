@@ -1,34 +1,72 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { ArrowLeft, ArrowUpRight, Download, ExternalLink, LockKeyhole, Mail } from 'lucide-vue-next'
+import { ArrowLeft, ArrowUpRight, Download, ExternalLink, LockKeyhole, Mail, Maximize2, X } from 'lucide-vue-next'
 import { getProject, projects } from '@/data/projects'
 import { useSeo } from '@/composables/useSeo'
+import type { CaseImage } from '@/types'
 
 const route = useRoute()
 const project = computed(() => getProject(String(route.params.slug))!)
+const compact = computed(() => project.value.compact)
+// Break long concept titles after the em dash, keeping the dash with the first line.
+const titleParts = computed(() => {
+  const [first, ...rest] = project.value.name.split(' — ')
+  return rest.length ? [`${first} —`, rest.join(' — ')] : [first]
+})
 const nextProject = computed(() => projects[(projects.findIndex((item) => item.slug === project.value.slug) + 1) % projects.length])
+
+const viewer = ref<HTMLDialogElement>()
+const viewerImage = ref<CaseImage>()
+const openViewer = (image: CaseImage) => {
+  viewerImage.value = image
+  viewer.value?.showModal()
+}
+const closeOnBackdrop = (event: MouseEvent) => event.target === viewer.value && viewer.value?.close()
 
 useSeo(computed(() => ({
   title: `${project.value.name} Case Study — Shahd Sameh`,
   description: project.value.summary,
   path: `/projects/${project.value.slug}`,
   image: project.value.image,
-  schema: {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: project.value.name,
-    description: project.value.summary,
-    author: { '@type': 'Person', name: 'Shahd Sameh Ahmed' },
-    dateCreated: project.value.year,
-    applicationCategory: 'WebApplication',
-  },
+  schema: project.value.compact
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        name: project.value.name,
+        description: project.value.summary,
+        author: { '@type': 'Person', name: 'Shahd Sameh Ahmed' },
+        dateCreated: project.value.year,
+      }
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: project.value.name,
+        description: project.value.summary,
+        author: { '@type': 'Person', name: 'Shahd Sameh Ahmed' },
+        dateCreated: project.value.year,
+        applicationCategory: 'WebApplication',
+      },
 })))
 </script>
 
 <template>
   <article class="case-study">
-    <header class="case-hero page-shell">
+    <header v-if="compact" class="case-hero case-hero--compact page-shell">
+      <RouterLink class="text-link back-link" to="/projects"><ArrowLeft :size="16" /> All projects</RouterLink>
+      <h1 class="case-title"><span>{{ titleParts[0] }}</span> <span v-if="titleParts[1]">{{ titleParts[1] }}</span></h1>
+      <p class="lead case-lead">{{ compact.lead }}</p>
+      <img class="case-hero-image" :src="project.image" :alt="project.imageAlt" :width="compact.imageWidth" :height="compact.imageHeight" fetchpriority="high" />
+      <dl class="case-meta case-meta--row">
+        <div v-for="item in compact.meta" :key="item.label"><dt>{{ item.label }}</dt><dd>{{ item.value }}</dd></div>
+      </dl>
+      <div class="case-actions">
+        <a v-for="(action, index) in compact.actions" :key="action.href" class="button" :class="{ 'button-accent': index === 0 }" :href="action.href" target="_blank" rel="noreferrer">{{ action.label }} <ArrowUpRight :size="17" aria-hidden="true" /></a>
+      </div>
+      <p class="case-note">{{ compact.note }}</p>
+    </header>
+
+    <header v-else class="case-hero page-shell">
       <RouterLink class="text-link back-link" to="/projects"><ArrowLeft :size="16" /> All projects</RouterLink>
       <p class="eyebrow">{{ project.year }} · {{ project.team }}</p>
       <h1>{{ project.name }}</h1>
@@ -47,7 +85,7 @@ useSeo(computed(() => ({
       <ul class="contribution-list"><li v-for="item in project.contributions" :key="item">{{ item }}</li></ul>
     </section>
 
-    <section class="project-gallery page-shell" :aria-labelledby="`${project.slug}-gallery-title`">
+    <section v-if="project.gallery.length" class="project-gallery page-shell" :aria-labelledby="`${project.slug}-gallery-title`">
       <div class="gallery-heading">
         <p class="eyebrow">Product evidence</p>
         <h2 :id="`${project.slug}-gallery-title`">A closer look at the interface.</h2>
@@ -67,9 +105,20 @@ useSeo(computed(() => ({
     <section v-for="(section, index) in project.sections" :key="section.title" class="case-section page-shell" :class="{ 'architecture-section': section.title.includes('Architecture') }">
       <div class="case-section-number">{{ String(index + 1).padStart(2, '0') }}</div>
       <div class="case-section-copy">
-        <p class="eyebrow">{{ project.name }} / Case study</p>
+        <p v-if="!compact" class="eyebrow">{{ project.name }} / Case study</p>
         <h2>{{ section.title }}</h2>
-        <p>{{ section.body }}</p>
+        <p v-if="section.body">{{ section.body }}</p>
+        <table v-if="section.table" class="compare-table">
+          <thead>
+            <tr><component :is="heading ? 'th' : 'td'" v-for="heading in section.table.head" :key="heading" :scope="heading ? 'col' : undefined">{{ heading }}</component></tr>
+          </thead>
+          <tbody>
+            <tr v-for="row in section.table.rows" :key="row[0]">
+              <th scope="row">{{ row[0] }}</th>
+              <td v-for="cell in row.slice(1)" :key="cell">{{ cell }}</td>
+            </tr>
+          </tbody>
+        </table>
         <ul v-if="section.items" :class="{ 'architecture-list': section.title.includes('Architecture') }">
           <li v-for="item in section.items" :key="item">{{ item }}</li>
         </ul>
@@ -77,6 +126,28 @@ useSeo(computed(() => ({
           <a v-for="link in project.links" :key="link.label" :href="link.href" target="_blank" rel="noreferrer">
             <LockKeyhole v-if="link.protected" :size="15" /><ArrowUpRight v-else :size="15" />{{ link.label }}
           </a>
+        </div>
+      </div>
+
+      <div v-if="section.images?.length" class="case-media" :class="`case-media--${section.imageLayout ?? 'pair'}`">
+        <ul v-if="section.imageLayout === 'phones'" class="phone-row">
+          <li v-for="image in section.images" :key="image.src">
+            <button type="button" class="phone-frame" @click="openViewer(image)">
+              <span class="phone-screen"><img :src="image.src" :alt="image.alt" :width="image.width" :height="image.height" loading="lazy" /></span>
+              <span class="phone-open"><Maximize2 :size="14" aria-hidden="true" /> Open full screen</span>
+            </button>
+          </li>
+        </ul>
+        <template v-else-if="section.imageLayout === 'wide'">
+          <div v-for="image in section.images" :key="image.src" class="wide-scroll" tabindex="0" role="region" :aria-label="image.alt">
+            <img :src="image.src" :alt="image.alt" :width="image.width" :height="image.height" loading="lazy" />
+          </div>
+        </template>
+        <div v-else class="case-figures">
+          <figure v-for="image in section.images" :key="image.src">
+            <div class="case-figure-frame"><img :src="image.src" :alt="image.alt" :width="image.width" :height="image.height" loading="lazy" /></div>
+            <figcaption v-if="image.caption">{{ image.caption }}</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -90,5 +161,10 @@ useSeo(computed(() => ({
       <span>Next case study</span>
       <RouterLink :to="`/projects/${nextProject.slug}`">{{ nextProject.name }} <ArrowUpRight :size="28" /></RouterLink>
     </nav>
+
+    <dialog ref="viewer" class="image-viewer" :aria-label="viewerImage?.alt" @click="closeOnBackdrop" @close="viewerImage = undefined">
+      <button type="button" class="icon-button image-viewer-close" aria-label="Close" @click="viewer?.close()"><X :size="19" aria-hidden="true" /></button>
+      <img v-if="viewerImage" :src="viewerImage.src" :alt="viewerImage.alt" :width="viewerImage.width" :height="viewerImage.height" />
+    </dialog>
   </article>
 </template>

@@ -230,6 +230,42 @@ h3 { font-size: 1.35rem; }
 .gallery-inneraura figure.featured { width: min(100%, 920px); margin-inline: auto; }
 .gallery-inneraura figure.featured .gallery-image-frame { aspect-ratio: 4 / 5; }
 .gallery-service-hub figure.featured .gallery-image-frame { aspect-ratio: 16 / 9; }
+.case-hero--compact { padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(3rem, 6vw, 5rem); }
+.case-hero--compact .back-link { margin-bottom: 2.5rem; }
+.case-hero--compact h1 { margin: 0 0 1.5rem; font-size: clamp(2.5rem, 6.4vw, 6rem); line-height: .95; }
+.case-title span { display: block; }
+.case-lead { max-width: 54ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.case-hero--compact .case-hero-image { aspect-ratio: auto; height: auto; object-fit: contain; }
+.case-meta--row { grid-template-columns: repeat(4, 1fr); margin: 2.5rem 0 0; }
+.case-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+.case-note { margin: 1.25rem 0 0; color: var(--muted); font-size: .8rem; }
+.compare-table { width: 100%; margin-top: 2.5rem; border-collapse: collapse; }
+.compare-table th, .compare-table td { padding: 1rem 1rem 1rem 0; border-bottom: 1px solid var(--border); text-align: left; vertical-align: baseline; }
+.compare-table thead th { color: var(--muted); font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.compare-table tbody th { width: 34%; font-size: .9rem; font-weight: 600; }
+.compare-table tbody td { color: var(--muted); font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(1.4rem, 2.2vw, 2rem); font-weight: 600; line-height: 1.15; }
+.compare-table tbody td:last-child { color: var(--text); }
+.case-media { grid-column: 1 / -1; min-width: 0; margin-top: clamp(1rem, 3vw, 2.5rem); }
+.case-figures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); align-items: start; }
+.case-figures figure { min-width: 0; margin: 0; }
+.case-figure-frame { border: 1px solid var(--border); background: var(--surface); }
+.case-figure-frame img { width: 100%; height: auto; }
+.case-figures figcaption { margin-top: .9rem; color: var(--muted); font-size: .78rem; }
+.phone-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.75rem, 1.6vw, 1.5rem); margin: 0; padding: 0; list-style: none; }
+.case-section .phone-row li { padding: 0; border: 0; }
+.case-section .phone-row li::before { content: none; }
+.phone-frame { display: grid; gap: .75rem; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: zoom-in; }
+.phone-screen { display: block; overflow: hidden; aspect-ratio: 375 / 812; border: 1px solid var(--border); background: var(--surface); }
+.phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .45s var(--ease); }
+.phone-frame:hover .phone-screen img { transform: scale(1.015); }
+.phone-open { display: inline-flex; justify-self: start; align-items: center; gap: .35rem; padding-block: .2rem; border-bottom: 1px solid transparent; font-size: .72rem; font-weight: 700; }
+.phone-frame:hover .phone-open, .phone-frame:focus-visible .phone-open { border-bottom-color: currentColor; }
+.wide-scroll { overflow-x: auto; border: 1px solid var(--border); background: var(--surface); }
+.wide-scroll img { width: 100%; height: auto; }
+.image-viewer { width: min(440px, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); padding: 0; border: 1px solid var(--border); background: var(--bg); color: var(--text); overflow: auto; overscroll-behavior: contain; }
+.image-viewer::backdrop { background: rgba(22, 20, 19, .82); }
+.image-viewer-close { position: sticky; top: .75rem; z-index: 1; float: right; margin: .75rem .75rem -3.5rem 0; background: var(--bg); }
+.image-viewer img { width: 100%; height: auto; }
 .case-close { display: flex; flex-wrap: wrap; gap: .8rem; padding-block: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--border); }
 .next-project { display: flex; justify-content: space-between; align-items: center; padding-block: 6rem; border-top: 1px solid var(--border); }
 .next-project span { color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
@@ -281,6 +317,9 @@ h3 { font-size: 1.35rem; }
   .case-section-number { margin-bottom: -1rem; }
   .resume-section { grid-template-columns: 1fr; }
   .resume-entry, .skill-groups, .language-row { grid-column: 1; }
+  .phone-row { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(190px, 40%); overflow-x: auto; padding-bottom: 1rem; scroll-snap-type: x mandatory; }
+  .phone-row li { scroll-snap-align: start; }
+  .wide-scroll img { width: 900px; max-width: none; }
 }
 
 @media (max-width: 600px) {
@@ -309,6 +348,9 @@ h3 { font-size: 1.35rem; }
   .case-meta { grid-template-columns: 1fr; }
   .case-meta div { border-right: 0; border-bottom: 1px solid var(--border); }
   .contribution-list { columns: 1; }
+  .case-figures { grid-template-columns: 1fr; }
+  .phone-row { grid-auto-columns: 62%; }
+  .compare-table th, .compare-table td { padding-right: .6rem; }
   .architecture-list { grid-template-columns: 1fr; }
   .gallery-heading, .gallery-grid { grid-template-columns: 1fr; }
   .gallery-heading > p:last-child, .gallery-grid figure.featured { grid-column: 1; }

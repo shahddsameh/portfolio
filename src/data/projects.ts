@@ -2,6 +2,93 @@ import type { Project } from '@/types'
 
 export const projects: Project[] = [
   {
+    slug: 'pwc-middle-east',
+    name: 'PwC Middle East — Mobile UX Concept',
+    subtitle: 'Redesigning three PwC Middle East pages for phones: Home, Egypt offices and Careers.',
+    summary: 'Redesigning three PwC Middle East pages for phones: Home, Egypt offices and Careers.',
+    role: 'Solo · UI/UX design (Figma)',
+    year: '2026',
+    team: 'Solo',
+    technologies: ['Figma'],
+    image: '/images/projects/pwc/cover.webp',
+    imageAlt: 'Three redesigned PwC mobile screens side by side: Home, Egypt offices and Careers.',
+    gallery: [],
+    links: [
+      { label: 'View on Behance', href: 'https://www.behance.net/gallery/256733851/PwC-Middle-East-Mobile-UX-Concept' },
+      { label: 'Open Figma file', href: 'https://www.figma.com/design/EZSnvdVcIHRdpgTzgcekpn/PwC-ME-%E2%80%94-Mobile-UX-Concept' },
+    ],
+    contribution: 'Everything: the audit, design decisions, design system and all screens. Solo project.',
+    contributions: ['The audit', 'Design decisions', 'Design system', 'All screens'],
+    compact: {
+      lead: "How quickly can someone reach what they came for on a phone? I explored that by redesigning three pages of PwC Middle East's website for mobile: Home, Egypt offices and Careers.",
+      imageWidth: 2400,
+      imageHeight: 1500,
+      meta: [
+        { label: 'Role', value: 'UI/UX design' },
+        { label: 'Team', value: 'Solo' },
+        { label: 'Year', value: '2026' },
+        { label: 'Tool', value: 'Figma' },
+      ],
+      actions: [
+        { label: 'View on Behance', href: 'https://www.behance.net/gallery/256733851/PwC-Middle-East-Mobile-UX-Concept' },
+        { label: 'Open Figma file', href: 'https://www.figma.com/design/EZSnvdVcIHRdpgTzgcekpn/PwC-ME-%E2%80%94-Mobile-UX-Concept' },
+      ],
+      note: 'Personal concept project. Not affiliated with, commissioned by or created for PwC.',
+    },
+    sections: [
+      {
+        title: 'Starting with measurement',
+        body: "PwC's site is clean, consistent and rich in content. Before changing any visuals, I measured it at phone width.",
+        table: {
+          head: ['', 'Original', 'My concept'],
+          rows: [
+            ['Home page length', '14+ screens', 'about 5.6 screens'],
+            ['Calling the Cairo office', '4 steps', '1 tap, on the first screen'],
+          ],
+        },
+        imageLayout: 'pair',
+        images: [
+          { src: '/images/projects/pwc/original-home-length.webp', alt: 'The original PwC Middle East Home page at phone width, shown in five strips with the first screen outlined.', width: 1488, height: 1704, caption: 'The original Home at phone width, about 14 screens' },
+          { src: '/images/projects/pwc/offices-before-after.webp', alt: 'The original offices page, a long text intro, next to the concept with the Cairo office details open in a bottom sheet.', width: 1560, height: 1500, caption: 'Original offices page vs. my concept' },
+        ],
+      },
+      {
+        title: 'Key decisions',
+        items: [
+          "Mobile-first 375px frames, keeping PwC's brand colours with more modern type and spacing.",
+          'A flat accordion menu instead of drill-down navigation.',
+          'Egypt offices: a map where tapping an office opens a bottom sheet with its details and a call button.',
+          'Careers: segmented pills for the four audiences (Graduates & Interns, Alumni, UAE National, Egypt Tech Centre) and a sticky jump-to menu.',
+          'An EN/AR language toggle, planned with right-to-left layout in mind.',
+        ],
+        imageLayout: 'phones',
+        images: [
+          { src: '/images/projects/pwc/home-hero.webp', alt: 'Concept Home page with a featured story and featured insights.', width: 812, height: 2640 },
+          { src: '/images/projects/pwc/offices-cards.webp', alt: 'Concept Egypt offices page with office cards, Directions and Call office buttons.', width: 812, height: 4060 },
+          { src: '/images/projects/pwc/offices-bottom-sheet.webp', alt: 'Concept map with the Cairo head office details in a bottom sheet.', width: 872, height: 2205 },
+          { src: '/images/projects/pwc/careers-why-join.webp', alt: 'Concept Careers page with job search and audience pills.', width: 812, height: 2769 },
+          { src: '/images/projects/pwc/careers-life.webp', alt: 'Concept Careers "Life at PwC" section.', width: 812, height: 2018 },
+        ],
+      },
+      {
+        title: 'A small design system',
+        body: '24 tokens, 10 text styles and 8 components in Figma. My early drafts had 3 different corner radii across 15 buttons; one Button component fixed that.',
+        imageLayout: 'wide',
+        images: [
+          { src: '/images/projects/pwc/design-system-components.webp', alt: 'Figma components: Button, Header, Accordion item, Sub-link, Tag, Chip, Tab and Language toggle.', width: 3066, height: 1032 },
+        ],
+      },
+      {
+        title: 'Tradeoffs and next steps',
+        items: [
+          'Accordions make pages shorter, but they hide links behind a tap.',
+          'My offices page covers Egypt only, while the original serves all 12 PwC Middle East countries.',
+          'Next: Arabic right-to-left screens and testing with real users.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'mwasalaty',
     name: 'Mwasalaty',
     subtitle: 'A multimodal Cairo transit-planning and digital-ticketing platform.',
