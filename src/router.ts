@@ -11,7 +11,18 @@ const router = createRouter({
   ],
   scrollBehavior(to, from, saved) {
     if (saved) return saved
-    if (to.hash) return { el: to.hash, behavior: 'smooth' }
+    if (to.hash) {
+      // The out-in page transition mounts the next view late, so wait for the target to exist.
+      return new Promise((resolve) => {
+        const started = performance.now()
+        const find = () => {
+          if (document.querySelector(to.hash)) resolve({ el: to.hash, behavior: 'smooth' })
+          else if (performance.now() - started > 1500) resolve({ top: 0 })
+          else requestAnimationFrame(find)
+        }
+        find()
+      })
+    }
     if (to.path !== from.path) return { top: 0 }
   },
 })
