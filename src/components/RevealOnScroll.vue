@@ -5,13 +5,22 @@ const element = ref<HTMLElement>()
 let observer: IntersectionObserver | undefined
 
 onMounted(() => {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  observer = new IntersectionObserver(([entry]) => entry.isIntersecting && element.value?.classList.add('is-visible'), { threshold: 0.1 })
-  if (element.value) observer.observe(element.value)
+  const el = element.value
+  if (!el) return
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    el.classList.add('is-visible')
+    return
+  }
+  observer = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return
+    el.classList.add('is-visible')
+    observer?.disconnect()
+  }, { rootMargin: '0px 0px -10% 0px' })
+  observer.observe(el)
 })
 onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>
-  <div ref="element" class="reveal is-visible-by-default"><slot /></div>
+  <div ref="element" class="reveal"><slot /></div>
 </template>

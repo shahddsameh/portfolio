@@ -250,7 +250,7 @@ h3 { font-size: 1.35rem; }
 .not-found .button { justify-self: center; }
 
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity .55s var(--ease), transform .55s var(--ease); }
-.reveal.is-visible, .reveal.is-visible-by-default { opacity: 1; transform: none; }
+.reveal.is-visible { opacity: 1; transform: none; }
 .page-enter-active, .page-leave-active { transition: opacity .22s var(--ease), transform .22s var(--ease); }
 .page-enter-from { opacity: 0; transform: translateY(12px); }
 .page-leave-to { opacity: 0; transform: translateY(-8px); }
