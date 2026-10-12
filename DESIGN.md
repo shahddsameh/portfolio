@@ -8,7 +8,7 @@ colors:
   newsprint-fold: "#e9e1d5"
   newsprint-shade: "#ddd2c3"
   press-ink: "#292625"
-  pencil-gray: "#6a645f"
+  pencil-gray: "#645d58"
   proof-rule: "#cfc5b8"
   burgundy-ground-light: "#fff7ec"
   press-black: "#22201f"
