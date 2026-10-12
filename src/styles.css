@@ -230,6 +230,7 @@ h3 { font-size: 1.35rem; }
 .gallery-inneraura figure.featured { width: min(100%, 920px); margin-inline: auto; }
 .gallery-inneraura figure.featured .gallery-image-frame { aspect-ratio: 4 / 5; }
 .gallery-service-hub figure.featured .gallery-image-frame { aspect-ratio: 16 / 9; }
+.case-close { display: flex; flex-wrap: wrap; gap: .8rem; padding-block: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--border); }
 .next-project { display: flex; justify-content: space-between; align-items: center; padding-block: 6rem; border-top: 1px solid var(--border); }
 .next-project span { color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .next-project a { display: flex; align-items: center; gap: .7rem; font-family: "Cormorant Garamond"; font-size: clamp(2.5rem, 6vw, 5rem); }

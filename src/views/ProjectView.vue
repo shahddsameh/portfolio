@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { ArrowLeft, ArrowUpRight, ExternalLink, LockKeyhole } from 'lucide-vue-next'
+import { ArrowLeft, ArrowUpRight, Download, ExternalLink, LockKeyhole, Mail } from 'lucide-vue-next'
 import { getProject, projects } from '@/data/projects'
 import { useSeo } from '@/composables/useSeo'
 
@@ -80,6 +80,11 @@ useSeo(computed(() => ({
         </div>
       </div>
     </section>
+
+    <div class="case-close page-shell">
+      <RouterLink class="button button-accent" to="/#contact"><Mail :size="17" aria-hidden="true" /> Contact me</RouterLink>
+      <a class="button" href="/files/Shahd_Sameh_CV.pdf" download><Download :size="17" aria-hidden="true" /> Download CV</a>
+    </div>
 
     <nav class="next-project page-shell" aria-label="Next project">
       <span>Next case study</span>
