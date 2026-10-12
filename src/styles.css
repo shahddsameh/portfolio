@@ -120,7 +120,11 @@ h3 { font-size: 1.35rem; }
 
 .projects-section { background: var(--surface); }
 .project-editorial { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(3rem, 7vw, 7rem); }
-.project-card { display: grid; gap: 1.4rem; align-self: start; }
+.project-card { position: relative; display: grid; gap: 1.4rem; align-self: start; }
+.project-card-link::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+.project-card-link:focus-visible { outline: none; }
+.project-card-link:focus-visible::after { outline: 3px solid var(--accent); outline-offset: 6px; }
+.project-card:hover .text-link svg, .project-card:focus-within .text-link svg { transform: translate(3px, -3px); }
 .project-card.featured { grid-column: 1 / -1; grid-template-columns: 1.35fr .65fr; align-items: end; }
 .project-card:nth-child(3) { margin-top: 10rem; }
 .project-image-wrap { display: block; overflow: hidden; background: var(--surface-strong); box-shadow: 8px 8px 0 var(--border); }
@@ -318,5 +322,6 @@ h3 { font-size: 1.35rem; }
   .role-ticker div { animation: none; }
   .reveal { opacity: 1; transform: none; }
   .behance-entry:hover svg, .behance-entry:focus-visible svg { transform: none; }
+  .project-card:hover .text-link svg, .project-card:focus-within .text-link svg { transform: none; }
   .button:hover, .button:focus-visible { transform: none; }
 }
