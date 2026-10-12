@@ -14,6 +14,7 @@ export const profile = {
     { label: 'GitHub', href: 'https://github.com/shahddsameh' },
     { label: 'Behance', href: 'https://www.behance.net/shahdsameh21' },
   ],
+  behanceNote: 'Full design case studies, starting with the PwC Middle East mobile concept.',
   details: [
     ['Based in', 'Cairo, Egypt'],
     ['Degree', 'BSc in Business Information Systems'],

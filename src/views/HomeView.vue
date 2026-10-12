@@ -26,6 +26,7 @@ useSeo({
   },
 })
 
+const behance = profile.links.find((link) => link.label === 'Behance')!
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
 </script>
 
@@ -86,6 +87,11 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
         <div class="project-editorial page-shell">
           <ProjectCard v-for="(project, index) in projects" :key="project.slug" :project="project" :featured="index === 0" />
         </div>
+        <a class="behance-entry page-shell" :href="behance.href" target="_blank" rel="noreferrer">
+          <span class="behance-name">{{ behance.label }}</span>
+          <span class="behance-note">{{ profile.behanceNote }}</span>
+          <ArrowUpRight :size="30" aria-hidden="true" />
+        </a>
         <div class="section-action page-shell"><RouterLink class="text-link" to="/projects">See all project details <ArrowUpRight :size="17" /></RouterLink></div>
       </section>
     </RevealOnScroll>
