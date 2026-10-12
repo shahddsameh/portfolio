@@ -6,10 +6,11 @@ export const experience: Experience[] = [
     company: 'Information Technology Institute, ICCP',
     date: 'Jan 2026 — Jun 2026',
     bullets: [
-      'Led a five-person team building Mwasalaty, an offline-first transit PWA for Cairo; owned business logic and much of the Supabase backend, and adapted the existing UI design while building new screens directly in code.',
-      'Designed screen-level interfaces in Figma using established patterns — layout, spacing, hierarchy, interaction states and responsive behaviour — and built a reusable component library that kept screens consistent as the product grew.',
-      'Designed bilingual EN/AR interfaces with full RTL support to WCAG 2.1 standards, translating complex multimodal routing, per-leg fare and payment requirements into simple, intuitive user journeys.',
-      'Prepared files for handoff with annotations, specifications and asset exports, then implemented the designs in Vue 3, TypeScript and Tailwind CSS — closing the design-to-development loop and resolving implementation questions directly.',
+      'Mwasalaty: Led a 5-person team to ship a multimodal Cairo transit and QR-ticketing platform of 3 apps (rider PWA, admin dashboard, operator scanner PWA; 52 routes in total) across 5 Agile phases in Linear, and usability-tested it with 6 users (5 riders, 1 operator).',
+      'Architected the 29-route rider app in Vue 3, TypeScript, and Pinia with accessible EN/AR interfaces (WCAG 2.1, full RTL), OpenTripPlanner journey planning, PayMob payments, and offline-first support via Workbox and IndexedDB that keeps 95% of core features usable offline.',
+      'Built a large part of the Node.js back end: 50 REST endpoints across 7 route modules (trip planning, ticketing, payments, admin) over an 8-table Supabase PostgreSQL database with Supabase Auth; deployed on AWS EC2.',
+      'Co-built an LLM trip assistant on the Gemini API (Gemini Flash) that classifies trip intent and extracts origin and destination from free-text requests.',
+      'Completed hands-on design work in design systems, component libraries, usability testing, and WCAG accessibility.',
     ],
   },
   {
