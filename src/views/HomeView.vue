@@ -9,6 +9,7 @@ import { experience } from '@/data/experience'
 import { profile } from '@/data/profile'
 import { projects } from '@/data/projects'
 import { useSeo } from '@/composables/useSeo'
+import { firstVisit, prefersReducedMotion } from '@/composables/useMotion'
 
 useSeo({
   title: 'Shahd Sameh — UI/UX Designer',
@@ -27,16 +28,17 @@ useSeo({
 })
 
 const behance = profile.links.find((link) => link.label === 'Behance')!
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
+// The opening sequence plays once per session; return visits and reduced motion get the settled page.
+const intro = !prefersReducedMotion() && firstVisit('intro')
 </script>
 
 <template>
   <div>
-    <section class="hero page-shell">
+    <section class="hero page-shell" :class="{ 'hero--intro': intro }">
       <Motion
         tag="div"
         class="hero-copy"
-        :initial="reduceMotion ? false : { opacity: 0, y: 24 }"
+        :initial="intro ? { opacity: 0, y: 24 } : false"
         :animate="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.5, easing: [0.22, 1, 0.36, 1] }"
       >
@@ -62,9 +64,9 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
       <Motion
         tag="div"
         class="portrait-wrap"
-        :initial="reduceMotion ? false : { opacity: 0, x: 28, rotate: 1.8 }"
-        :animate="{ opacity: 1, x: 0, rotate: 1.8 }"
-        :transition="{ duration: 0.6, delay: 0.1, easing: [0.22, 1, 0.36, 1] }"
+        :initial="intro ? { opacity: 0, y: -14, scale: 1.03, rotate: 1.8 } : false"
+        :animate="{ opacity: 1, y: 0, scale: 1, rotate: 1.8 }"
+        :transition="{ duration: 0.6, delay: 0.15, easing: [0.22, 1, 0.36, 1] }"
       >
         <div class="portrait-note">Profile / 2026</div>
         <img src="/images/profile/shahd-portrait.png" alt="Portrait of Shahd Sameh Ahmed in an editorial paper-card composition" width="1122" height="1402" fetchpriority="high" />
