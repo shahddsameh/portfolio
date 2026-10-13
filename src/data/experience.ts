@@ -18,7 +18,7 @@ export const experience: Experience[] = [
     company: 'The Egyptian Airport Company',
     date: 'Aug 2024',
     bullets: [
-      'Completed a cross-functional rotation across four departments, using Excel and Oracle ERP to turn raw data into structured reports — building the data literacy used to support design decisions with evidence.',
+      'Reconciled datasets and prepared cost reports during a 4-department rotation, using Excel (pivot tables, VLOOKUP, data validation) and Oracle ERP to turn raw data into structured entries.',
     ],
   },
   {
@@ -26,7 +26,7 @@ export const experience: Experience[] = [
     company: 'WAW-Book',
     date: 'Jul 2024',
     bullets: [
-      'Designed and launched a fully responsive travel website (Island), owning layout, theming, visual hierarchy and the Amelia booking flow end to end.',
+      'Designed and launched Island, a fully responsive travel booking website on WordPress, owning layout, theming, and the Amelia booking integration end to end.',
     ],
   },
   {
@@ -34,7 +34,7 @@ export const experience: Experience[] = [
     company: 'Commercial International Bank',
     date: 'Aug 2023 — Sep 2023',
     bullets: [
-      'Evaluated the UX of digital banking products, fintech interfaces and AI-driven customer-facing tools at one of Egypt’s largest private banks, applying heuristic evaluation to identify usability gaps within an enterprise Agile environment.',
+      'Attended heuristic evaluation and usability assessment sessions on digital banking products, fintech interfaces, and AI/ML-powered customer tools, gaining fintech domain knowledge and exposure to enterprise Agile workflows.',
     ],
   },
 ]
