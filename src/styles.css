@@ -377,6 +377,9 @@ main { min-height: calc(100svh - 76px); }
   .behance-entry { grid-template-columns: 1fr auto; gap: 1rem; }
   .behance-note { grid-column: 1 / -1; grid-row: 2; }
   .field-row { grid-template-columns: 1fr; gap: 0; }
+  /* Grow the touch area of the small contact links without moving them. */
+  .contact-links a { position: relative; }
+  .contact-links a::after { content: ''; position: absolute; inset: -5px -6px; }
   /* iOS Safari zooms into inputs smaller than 16px on focus. */
   .field input, .field textarea { font-size: 16px; }
   .case-meta { grid-template-columns: 1fr; }
