@@ -83,7 +83,7 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
 
     <RevealOnScroll>
       <section class="section projects-section">
-        <div class="page-shell"><SectionHeading number="02" eyebrow="Selected work" title="Four projects, four kinds of problem." /></div>
+        <div class="page-shell"><SectionHeading number="02" eyebrow="Selected work" title="Three projects, three kinds of problem." /></div>
         <div class="project-editorial page-shell">
           <ProjectCard v-for="(project, index) in projects" :key="project.slug" :project="project" :featured="index === 0" />
         </div>

@@ -5,7 +5,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: () => import('@/views/HomeView.vue') },
     { path: '/projects', component: () => import('@/views/ProjectsView.vue') },
-    { path: '/projects/:slug(pwc-middle-east|mwasalaty|inneraura|service-hub)', component: () => import('@/views/ProjectView.vue') },
+    { path: '/projects/:slug(pwc-middle-east|mwasalaty|inneraura)', component: () => import('@/views/ProjectView.vue') },
     { path: '/resume', component: () => import('@/views/ResumeView.vue') },
     { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFoundView.vue') },
   ],

@@ -1,6 +1,6 @@
 import type { Project } from '@/types'
 
-export const projects: Project[] = [
+export const allProjects: Project[] = [
   {
     slug: 'pwc-middle-east',
     name: 'PwC Middle East — Mobile UX Concept',
@@ -210,6 +210,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'service-hub',
+    // Hidden by the owner. To restore: set false, re-add the slug to the route in src/router.ts and the URL to public/sitemap.xml.
+    hidden: true,
     name: 'Service Hub',
     subtitle: 'A freelancing platform connecting clients with freelancers.',
     summary: 'A team-built marketplace where clients can discover freelancer profiles and begin a conversation with the selected person.',
@@ -252,5 +254,7 @@ export const projects: Project[] = [
     ],
   },
 ]
+
+export const projects = allProjects.filter((project) => !project.hidden)
 
 export const getProject = (slug: string) => projects.find((project) => project.slug === slug)

@@ -35,6 +35,8 @@ export interface Project {
     images?: CaseImage[]
     imageLayout?: 'pair' | 'phones' | 'wide'
   }[]
+  /** Hidden projects keep their content but are left out of every list and route. */
+  hidden?: boolean
   /** Compact concept layout: lead + work in the first screen, numbered sections without per-section labels. */
   compact?: {
     lead: string

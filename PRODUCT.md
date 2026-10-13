@@ -52,7 +52,7 @@ Open tension, not yet resolved: the site is aimed at design hiring, but its thre
 - Real product captures (WebP in `public/images/projects/`, originals in `screenshots/`):
   - Mwasalaty: route planning, results, details and natural-language search. Also its logo (owned by the project).
   - InnerAura: landing page.
-  - Service Hub: home, freelancer profile and registration.
+  - Service Hub: home, freelancer profile and registration (the project is hidden from the site; its content and images are kept in the repo).
 - Portrait: `public/images/profile/shahd-portrait.png`.
 - CV PDF, plus the Mwasalaty presentation in `materials/`.
 - Public links are listed in `PROJECT_LINKS.md`: the live Mwasalaty passenger app and operator scanner, GitHub repos, the Mwasalaty Figma Make file, and LinkedIn demo posts.
