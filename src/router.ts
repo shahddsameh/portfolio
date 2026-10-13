@@ -35,4 +35,18 @@ const router = createRouter({
   },
 })
 
+// A deploy replaces the hashed view chunks, so a tab opened before it fails to load the next view.
+// Load the page fresh instead, once per path so a real outage cannot cause a reload loop.
+router.onError((error, to) => {
+  if (!/dynamically imported module|Importing a module script failed|error loading dynamically/i.test(String(error?.message))) return
+  const key = `chunk-reload:${to.fullPath}`
+  try {
+    if (sessionStorage.getItem(key)) return
+    sessionStorage.setItem(key, '1')
+  } catch {
+    return
+  }
+  window.location.assign(to.fullPath)
+})
+
 export default router
