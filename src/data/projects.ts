@@ -67,7 +67,7 @@ export const allProjects: Project[] = [
           { src: '/images/projects/pwc/offices-cards.webp', alt: 'Concept Egypt offices page with office cards, Directions and Call office buttons.', width: 812, height: 4060 },
           { src: '/images/projects/pwc/offices-bottom-sheet.webp', alt: 'Concept map with the Cairo head office details in a bottom sheet.', width: 872, height: 2205 },
           { src: '/images/projects/pwc/careers-why-join.webp', alt: 'Concept Careers page with job search and audience pills.', width: 812, height: 2769 },
-          { src: '/images/projects/pwc/careers-life.webp', alt: 'Concept Careers "Life at PwC" section.', width: 812, height: 2018 },
+          { src: '/images/projects/pwc/careers-life.webp', alt: 'Concept Careers "Life at PwC" section.', width: 812, height: 2046 },
         ],
       },
       {
