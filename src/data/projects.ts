@@ -127,7 +127,7 @@ export const projects: Project[] = [
       { label: 'Operator scanner', href: 'https://operator.mwasalaty.duckdns.org' },
       { label: 'Admin reference', href: 'https://mwasalaty.duckdns.org/admin', protected: true },
       { label: 'GitHub', href: 'https://github.com/shahddsameh/mwasalaty' },
-      { label: 'Figma', href: 'https://www.figma.com/make/xrIBn7o6xvlqa0FJKseLak/mwaslaty-final-verson?t=IufxclSN6VpV0c4H-1' },
+      { label: 'Figma', href: 'https://www.figma.com/make/xrIBn7o6xvlqa0FJKseLak/mwaslaty-final-verson?fullscreen=1&t=vp9KEzBs2jnfovLL-1&code-node-id=0-9' },
       { label: 'LinkedIn demo', href: 'https://www.linkedin.com/posts/mennatallah-radwan-954097267_mwasalaty-graduationproject-iti-ugcPost-7482228936958107648-NJ84/' },
     ],
     contribution: 'Led a 5-person team to ship a multimodal Cairo transit and QR-ticketing platform of 3 apps (rider PWA, admin dashboard, operator scanner PWA; 52 routes in total) across 5 Agile phases in Linear, and usability-tested it with 6 users (5 riders, 1 operator). Architected the 29-route rider app in Vue 3, TypeScript, and Pinia with accessible EN/AR interfaces (WCAG 2.1, full RTL), OpenTripPlanner journey planning, PayMob payments, and offline-first support via Workbox and IndexedDB that keeps 95% of core features usable offline. Built a large part of the Node.js back end: 50 REST endpoints across 7 route modules (trip planning, ticketing, payments, admin) over an 8-table Supabase PostgreSQL database with Supabase Auth; deployed on AWS EC2. Co-built an LLM trip assistant on the Gemini API (Gemini Flash) that classifies trip intent and extracts origin and destination from free-text requests.',
