@@ -101,7 +101,6 @@ useSeo(computed(() => ({
     <section v-for="(section, index) in project.sections" :key="section.title" class="case-section page-shell" :class="{ 'architecture-section': section.title.includes('Architecture') }">
       <div class="case-section-number">{{ String(index + 1).padStart(2, '0') }}</div>
       <div class="case-section-copy">
-        <p v-if="!compact" class="eyebrow">{{ project.name }} / Case study</p>
         <h2>{{ section.title }}</h2>
         <p v-if="section.body">{{ section.body }}</p>
         <table v-if="section.table" class="compare-table">
