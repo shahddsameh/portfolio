@@ -58,7 +58,9 @@ button { color: inherit; }
 img { display: block; max-width: 100%; }
 img.image-error { opacity: 0; }
 h1, h2, h3, p { margin-top: 0; }
-h1, h2, h3 { line-height: 1; }
+/* The longhand keeps white-space: nowrap working where it is set (the hero name, the role ticker). */
+h1, h2, h3 { line-height: 1; text-wrap-style: balance; }
+p, li, dd, figcaption { text-wrap-style: pretty; }
 h1, h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; letter-spacing: -.035em; }
 h1 em, h2 em { color: var(--accent); font-weight: 500; }
 h2 { font-size: clamp(2.35rem, 4.8vw, 4.6rem); }
