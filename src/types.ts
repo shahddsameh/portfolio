@@ -34,6 +34,8 @@ export interface Project {
     table?: { head: string[]; rows: string[][] }
     images?: CaseImage[]
     imageLayout?: 'pair' | 'phones' | 'wide'
+    /** Grouped sections are folded into one "How it works" section of expandable rows. */
+    group?: 'how'
   }[]
   /** Hidden projects keep their content but are left out of every list and route. */
   hidden?: boolean

@@ -263,6 +263,15 @@ h3 { font-size: 1.35rem; }
 .image-viewer::backdrop { background: rgba(22, 20, 19, .82); }
 .image-viewer-close { position: sticky; top: .75rem; z-index: 1; float: right; margin: .75rem .75rem -3.5rem 0; background: var(--bg); }
 .image-viewer img { width: 100%; height: auto; }
+.how-list { margin-top: 1.5rem; border-top: 1px solid var(--border); }
+.how-row { border-bottom: 1px solid var(--border); }
+.how-row summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 0; cursor: pointer; list-style: none; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 600; line-height: 1.15; }
+.how-row summary::-webkit-details-marker { display: none; }
+.how-row summary svg { flex: none; color: var(--accent); transition: transform .25s var(--ease); }
+.how-row[open] summary svg { transform: rotate(45deg); }
+.how-row summary:hover span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.how-body { max-width: 70ch; padding-bottom: 1.5rem; }
+.how-body p { margin: 0; color: var(--muted); }
 .case-close { display: flex; flex-wrap: wrap; gap: .8rem; padding-block: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--border); }
 .next-project { display: flex; justify-content: space-between; align-items: center; padding-block: 6rem; border-top: 1px solid var(--border); }
 .next-project span { color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }

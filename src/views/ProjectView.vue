@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { ArrowLeft, ArrowUpRight, Download, ExternalLink, LockKeyhole, Mail, Maximize2, X } from 'lucide-vue-next'
+import { ArrowLeft, ArrowUpRight, Download, ExternalLink, LockKeyhole, Mail, Maximize2, Plus, X } from 'lucide-vue-next'
 import { getProject, projects } from '@/data/projects'
 import { useSeo } from '@/composables/useSeo'
-import type { CaseImage } from '@/types'
+import type { CaseImage, Project } from '@/types'
 
 const route = useRoute()
 const project = computed(() => getProject(String(route.params.slug))!)
@@ -23,6 +23,24 @@ const hero = computed(() => {
 const titleParts = computed(() => {
   const [first, ...rest] = project.value.name.split(' — ')
   return rest.length ? [`${first} —`, rest.join(' — ')] : [first]
+})
+type Section = Project['sections'][number]
+// Implementation sections marked group: 'how' fold into one "How it works" section, placed where the first one was.
+const displaySections = computed(() => {
+  const display: (Section & { how?: Section[] })[] = []
+  let how: Section[] | undefined
+  for (const section of project.value.sections) {
+    if (section.group !== 'how') {
+      display.push(section)
+      continue
+    }
+    if (!how) {
+      how = []
+      display.push({ title: 'How it works', how })
+    }
+    how.push(section)
+  }
+  return display
 })
 const nextProject = computed(() => projects[(projects.findIndex((item) => item.slug === project.value.slug) + 1) % projects.length])
 
@@ -98,11 +116,20 @@ useSeo(computed(() => ({
       </div>
     </section>
 
-    <section v-for="(section, index) in project.sections" :key="section.title" class="case-section page-shell" :class="{ 'architecture-section': section.title.includes('Architecture') }">
+    <section v-for="(section, index) in displaySections" :key="section.title" class="case-section page-shell" :class="{ 'architecture-section': section.title.includes('Architecture') }">
       <div class="case-section-number">{{ String(index + 1).padStart(2, '0') }}</div>
       <div class="case-section-copy">
         <h2>{{ section.title }}</h2>
         <p v-if="section.body">{{ section.body }}</p>
+        <div v-if="section.how" class="how-list">
+          <details v-for="item in section.how" :key="item.title" class="how-row">
+            <summary><span>{{ item.title }}</span><Plus :size="20" aria-hidden="true" /></summary>
+            <div class="how-body">
+              <p v-if="item.body">{{ item.body }}</p>
+              <ul v-if="item.items"><li v-for="point in item.items" :key="point">{{ point }}</li></ul>
+            </div>
+          </details>
+        </div>
         <table v-if="section.table" class="compare-table">
           <thead>
             <tr><component :is="heading ? 'th' : 'td'" v-for="heading in section.table.head" :key="heading" :scope="heading ? 'col' : undefined">{{ heading }}</component></tr>
