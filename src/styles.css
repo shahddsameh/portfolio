@@ -80,10 +80,10 @@ main { min-height: calc(100svh - 76px); }
 .desktop-nav { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.25rem); }
 .desktop-nav a, .desktop-nav button { position: relative; border: 0; background: none; cursor: pointer; font-size: .76rem; font-weight: 600; letter-spacing: .06em; }
 .desktop-nav a::after, .desktop-nav button::after { content: ''; position: absolute; left: 0; bottom: -.45rem; width: 100%; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .22s var(--ease); }
-.desktop-nav a:hover::after, .desktop-nav button:hover::after, .desktop-nav a.router-link-active::after { transform: scaleX(1); }
+.desktop-nav a:hover::after, .desktop-nav button:hover::after, .desktop-nav a:focus-visible::after, .desktop-nav button:focus-visible::after, .desktop-nav a.router-link-active::after { transform: scaleX(1); }
 .header-actions { justify-self: end; display: flex; gap: .6rem; align-items: center; }
 .icon-button { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 1px solid var(--border); background: transparent; cursor: pointer; transition: background .2s var(--ease), transform .2s var(--ease); }
-.icon-button:hover { background: var(--surface); transform: translateY(-2px); }
+.icon-button:hover, .icon-button:focus-visible { background: var(--surface); transform: translateY(-2px); }
 .menu-button { display: none; }
 .mobile-nav { position: absolute; top: 76px; left: 0; right: 0; display: grid; padding: 2rem 1.5rem; background: var(--bg); border-bottom: 1px solid var(--border); box-shadow: 0 18px 40px var(--shadow); }
 .mobile-nav a:not(.button), .mobile-nav button { padding: 1rem 0; border: 0; border-bottom: 1px solid var(--border); background: none; text-align: left; font-family: "Cormorant Garamond"; font-size: 2rem; }
@@ -96,7 +96,7 @@ main { min-height: calc(100svh - 76px); }
 .button-small { min-height: 39px; padding: .55rem .85rem; }
 .text-link { display: inline-flex; align-items: center; gap: .35rem; padding-block: .25rem; border-bottom: 1px solid currentColor; font-size: .78rem; font-weight: 700; }
 .text-link svg { transition: transform .2s var(--ease); }
-.text-link:hover svg { transform: translate(3px, -3px); }
+.text-link:hover svg, .text-link:focus-visible svg { transform: translate(3px, -3px); }
 
 .hero { position: relative; display: grid; grid-template-columns: 1.16fr .84fr; gap: clamp(2rem, 7vw, 7rem); align-items: center; min-height: calc(100vh - 76px); padding-block: clamp(3rem, 6vw, 6rem); }
 .hero-copy { min-width: 0; width: 100%; }
@@ -243,7 +243,7 @@ main { min-height: calc(100svh - 76px); }
 .gallery-grid figure.featured { grid-column: 1 / -1; }
 .gallery-image-frame { position: relative; display: block; overflow: hidden; aspect-ratio: 16 / 10; background: var(--surface); border: 1px solid var(--border); }
 .gallery-image-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .45s var(--ease); }
-.gallery-image-frame:hover img { transform: scale(1.015); }
+.gallery-image-frame:hover img, .gallery-image-frame:focus-visible img { transform: scale(1.015); }
 .gallery-image-frame span { position: absolute; right: .8rem; bottom: .8rem; display: flex; align-items: center; gap: .35rem; padding: .55rem .7rem; background: color-mix(in srgb, var(--text) 90%, transparent); color: var(--bg); font-size: .65rem; font-weight: 700; letter-spacing: .05em; }
 .gallery-grid figure.featured .gallery-image-frame { aspect-ratio: 16 / 9; }
 .gallery-grid figure.tall.featured .gallery-image-frame { aspect-ratio: 16 / 10; }
@@ -280,7 +280,7 @@ main { min-height: calc(100svh - 76px); }
 .phone-frame { display: grid; gap: .75rem; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: zoom-in; }
 .phone-screen { display: block; overflow: hidden; aspect-ratio: 375 / 812; border: 1px solid var(--border); background: var(--surface); }
 .phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .45s var(--ease); }
-.phone-frame:hover .phone-screen img { transform: scale(1.015); }
+.phone-frame:hover .phone-screen img, .phone-frame:focus-visible .phone-screen img { transform: scale(1.015); }
 .phone-open { display: inline-flex; justify-self: start; align-items: center; gap: .35rem; padding-block: .2rem; border-bottom: 1px solid transparent; font-size: .72rem; font-weight: 700; }
 .phone-frame:hover .phone-open, .phone-frame:focus-visible .phone-open { border-bottom-color: currentColor; }
 .wide-scroll { overflow-x: auto; border: 1px solid var(--border); background: var(--surface); }
@@ -295,7 +295,7 @@ main { min-height: calc(100svh - 76px); }
 .how-row summary::-webkit-details-marker { display: none; }
 .how-row summary svg { flex: none; color: var(--accent); transition: transform .25s var(--ease); }
 .how-row[open] summary svg { transform: rotate(45deg); }
-.how-row summary:hover span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.how-row summary:hover span, .how-row summary:focus-visible span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
 .how-body { max-width: 70ch; padding-bottom: 1.5rem; }
 .how-body p { margin: 0; color: var(--muted); }
 .case-close { display: flex; flex-wrap: wrap; gap: .8rem; padding-block: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--border); }
@@ -400,6 +400,6 @@ main { min-height: calc(100svh - 76px); }
   .icon-button:hover, .icon-button:focus-visible { transform: none; }
   .reveal { opacity: 1; transform: none; }
   .behance-entry:hover svg, .behance-entry:focus-visible svg { transform: none; }
-  .project-card:hover .text-link svg, .project-card:focus-within .text-link svg { transform: none; }
+  .project-card:hover .text-link svg, .project-card:focus-within .text-link svg, .text-link:hover svg, .text-link:focus-visible svg { transform: none; }
   .button:hover, .button:focus-visible { transform: none; }
 }
