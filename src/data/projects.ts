@@ -96,7 +96,7 @@ export const allProjects: Project[] = [
     role: 'Team Lead · Rider & Operator Apps · Back End',
     year: '2026',
     team: 'Five members',
-    technologies: ['Vue 3', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express', 'Supabase', 'OpenTripPlanner', 'GTFS', 'OpenStreetMap', 'PayMob', 'Groq', 'IndexedDB', 'Workbox', 'AWS EC2'],
+    technologies: ['Vue 3', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express', 'Supabase', 'OpenTripPlanner', 'GTFS', 'OpenStreetMap', 'PayMob', 'Gemini API', 'IndexedDB', 'Workbox', 'AWS EC2'],
     image: '/images/projects/mwasalaty/route-planning.webp',
     imageAlt: 'Mwasalaty route planner showing Cairo destinations, journey preferences, recent searches, and route search actions',
     gallery: [
@@ -153,7 +153,7 @@ export const allProjects: Project[] = [
       { title: 'Target users', body: 'The platform was framed around people who need clearer, repeatable transit guidance.', items: ['Students', 'Daily commuters', 'Cairo residents', 'Newcomers and visitors'] },
       { title: 'Product ecosystem', body: 'Nine areas work as one end-to-end system.', items: ['Passenger application', 'Route-planning system', 'Natural-language route search', 'Payment and digital ticketing', 'QR-ticket wallet', 'Operator QR scanner', 'Offline caching', 'Admin dashboard', 'Backend and routing engine'] },
       { title: 'Route-planning flow', group: 'how', body: 'A rider provides origin and destination details, the Vue client requests possible journeys, and OpenTripPlanner evaluates Cairo-specific GTFS and OpenStreetMap inputs before returning structured route options.' },
-      { title: 'Natural-language search', group: 'how', body: 'Groq interprets conversational trip requests and converts them into usable routing inputs. This complements—rather than replaces—the deterministic OpenTripPlanner routing engine.' },
+      { title: 'Natural-language search', group: 'how', body: 'The Gemini API interprets conversational trip requests and converts them into usable routing inputs. This complements—rather than replaces—the deterministic OpenTripPlanner routing engine.' },
       { title: 'Authentication', group: 'how', body: 'JWT-based authentication protects account flows and coordinates secure client-to-API requests across the platform.' },
       { title: 'Payment & ticketing', group: 'how', body: 'The implemented flow connects PayMob payment, ticket creation, QR generation, and the passenger ticket wallet so a completed purchase becomes a verifiable digital ticket.' },
       { title: 'Operator QR scanning', group: 'how', body: 'A dedicated operator PWA validates passenger QR tickets. An offline queue preserves scans when connectivity drops and synchronizes them when a connection returns.' },
@@ -161,7 +161,7 @@ export const allProjects: Project[] = [
       {
         title: 'Architecture & integrations',
         body: 'The architecture separates the passenger experience from services that authenticate users, calculate routes, accept payment, and validate tickets.',
-        items: ['Passenger PWA → Vue 3 + TypeScript', 'Vue client → Node.js + Express API', 'API → Supabase authentication and database', 'Routing → OpenTripPlanner + GTFS + OpenStreetMap', 'Language requests → Groq', 'Payments → PayMob → ticketing system', 'Tickets → operator scanner', 'Resilience → IndexedDB + Workbox', 'Deployment → AWS EC2'],
+        items: ['Passenger PWA → Vue 3 + TypeScript', 'Vue client → Node.js + Express API', 'API → Supabase authentication and database', 'Routing → OpenTripPlanner + GTFS + OpenStreetMap', 'Language requests → Gemini API', 'Payments → PayMob → ticketing system', 'Tickets → operator scanner', 'Resilience → IndexedDB + Workbox', 'Deployment → AWS EC2'],
       },
       { title: 'Team contributions', body: 'The completed product also includes favorite places, support and notifications, step-by-step live navigation, and an admin dashboard.' },
       { title: 'Challenges & limitations', body: 'The project had to coordinate several external systems, imperfect transit data, bilingual responsive UI, and offline synchronization.' },
