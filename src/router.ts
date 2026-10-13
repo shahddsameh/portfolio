@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { prefersReducedMotion } from '@/composables/useMotion'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -26,7 +27,7 @@ const router = createRouter({
           // scroll-padding-top, which would leave the section under the sticky header.
           let top = -parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop || '0')
           for (let node: HTMLElement | null = target; node; node = node.offsetParent as HTMLElement | null) top += node.offsetTop
-          resolve({ top, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+          resolve({ top, behavior: prefersReducedMotion() ? 'auto' : 'smooth' })
         }
         find()
       })

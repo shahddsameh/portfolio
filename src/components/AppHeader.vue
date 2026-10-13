@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Menu, Moon, Sun, X, Download } from 'lucide-vue-next'
 import { useTheme } from '@/composables/useTheme'
+import { prefersReducedMotion } from '@/composables/useMotion'
 
 const open = ref(false)
 const route = useRoute()
@@ -16,8 +17,7 @@ const goToSection = (id: string) => {
   open.value = false
   // From another page, the router's hash handling waits for the home view to finish mounting.
   if (!isHome.value) return router.push({ path: '/', hash: `#${id}` })
-  const behavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
-  document.getElementById(id)?.scrollIntoView({ behavior })
+  document.getElementById(id)?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth' })
 }
 const closeOnEscape = (event: KeyboardEvent) => event.key === 'Escape' && (open.value = false)
 document.addEventListener('keydown', closeOnEscape)

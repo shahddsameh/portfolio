@@ -1,24 +1,15 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+import { onceInView } from '@/composables/useMotion'
 
 const element = ref<HTMLElement>()
-let observer: IntersectionObserver | undefined
+let stop = () => {}
 
 onMounted(() => {
   const el = element.value
-  if (!el) return
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-    el.classList.add('is-visible')
-    return
-  }
-  observer = new IntersectionObserver(([entry]) => {
-    if (!entry.isIntersecting) return
-    el.classList.add('is-visible')
-    observer?.disconnect()
-  }, { rootMargin: '0px 0px -10% 0px' })
-  observer.observe(el)
+  if (el) stop = onceInView(el, () => el.classList.add('is-visible'))
 })
-onUnmounted(() => observer?.disconnect())
+onUnmounted(() => stop())
 </script>
 
 <template>

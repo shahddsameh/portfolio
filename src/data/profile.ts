@@ -8,6 +8,8 @@ export const profile = {
   roles: ['UI/UX Design', 'Product Design', 'Design Systems', 'Front-End Development'],
   email: 's.samehahmed2003@gmail.com',
   phone: '+20 112 123 8913',
+  // Size of public/files/Shahd_Sameh_CV.pdf (55,179 bytes); update it when the CV file is replaced.
+  cv: { href: '/files/Shahd_Sameh_CV.pdf', meta: 'PDF · 54 KB' },
   location: 'Cairo, Egypt',
   links: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/shahd-sameh21' },
