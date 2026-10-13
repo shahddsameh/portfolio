@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ArrowUpRight } from 'lucide-vue-next'
 import type { Project } from '@/types'
-defineProps<{ project: Project; featured?: boolean }>()
+// Cards sit under a section h2 on home but directly under the page h1 on /projects.
+withDefaults(defineProps<{ project: Project; featured?: boolean; headingLevel?: 2 | 3 }>(), { headingLevel: 3 })
 </script>
 
 <template>
@@ -11,7 +12,7 @@ defineProps<{ project: Project; featured?: boolean }>()
     </div>
     <div class="project-card-content">
       <div class="project-index">{{ project.year }} · {{ project.role }}</div>
-      <h3><RouterLink class="project-card-link" :to="`/projects/${project.slug}`">{{ project.name }}</RouterLink></h3>
+      <component :is="`h${headingLevel}`" class="project-card-title"><RouterLink class="project-card-link" :to="`/projects/${project.slug}`">{{ project.name }}</RouterLink></component>
       <p>{{ project.summary }}</p>
       <p v-if="project.contributions.length" class="project-contribution"><span>My contribution</span>{{ project.contributions.slice(0, 3).join(' · ') }}</p>
       <div class="tag-list" aria-label="Technologies">

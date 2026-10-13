@@ -16,7 +16,7 @@ useSeo({
     <h1>Projects with<br /><em>real constraints.</em></h1>
     <p class="lead">A focused selection of products where I contributed through leadership, product logic, interface development, or full-stack implementation. Each case study states exactly what I owned.</p>
     <div class="projects-list">
-      <ProjectCard v-for="(project, index) in projects" :key="project.slug" :project="project" :featured="index === 0" />
+      <ProjectCard v-for="(project, index) in projects" :key="project.slug" :project="project" :featured="index === 0" :heading-level="2" />
     </div>
   </div>
 </template>

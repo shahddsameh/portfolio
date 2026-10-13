@@ -149,7 +149,7 @@ main { min-height: calc(100svh - 76px); }
 .project-image-wrap img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: transform .55s var(--ease); }
 .project-card:hover .project-image-wrap img { transform: scale(1.025); }
 .project-index { margin-bottom: .8rem; color: var(--muted); font-size: .67rem; letter-spacing: .1em; text-transform: uppercase; }
-.project-card h3 { margin: 0 0 .8rem; font-family: "Cormorant Garamond"; font-size: clamp(2.3rem, 5vw, 4.7rem); }
+.project-card-title { margin: 0 0 .8rem; font-family: "Cormorant Garamond"; font-size: clamp(2.3rem, 5vw, 4.7rem); }
 .project-card p { color: var(--muted); }
 .project-card .project-contribution { margin: 1.4rem 0 0; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--text); font-size: .82rem; font-weight: 600; line-height: 1.6; }
 .project-contribution span { display: block; margin-bottom: .25rem; color: var(--muted); font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
