@@ -9,6 +9,16 @@ import type { CaseImage } from '@/types'
 const route = useRoute()
 const project = computed(() => getProject(String(route.params.slug))!)
 const compact = computed(() => project.value.compact)
+// Every case study shares one hero; projects without compact data fall back to their core fields.
+const hero = computed(() => {
+  const p = project.value
+  return {
+    lead: p.compact?.lead ?? p.subtitle,
+    meta: p.compact?.meta ?? [{ label: 'Role', value: p.role }, { label: 'Team', value: p.team }, { label: 'Year', value: p.year }],
+    actions: p.compact?.actions ?? p.links.filter((link) => !link.protected).slice(0, 2),
+    note: p.compact?.note,
+  }
+})
 // Break long concept titles after the em dash, keeping the dash with the first line.
 const titleParts = computed(() => {
   const [first, ...rest] = project.value.name.split(' — ')
@@ -52,32 +62,18 @@ useSeo(computed(() => ({
 
 <template>
   <article class="case-study">
-    <header v-if="compact" class="case-hero case-hero--compact page-shell">
+    <header class="case-hero case-hero--compact page-shell" :class="{ 'case-hero--natural': compact }">
       <RouterLink class="text-link back-link" to="/projects"><ArrowLeft :size="16" /> All projects</RouterLink>
       <h1 class="case-title"><span>{{ titleParts[0] }}</span> <span v-if="titleParts[1]">{{ titleParts[1] }}</span></h1>
-      <p class="lead case-lead">{{ compact.lead }}</p>
-      <img class="case-hero-image" :src="project.image" :alt="project.imageAlt" :width="compact.imageWidth" :height="compact.imageHeight" fetchpriority="high" />
-      <dl class="case-meta case-meta--row">
-        <div v-for="item in compact.meta" :key="item.label"><dt>{{ item.label }}</dt><dd>{{ item.value }}</dd></div>
+      <p class="lead case-lead">{{ hero.lead }}</p>
+      <img class="case-hero-image" :src="project.image" :alt="project.imageAlt" :width="compact?.imageWidth ?? 1600" :height="compact?.imageHeight ?? 900" fetchpriority="high" />
+      <dl class="case-meta case-meta--row" :style="{ '--meta-count': hero.meta.length }">
+        <div v-for="item in hero.meta" :key="item.label"><dt>{{ item.label }}</dt><dd>{{ item.value }}</dd></div>
       </dl>
-      <div class="case-actions">
-        <a v-for="(action, index) in compact.actions" :key="action.href" class="button" :class="{ 'button-accent': index === 0 }" :href="action.href" target="_blank" rel="noreferrer">{{ action.label }} <ArrowUpRight :size="17" aria-hidden="true" /></a>
+      <div v-if="hero.actions.length" class="case-actions">
+        <a v-for="(action, index) in hero.actions" :key="action.href" class="button" :class="{ 'button-accent': index === 0 }" :href="action.href" target="_blank" rel="noreferrer">{{ action.label }} <ArrowUpRight :size="17" aria-hidden="true" /></a>
       </div>
-      <p class="case-note">{{ compact.note }}</p>
-    </header>
-
-    <header v-else class="case-hero page-shell">
-      <RouterLink class="text-link back-link" to="/projects"><ArrowLeft :size="16" /> All projects</RouterLink>
-      <p class="eyebrow">{{ project.year }} · {{ project.team }}</p>
-      <h1>{{ project.name }}</h1>
-      <p class="case-subtitle">{{ project.subtitle }}</p>
-      <dl class="case-meta">
-        <div><dt>Role</dt><dd>{{ project.role }}</dd></div>
-        <div><dt>Team</dt><dd>{{ project.team }}</dd></div>
-        <div><dt>Year</dt><dd>{{ project.year }}</dd></div>
-      </dl>
-      <img class="case-hero-image" :src="project.image" :alt="project.imageAlt" width="1600" height="980" />
-      <p v-if="project.image.includes('placeholder')" class="asset-disclosure">This labeled panel marks an unavailable product capture; it is not a recreation of the interface.</p>
+      <p v-if="hero.note" class="case-note">{{ hero.note }}</p>
     </header>
 
     <section class="case-section page-shell role-section">

@@ -204,7 +204,6 @@ export const allProjects: Project[] = [
       { title: 'Security', body: 'JWT protects authenticated requests while bcrypt supports password hashing. Access rules are designed around the platform’s multiple user roles.' },
       { title: 'Team collaboration', body: 'The platform was produced by two contributors. This case study distinguishes my scheduling and assessment work from the broader shared product.' },
       { title: 'Reflection', body: 'The project developed my ability to translate a stateful real-world process—availability, booking, change, and refund—into reliable data and interface behavior.' },
-      { title: 'Demo link', body: 'The LinkedIn demo remains the primary public product reference.' },
     ],
   },
   {

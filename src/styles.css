@@ -185,14 +185,11 @@ h3 { font-size: 1.35rem; }
 
 .case-hero { padding-block: clamp(4rem, 8vw, 8rem); }
 .back-link { margin-bottom: 5rem; }
-.case-hero h1 { margin: 1rem 0; font-size: clamp(5rem, 14vw, 13rem); }
-.case-subtitle { max-width: 760px; font-family: "Cormorant Garamond"; font-size: clamp(2rem, 4vw, 3.7rem); line-height: 1.1; }
 .case-meta { display: grid; grid-template-columns: 2fr 1fr 1fr; margin: 4rem 0; border-block: 1px solid var(--border); }
 .case-meta div { padding: 1.2rem; border-right: 1px solid var(--border); }
 .case-meta dt { color: var(--muted); font-size: .67rem; text-transform: uppercase; letter-spacing: .1em; }
 .case-meta dd { margin: .35rem 0 0; font-weight: 700; }
 .case-hero-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; background: var(--surface); border: 1px solid var(--border); }
-.asset-disclosure { margin: 1.5rem 0 0 auto; max-width: 560px; color: var(--muted); font-size: .72rem; font-style: italic; }
 .case-section { display: grid; grid-template-columns: 1fr 3fr; gap: clamp(2rem, 7vw, 7rem); padding-block: clamp(5rem, 9vw, 9rem); border-top: 1px solid var(--border); }
 .role-section { grid-template-columns: 1.2fr .8fr; background: var(--surface); width: 100%; max-width: none; padding-inline: max(1.5rem, calc((100vw - 1280px) / 2)); }
 .role-section .lead { max-width: 70ch; font-family: Manrope, Arial, sans-serif; font-size: clamp(.95rem, 1.15vw, 1.08rem); line-height: 1.8; }
@@ -235,8 +232,8 @@ h3 { font-size: 1.35rem; }
 .case-hero--compact h1 { margin: 0 0 1.5rem; font-size: clamp(2.5rem, 6.4vw, 6rem); line-height: .95; }
 .case-title span { display: block; }
 .case-lead { max-width: 54ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
-.case-hero--compact .case-hero-image { aspect-ratio: auto; height: auto; object-fit: contain; }
-.case-meta--row { grid-template-columns: repeat(4, 1fr); margin: 2.5rem 0 0; }
+.case-hero--natural .case-hero-image { aspect-ratio: auto; height: auto; object-fit: contain; }
+.case-meta--row { grid-template-columns: repeat(var(--meta-count, 4), 1fr); margin: 2.5rem 0 0; }
 .case-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
 .case-note { margin: 1.25rem 0 0; color: var(--muted); font-size: .8rem; }
 .compare-table { width: 100%; margin-top: 2.5rem; border-collapse: collapse; }
