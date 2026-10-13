@@ -10,10 +10,12 @@ const router = useRouter()
 const { currentTheme, toggle } = useTheme()
 const isHome = computed(() => route.path === '/')
 
-const goToSection = async (id: string) => {
+const goToSection = (id: string) => {
   open.value = false
-  if (!isHome.value) await router.push('/')
-  requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }))
+  // From another page, the router's hash handling waits for the home view to finish mounting.
+  if (!isHome.value) return router.push({ path: '/', hash: `#${id}` })
+  const behavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+  document.getElementById(id)?.scrollIntoView({ behavior })
 }
 const closeOnEscape = (event: KeyboardEvent) => event.key === 'Escape' && (open.value = false)
 document.addEventListener('keydown', closeOnEscape)

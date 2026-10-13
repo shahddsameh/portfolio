@@ -16,9 +16,17 @@ const router = createRouter({
       return new Promise((resolve) => {
         const started = performance.now()
         const find = () => {
-          if (document.querySelector(to.hash)) resolve({ el: to.hash, behavior: 'smooth' })
-          else if (performance.now() - started > 1500) resolve({ top: 0 })
-          else requestAnimationFrame(find)
+          const target = document.querySelector<HTMLElement>(to.hash)
+          if (!target) {
+            if (performance.now() - started > 1500) resolve({ top: 0 })
+            else requestAnimationFrame(find)
+            return
+          }
+          // offsetTop ignores the reveal transform, and the router's own `el` option ignores
+          // scroll-padding-top, which would leave the section under the sticky header.
+          let top = -parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop || '0')
+          for (let node: HTMLElement | null = target; node; node = node.offsetParent as HTMLElement | null) top += node.offsetTop
+          resolve({ top, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
         }
         find()
       })
