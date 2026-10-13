@@ -14,7 +14,7 @@ withDefaults(defineProps<{ project: Project; featured?: boolean; headingLevel?: 
       <div class="project-index">{{ project.year }} · {{ project.role }}</div>
       <component :is="`h${headingLevel}`" class="project-card-title"><RouterLink class="project-card-link" :to="`/projects/${project.slug}`">{{ project.name }}</RouterLink></component>
       <p>{{ project.summary }}</p>
-      <p v-if="project.contributions.length" class="project-contribution"><span>My contribution</span>{{ project.contributions.slice(0, 3).join(' · ') }}</p>
+      <p v-if="project.contributions.length" class="project-contribution"><span>My contribution</span><mark class="ink-mark">{{ project.contributions.slice(0, 3).join(' · ') }}</mark></p>
       <div class="tag-list" aria-label="Technologies">
         <span v-for="tech in project.technologies.slice(0, featured ? 6 : 4)" :key="tech">{{ tech }}</span>
       </div>
