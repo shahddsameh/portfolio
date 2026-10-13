@@ -352,8 +352,11 @@ main { min-height: calc(100svh - 76px); }
   .case-section-number { margin-bottom: -1rem; }
   .resume-section { grid-template-columns: 1fr; }
   .resume-entry, .skill-groups, .language-row { grid-column: 1; }
-  .phone-row { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(190px, 40%); overflow-x: auto; padding-bottom: 1rem; scroll-snap-type: x mandatory; }
-  .phone-row li { scroll-snap-align: start; }
+  /* Three phones per row on six tracks, so a short last row sits centred instead of hugging the left edge. */
+  .phone-row { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: clamp(1.75rem, 4vw, 2.5rem); }
+  .phone-row li { grid-column: span 2; }
+  .phone-row li:nth-last-child(2):nth-child(3n + 1) { grid-column: 2 / span 2; }
+  .phone-row li:last-child:nth-child(3n + 1) { grid-column: 3 / span 2; }
   .wide-scroll img { width: 900px; max-width: none; }
 }
 
@@ -389,7 +392,9 @@ main { min-height: calc(100svh - 76px); }
   .case-meta div { border-right: 0; border-bottom: 1px solid var(--border); }
   .contribution-list { columns: 1; }
   .case-figures { grid-template-columns: 1fr; }
-  .phone-row { grid-auto-columns: 62%; }
+  .phone-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .phone-row li, .phone-row li:nth-last-child(2):nth-child(3n + 1), .phone-row li:last-child:nth-child(3n + 1) { grid-column: span 2; }
+  .phone-row li:last-child:nth-child(odd) { grid-column: 2 / span 2; }
   .compare-table th, .compare-table td { padding-right: .6rem; }
   .architecture-list { grid-template-columns: 1fr; }
   .gallery-heading, .gallery-grid { grid-template-columns: 1fr; }

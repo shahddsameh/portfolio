@@ -161,9 +161,18 @@ useSeo(computed(() => ({
           </li>
         </ul>
         <template v-else-if="section.imageLayout === 'wide'">
-          <div v-for="image in section.images" :key="image.src" class="wide-scroll" tabindex="0" role="region" :aria-label="image.alt">
-            <img :src="image.src" :alt="image.alt" :width="image.width" :height="image.height" loading="lazy" />
-          </div>
+          <template v-for="image in section.images" :key="image.src">
+            <!-- With a narrow arrangement nothing needs to scroll; without one, the strip scrolls on small screens. -->
+            <div v-if="image.narrow" class="case-figure-frame">
+              <picture>
+                <source media="(max-width: 900px)" :srcset="image.narrow.src" :width="image.narrow.width" :height="image.narrow.height" />
+                <img :src="image.src" :alt="image.alt" :width="image.width" :height="image.height" loading="lazy" />
+              </picture>
+            </div>
+            <div v-else class="wide-scroll" tabindex="0" role="region" :aria-label="image.alt">
+              <img :src="image.src" :alt="image.alt" :width="image.width" :height="image.height" loading="lazy" />
+            </div>
+          </template>
         </template>
         <div v-else class="case-figures">
           <figure v-for="image in section.images" :key="image.src">

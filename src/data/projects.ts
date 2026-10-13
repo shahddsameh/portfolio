@@ -75,7 +75,8 @@ export const allProjects: Project[] = [
         body: '24 tokens, 10 text styles and 8 components in Figma. My early drafts had 3 different corner radii across 15 buttons; one Button component fixed that.',
         imageLayout: 'wide',
         images: [
-          { src: '/images/projects/pwc/design-system-components.webp', alt: 'Figma components: Button, Header, Accordion item, Sub-link, Tag, Chip, Tab and Language toggle.', width: 3066, height: 1032 },
+          { src: '/images/projects/pwc/design-system-components.webp', alt: 'Figma components: Button, Header, Accordion item, Sub-link, Tag, Chip, Tab and Language toggle.', width: 3066, height: 1032,
+            narrow: { src: '/images/projects/pwc/design-system-components-stacked.webp', width: 984, height: 2168 } },
         ],
       },
       {

@@ -4,6 +4,8 @@ export interface CaseImage {
   width: number
   height: number
   caption?: string
+  /** A rearranged version of the same image for screens 900px and narrower, so wide strips stay legible without scrolling. */
+  narrow?: { src: string; width: number; height: number }
 }
 
 export interface Project {
