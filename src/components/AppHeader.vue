@@ -9,6 +9,8 @@ const route = useRoute()
 const router = useRouter()
 const { currentTheme, toggle } = useTheme()
 const isHome = computed(() => route.path === '/')
+// Case-study routes are flat, so the router alone would not mark Projects as current on them.
+const inProjects = computed(() => route.path.startsWith('/projects'))
 
 const goToSection = (id: string) => {
   open.value = false
@@ -25,11 +27,11 @@ watch(() => route.path, () => (open.value = false))
 
 <template>
   <header class="site-header">
-    <a class="wordmark" href="/" aria-label="Shahd Sameh home">SS<span>—26</span></a>
+    <RouterLink class="wordmark" to="/" aria-label="Shahd Sameh home">SS<span>—26</span></RouterLink>
     <nav class="desktop-nav" aria-label="Primary navigation">
       <RouterLink to="/">Home</RouterLink>
       <button type="button" @click="goToSection('about')">About</button>
-      <RouterLink to="/projects">Projects</RouterLink>
+      <RouterLink to="/projects" :class="{ 'router-link-active': inProjects }">Projects</RouterLink>
       <RouterLink to="/resume">Résumé</RouterLink>
       <button type="button" @click="goToSection('contact')">Contact</button>
     </nav>
@@ -49,7 +51,7 @@ watch(() => route.path, () => (open.value = false))
       <nav v-if="open" id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
         <RouterLink to="/">Home</RouterLink>
         <button type="button" @click="goToSection('about')">About</button>
-        <RouterLink to="/projects">Projects</RouterLink>
+        <RouterLink to="/projects" :class="{ 'router-link-active': inProjects }">Projects</RouterLink>
         <RouterLink to="/resume">Résumé</RouterLink>
         <button type="button" @click="goToSection('contact')">Contact</button>
         <a class="button" href="/files/Shahd_Sameh_CV.pdf" download><Download :size="17" /> Download CV</a>
