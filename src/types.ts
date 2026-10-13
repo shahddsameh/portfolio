@@ -19,6 +19,8 @@ export interface Project {
   technologies: string[]
   image: string
   imageAlt: string
+  /** object-position for the square thumbnail the card shrinks to on phones (default: center top). */
+  thumbFocus?: string
   gallery: {
     src: string
     alt: string

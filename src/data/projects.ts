@@ -99,6 +99,7 @@ export const allProjects: Project[] = [
     team: 'Five members',
     technologies: ['Vue 3', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express', 'Supabase', 'OpenTripPlanner', 'GTFS', 'OpenStreetMap', 'PayMob', 'Gemini API', 'IndexedDB', 'Workbox', 'AWS EC2'],
     image: '/images/projects/mwasalaty/route-planning.webp',
+    thumbFocus: 'left top',
     imageAlt: 'Mwasalaty route planner showing Cairo destinations, journey preferences, recent searches, and route search actions',
     gallery: [
       {
@@ -181,6 +182,7 @@ export const allProjects: Project[] = [
     team: 'Two members',
     technologies: ['Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS', 'Jitsi API', 'JWT', 'bcrypt', 'REST APIs'],
     image: '/images/projects/inneraura/landing-page.webp',
+    thumbFocus: 'center top',
     imageAlt: 'InnerAura landing page introducing therapist discovery, secure sessions, and a three-step healing journey',
     gallery: [
       {

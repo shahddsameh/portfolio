@@ -7,7 +7,7 @@ withDefaults(defineProps<{ project: Project; featured?: boolean; headingLevel?: 
 
 <template>
   <article class="project-card" :class="{ featured }">
-    <div class="project-image-wrap" :class="{ placeholder: project.image.includes('placeholder') }">
+    <div class="project-image-wrap" :class="{ placeholder: project.image.includes('placeholder') }" :style="{ '--thumb-focus': project.thumbFocus }">
       <img :src="project.image" :alt="project.imageAlt" width="1600" height="980" loading="lazy" />
     </div>
     <div class="project-card-content">
@@ -19,6 +19,8 @@ withDefaults(defineProps<{ project: Project; featured?: boolean; headingLevel?: 
         <span v-for="tech in project.technologies.slice(0, featured ? 6 : 4)" :key="tech">{{ tech }}</span>
       </div>
       <span class="text-link" aria-hidden="true">View case study <ArrowUpRight :size="17" /></span>
+      <!-- Stands in for the text link when the card collapses to an index row on phones. -->
+      <ArrowUpRight class="project-card-arrow" :size="20" aria-hidden="true" />
     </div>
   </article>
 </template>
