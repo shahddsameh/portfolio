@@ -243,7 +243,6 @@ Pressed and precise. A square, hairline-ruled slip of type that lifts off the pa
 
 ### Cards / Containers
 - **Project card:** not a box. It is an image frame (Newsprint Shade fill, 8px press offset, 16:10 crop anchored to the top) above an uppercase index label, a large Cormorant title, muted summary text, and tags. On hover the image scales to 1.025.
-- **Home project index (≤600px):** on phones the featured project keeps the full card and the others collapse into ruled index rows: a square thumbnail (small press offset, crop set per project by `thumbFocus`), the index label, a 2rem title and "My contribution", with an arrow in place of the text link. Summary and tags live on the case page. `/projects` keeps full cards at every width.
 - **Contact panel:** a Newsprint Fold field with a 4px Ink Burgundy top rule and no other border.
 - **Ink-well bands:** the footer and the architecture section sit on `--band` with `--band-text`. Their rules, ghost numerals, burgundy and focus rings all use the `--band-*` tokens, never page tokens.
 
