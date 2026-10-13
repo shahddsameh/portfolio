@@ -196,7 +196,7 @@ main { min-height: calc(100svh - 76px); }
 .site-footer { display: grid; grid-template-columns: 1.3fr .7fr; gap: 3rem; padding: clamp(4rem, 8vw, 8rem) max(1.5rem, calc((100vw - 1280px) / 2)); background: var(--band); color: var(--band-text); border-top: 1px solid var(--band-edge); }
 .site-footer h2 { margin: 1rem 0; font-size: clamp(3rem, 7vw, 7rem); }
 .footer-links { display: grid; align-content: start; }
-.footer-links a { display: flex; justify-content: space-between; padding: .75rem 0; border-bottom: 1px solid var(--band-rule); }
+.footer-links a { display: flex; justify-content: space-between; align-items: center; padding: .75rem 0; border-bottom: 1px solid var(--band-rule); }
 .footer-meta { grid-column: 1 / -1; margin: 2rem 0 0; color: var(--band-muted); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
 
 .page-intro { padding-block: clamp(5rem, 9vw, 10rem); }

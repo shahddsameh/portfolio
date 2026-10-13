@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowUpRight } from 'lucide-vue-next'
+import { ArrowUp, ArrowUpRight } from 'lucide-vue-next'
 import { profile } from '@/data/profile'
 </script>
 
@@ -12,7 +12,7 @@ import { profile } from '@/data/profile'
     <div class="footer-links">
       <a :href="`mailto:${profile.email}`">{{ profile.email }} <ArrowUpRight :size="15" /></a>
       <a v-for="link in profile.links" :key="link.label" :href="link.href" target="_blank" rel="noreferrer">{{ link.label }} <ArrowUpRight :size="15" /></a>
-      <a href="#app">Back to top ↑</a>
+      <a href="#app">Back to top <ArrowUp :size="15" aria-hidden="true" /></a>
     </div>
     <p class="footer-meta">© {{ new Date().getFullYear() }} Shahd Sameh. Designed and built with intention.</p>
   </footer>
