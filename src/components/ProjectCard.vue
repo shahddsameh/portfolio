@@ -7,7 +7,7 @@ defineProps<{ project: Project; featured?: boolean }>()
 <template>
   <article class="project-card" :class="{ featured }">
     <div class="project-image-wrap" :class="{ placeholder: project.image.includes('placeholder') }">
-      <img :src="project.image" :alt="project.imageAlt" width="1600" height="980" loading="lazy" @error="($event.target as HTMLImageElement).classList.add('image-error')" />
+      <img :src="project.image" :alt="project.imageAlt" width="1600" height="980" loading="lazy" />
     </div>
     <div class="project-card-content">
       <div class="project-index">{{ project.year }} · {{ project.role }}</div>
