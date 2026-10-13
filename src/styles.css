@@ -180,6 +180,8 @@ h3 { font-size: 1.35rem; }
 .field-error, .form-status.error { color: var(--danger); }
 .field-error { margin: .3rem 0 0; font-size: .7rem; }
 .form-status { margin: 1rem 0 0; font-size: .8rem; }
+.form-status:empty { margin: 0; }
+.form-status a { border-bottom: 1px solid currentColor; }
 .form-status.success { color: var(--success); }
 .honeypot { position: absolute; left: -10000px; }
 
@@ -367,6 +369,8 @@ h3 { font-size: 1.35rem; }
   .behance-entry { grid-template-columns: 1fr auto; gap: 1rem; }
   .behance-note { grid-column: 1 / -1; grid-row: 2; }
   .field-row { grid-template-columns: 1fr; gap: 0; }
+  /* iOS Safari zooms into inputs smaller than 16px on focus. */
+  .field input, .field textarea { font-size: 16px; }
   .case-meta { grid-template-columns: 1fr; }
   .case-meta div { border-right: 0; border-bottom: 1px solid var(--border); }
   .contribution-list { columns: 1; }
