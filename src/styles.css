@@ -185,6 +185,8 @@ h3 { font-size: 1.35rem; }
 .form-status a { border-bottom: 1px solid currentColor; }
 .form-status.success { color: var(--success); }
 .honeypot { position: absolute; left: -10000px; }
+.noscript-note { width: min(640px, calc(100% - 2rem)); margin: 6rem auto; }
+.noscript-note a { border-bottom: 1px solid currentColor; }
 
 .site-footer { display: grid; grid-template-columns: 1.3fr .7fr; gap: 3rem; padding: clamp(4rem, 8vw, 8rem) max(1.5rem, calc((100vw - 1280px) / 2)); background: var(--band); color: var(--band-text); border-top: 1px solid var(--band-edge); }
 .site-footer h2 { margin: 1rem 0; font-size: clamp(3rem, 7vw, 7rem); }
