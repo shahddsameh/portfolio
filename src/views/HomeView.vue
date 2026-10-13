@@ -2,6 +2,7 @@
 import { ArrowDownRight, ArrowUpRight, Download, Mail } from 'lucide-vue-next'
 import { Motion } from '@motionone/vue'
 import ContactForm from '@/components/ContactForm.vue'
+import PortraitCard from '@/components/PortraitCard.vue'
 import ProjectCard from '@/components/ProjectCard.vue'
 import RevealOnScroll from '@/components/RevealOnScroll.vue'
 import SectionHeading from '@/components/SectionHeading.vue'
@@ -68,9 +69,7 @@ const intro = !prefersReducedMotion() && firstVisit('intro')
         :animate="{ opacity: 1, y: 0, scale: 1, rotate: 1.8 }"
         :transition="{ duration: 0.6, delay: 0.15, easing: [0.22, 1, 0.36, 1] }"
       >
-        <div class="portrait-note">Profile / 2026</div>
-        <img src="/images/profile/shahd-portrait.png" alt="Portrait of Shahd Sameh Ahmed in an editorial paper-card composition" width="1122" height="1402" fetchpriority="high" />
-        <p>Building at the intersection of interface, product, and code.</p>
+        <PortraitCard />
       </Motion>
       <a class="scroll-cue" href="#about">Scroll to explore <ArrowDownRight :size="16" /></a>
     </section>
