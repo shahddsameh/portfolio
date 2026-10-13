@@ -51,8 +51,12 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
           <a class="button" href="/files/Shahd_Sameh_CV.pdf" download><Download :size="17" /> Download CV</a>
           <a class="text-link" href="#contact">Contact me <Mail :size="17" /></a>
         </div>
-        <div class="role-ticker" aria-label="Target roles">
-          <div><span v-for="(role, i) in [...profile.roles, ...profile.roles]" :key="`${role}-${i}`">{{ role }} <b>✦</b></span></div>
+        <div class="role-ticker">
+          <!-- The second copy only closes the loop visually; screen readers get the list once. -->
+          <div>
+            <ul aria-label="Target roles"><li v-for="role in profile.roles" :key="role">{{ role }} <span aria-hidden="true">✦</span></li></ul>
+            <ul aria-hidden="true"><li v-for="role in profile.roles" :key="role">{{ role }} <span>✦</span></li></ul>
+          </div>
         </div>
       </Motion>
       <Motion
