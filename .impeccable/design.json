@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-12T09:39:18.242Z",
+  "generatedAt": "2026-10-13T10:49:35.141Z",
   "title": "Design System: Shahd Sameh — Portfolio",
   "extensions": {
     "colorMeta": {
@@ -260,6 +260,118 @@
           "#f3f1f1"
         ]
       },
+      "ink-well": {
+        "role": "neutral",
+        "displayName": "Ink Well",
+        "purpose": "Footer and architecture band, light (--band).",
+        "canonical": "#292625",
+        "tonalRamp": [
+          "#282524",
+          "#46413f",
+          "#635c5a",
+          "#817774",
+          "#9e9694",
+          "#bbb6b4",
+          "#d8d5d4",
+          "#f3f2f2"
+        ]
+      },
+      "ink-well-dark": {
+        "role": "neutral",
+        "displayName": "Ink Well (dark)",
+        "purpose": "Band background, dark (--band).",
+        "canonical": "#171514",
+        "tonalRamp": [
+          "#292524",
+          "#47413e",
+          "#655c58",
+          "#837872",
+          "#a09792",
+          "#bdb6b3",
+          "#d9d5d3",
+          "#f3f2f1"
+        ]
+      },
+      "band-text": {
+        "role": "neutral",
+        "displayName": "Band Text",
+        "purpose": "Text on the ink well, light (--band-text).",
+        "canonical": "#f4efe7",
+        "tonalRamp": [
+          "#342a18",
+          "#5b482a",
+          "#81663b",
+          "#a8854d",
+          "#bfa273",
+          "#d2be9d",
+          "#e5dac7",
+          "#f7f3ee"
+        ]
+      },
+      "band-text-dark": {
+        "role": "neutral",
+        "displayName": "Band Text (dark)",
+        "purpose": "Text on the ink well, dark.",
+        "canonical": "#f1e9dd",
+        "tonalRamp": [
+          "#362916",
+          "#5e4827",
+          "#866637",
+          "#ad8547",
+          "#c3a16f",
+          "#d5be9a",
+          "#e7dac5",
+          "#f8f3ed"
+        ]
+      },
+      "band-muted": {
+        "role": "neutral",
+        "displayName": "Band Muted",
+        "purpose": "Secondary text on the well, light.",
+        "canonical": "#b3afa9",
+        "tonalRamp": [
+          "#292724",
+          "#46433e",
+          "#646059",
+          "#827c73",
+          "#9f9a93",
+          "#bcb8b3",
+          "#d9d7d4",
+          "#f3f2f1"
+        ]
+      },
+      "band-muted-dark": {
+        "role": "neutral",
+        "displayName": "Band Muted (dark)",
+        "purpose": "Secondary text on the well, dark.",
+        "canonical": "#aba59d",
+        "tonalRamp": [
+          "#292723",
+          "#47433d",
+          "#665f57",
+          "#847c71",
+          "#a19a91",
+          "#bdb8b2",
+          "#d9d7d3",
+          "#f3f2f1"
+        ]
+      },
+      "band-accent": {
+        "role": "primary",
+        "displayName": "Band Accent",
+        "purpose": "Burgundy on the ink well, both themes (--band-accent).",
+        "canonical": "#c67b8c",
+        "tonalRamp": [
+          "#35171e",
+          "#5d2834",
+          "#84394a",
+          "#ab4a60",
+          "#c17183",
+          "#d49ba8",
+          "#e6c6cd",
+          "#f7edef"
+        ]
+      },
       "available-green": {
         "role": "signal",
         "displayName": "Available Green",
@@ -501,6 +613,11 @@
       {
         "name": "The Editor's Mark Rule",
         "body": "Burgundy marks something, the way a correction is marked on a proof. Emphasis, focus, the one primary action, a numeral. It never floods a surface larger than a button or a 4px rule, and it never sits on a project screenshot.",
+        "section": "colors"
+      },
+      {
+        "name": "The Band Token Rule",
+        "body": "Anything placed on an ink-well band takes its colour from `--band-*`. Page tokens (`--accent`, `--muted`, `--surface-strong`) fail or glare on the well.",
         "section": "colors"
       },
       {

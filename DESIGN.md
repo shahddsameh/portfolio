@@ -23,6 +23,13 @@ colors:
   error-red-dark: "#d17676"
   success-green: "#377047"
   success-green-dark: "#4fa065"
+  ink-well: "#292625"
+  ink-well-dark: "#171514"
+  band-text: "#f4efe7"
+  band-text-dark: "#f1e9dd"
+  band-muted: "#b3afa9"
+  band-muted-dark: "#aba59d"
+  band-accent: "#c67b8c"
 typography:
   display:
     fontFamily: "Cormorant Garamond, Georgia, serif"
@@ -142,11 +149,17 @@ A warm, low-chroma paper palette with a single deep burgundy accent. Each theme 
 - **Warm Newsprint** (light `--bg`): the page. It also sets `<meta name="theme-color">`.
 - **Newsprint Fold** (light `--surface`): a second paper tone for full-bleed bands (the projects section, role section), the contact panel, and hover fills.
 - **Newsprint Shade** (light `--surface-strong`): the ghost tone for oversized section numbers, the "PORTFOLIO" watermark, the 404 numerals, and the portrait's backing sheet. It is never used for readable text.
-- **Press Ink** (light `--text`): body and heading text. It also fills the footer and architecture bands, where the page colours invert.
+- **Press Ink** (light `--text`): body and heading text.
 - **Pencil Gray** (light `--muted`): secondary copy, metadata, captions, dates. It holds 4.5:1 on Newsprint Fold as well as on the page.
 - **Proof Rule** (light `--border`): every 1px rule and border, and the colour of the hard offset shadows.
 - **Press Black / Press Black Fold / Press Black Shade / Chalk / Ash Gray / Night Rule**: the dark-theme counterparts of the six roles above, in that order.
 - **Burgundy Ground** (`--accent-contrast`, light and dark): text placed on the accent fill.
+
+### Ink Well (bands)
+- **Ink Well** (`--band`, light and dark): the background of the footer and the Mwasalaty architecture band. It is darker than the page in both themes, so the band reads as a deep printed well rather than flipping to a bright slab at night. In dark mode a hairline edge (`--band-edge`) separates it from the page.
+- **Band Text / Band Muted** (`--band-text`, `--band-muted`): text and secondary text on the well. Muted is 6.9:1 (light) and 7.5:1 (dark).
+- **Band Accent** (`--band-accent`): the burgundy for `<em>`, list arrows and focus rings on the well. It is 4.7:1 (light) and 5.7:1 (dark), because the page accent fails on ink.
+- **Band Rule / Band Ghost** (`--band-rule`, `--band-ghost`): hairlines and ghost numerals on the well.
 
 ### Signal
 - **Error Red** (`--danger`) and **Success Green** (`--success`): contact-form validation and status messages. Both have a dark-theme value, and each passes 4.5:1 on its theme's page and fold.
@@ -154,6 +167,8 @@ A warm, low-chroma paper palette with a single deep burgundy accent. Each theme 
 
 ### Named Rules
 **The Editor's Mark Rule.** Burgundy marks something, the way a correction is marked on a proof. Emphasis, focus, the one primary action, a numeral. It never floods a surface larger than a button or a 4px rule, and it never sits on a project screenshot.
+
+**The Band Token Rule.** Anything placed on an ink-well band takes its colour from `--band-*`. Page tokens (`--accent`, `--muted`, `--surface-strong`) fail or glare on the well.
 
 **The Ghost Numeral Rule.** Newsprint Shade exists for huge decorative type (section numbers, the watermark, the 404). Anything meant to be read uses Press Ink or Pencil Gray.
 
@@ -229,7 +244,7 @@ Pressed and precise. A square, hairline-ruled slip of type that lifts off the pa
 ### Cards / Containers
 - **Project card:** not a box. It is an image frame (Newsprint Shade fill, 8px press offset, 16:10 crop anchored to the top) above an uppercase index label, a large Cormorant title, muted summary text, and tags. On hover the image scales to 1.025.
 - **Contact panel:** a Newsprint Fold field with a 4px Ink Burgundy top rule and no other border.
-- **Inverted bands:** the footer and the architecture section swap to a Press Ink background with page-colour text. Their rules are drawn in a page-colour mix.
+- **Ink-well bands:** the footer and the architecture section sit on `--band` with `--band-text`. Their rules, ghost numerals, burgundy and focus rings all use the `--band-*` tokens, never page tokens.
 
 ### Inputs / Fields
 - **Style:** square, with a 1px Proof Rule border, a Warm Newsprint fill inside the Newsprint Fold panel, and 0.85rem padding. Labels sit above in the uppercase label style.
