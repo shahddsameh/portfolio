@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { ArrowLeft, ArrowUpRight, Download, ExternalLink, LockKeyhole, Mail, Maximize2, Plus, X } from 'lucide-vue-next'
+import { projectViewTransitionSlug } from '@/composables/useProjectViewTransition'
 import { getProject, projects } from '@/data/projects'
 import { useSeo } from '@/composables/useSeo'
 import type { CaseImage, Project } from '@/types'
@@ -84,7 +85,7 @@ useSeo(computed(() => ({
       <RouterLink class="text-link back-link" to="/projects"><ArrowLeft :size="16" /> All projects</RouterLink>
       <h1 class="case-title"><span>{{ titleParts[0] }}</span> <span v-if="titleParts[1]">{{ titleParts[1] }}</span></h1>
       <p class="lead case-lead">{{ hero.lead }}</p>
-      <img class="case-hero-image" :src="project.image" :alt="project.imageAlt" :width="compact?.imageWidth ?? 1600" :height="compact?.imageHeight ?? 900" fetchpriority="high" />
+      <img class="case-hero-image" :src="project.image" :alt="project.imageAlt" :style="{ viewTransitionName: projectViewTransitionSlug === project.slug ? `project-${project.slug}` : 'none' }" :width="compact?.imageWidth ?? 1600" :height="compact?.imageHeight ?? 900" fetchpriority="high" />
       <dl class="case-meta case-meta--row" :style="{ '--meta-count': hero.meta.length }">
         <div v-for="item in hero.meta" :key="item.label"><dt>{{ item.label }}</dt><dd>{{ item.value }}</dd></div>
       </dl>

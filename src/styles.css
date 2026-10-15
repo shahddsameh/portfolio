@@ -378,6 +378,8 @@ main { min-height: calc(100svh - 76px); }
 .page-enter-active, .page-leave-active { transition: opacity .22s var(--ease), transform .22s var(--ease); }
 .page-enter-from { opacity: 0; transform: translateY(12px); }
 .page-leave-to { opacity: 0; transform: translateY(-8px); }
+::view-transition-group(*) { animation-duration: .45s; animation-timing-function: var(--ease); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .22s; }
 .menu-enter-active, .menu-leave-active { transition: opacity .18s var(--ease), transform .18s var(--ease); }
 .menu-enter-from, .menu-leave-to { opacity: 0; transform: translateY(-10px); }
 
