@@ -169,7 +169,7 @@ main { min-height: calc(100svh - 76px); }
 .section-number { align-self: stretch; color: var(--surface-strong); font-family: "Cormorant Garamond"; font-size: clamp(4.5rem, 10vw, 8.5rem); line-height: .75; }
 .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(3rem, 8vw, 8rem); }
 .about-grid > .lead { max-width: 62ch; font-family: Manrope, Arial, sans-serif; font-size: clamp(1rem, 1.25vw, 1.15rem); line-height: 1.85; }
-.details-grid { display: grid; grid-template-columns: 1fr 1fr; margin: 0; border-top: 1px solid var(--border); }
+.details-grid { display: grid; grid-template-columns: 1fr 1fr; margin: 0; }
 .details-grid div { padding: 1rem .5rem; border-bottom: 1px solid var(--border); }
 .details-grid dt { color: var(--muted); font-size: .67rem; letter-spacing: .1em; text-transform: uppercase; }
 .details-grid dd { margin: .25rem 0 0; font-size: .82rem; font-weight: 600; }
@@ -208,7 +208,7 @@ main { min-height: calc(100svh - 76px); }
 .behance-entry:hover svg, .behance-entry:focus-visible svg { transform: translate(4px, -4px); }
 .section-action { margin-top: 4rem; text-align: right; }
 
-.timeline { margin-bottom: 2rem; border-top: 1px solid var(--border); }
+.timeline { margin-bottom: 2rem; }
 .timeline article { display: grid; grid-template-columns: 1fr 3fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
 .timeline time { color: var(--muted); font-size: .72rem; letter-spacing: .08em; }
 .timeline h3 { margin: 0 0 .35rem; font-family: "Cormorant Garamond"; font-size: 2rem; }
