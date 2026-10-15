@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ArrowDownRight, ArrowUpRight, Download, Mail } from 'lucide-vue-next'
+import { onBeforeUnmount, ref } from 'vue'
+import { ArrowDownRight, ArrowUpRight, Mail } from 'lucide-vue-next'
 import { Motion } from '@motionone/vue'
 import ContactForm from '@/components/ContactForm.vue'
+import DownloadCvLink from '@/components/DownloadCvLink.vue'
 import PortraitCard from '@/components/PortraitCard.vue'
 import ProjectCard from '@/components/ProjectCard.vue'
 import RevealOnScroll from '@/components/RevealOnScroll.vue'
@@ -31,6 +33,25 @@ useSeo({
 const behance = profile.links.find((link) => link.label === 'Behance')!
 // The opening sequence plays once per session; return visits and reduced motion get the settled page.
 const intro = !prefersReducedMotion() && firstVisit('intro')
+const copyStatus = ref('')
+const copySucceeded = ref(false)
+let copyStatusTimer: ReturnType<typeof setTimeout> | undefined
+
+const copyEmail = async () => {
+  if (copyStatusTimer) clearTimeout(copyStatusTimer)
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable')
+    await navigator.clipboard.writeText(profile.email)
+    copyStatus.value = 'Copied'
+    copySucceeded.value = true
+  } catch {
+    copyStatus.value = 'Could not copy. Select the email above.'
+    copySucceeded.value = false
+  }
+  copyStatusTimer = setTimeout(() => { copyStatus.value = '' }, 3500)
+}
+
+onBeforeUnmount(() => { if (copyStatusTimer) clearTimeout(copyStatusTimer) })
 </script>
 
 <template>
@@ -51,7 +72,7 @@ const intro = !prefersReducedMotion() && firstVisit('intro')
         </div>
         <div class="hero-actions">
           <RouterLink class="button button-accent" to="/projects">View projects <ArrowDownRight :size="18" /></RouterLink>
-          <a class="button" href="/files/Shahd_Sameh_CV.pdf" download><Download :size="17" /> Download CV</a>
+          <DownloadCvLink />
           <a class="text-link" href="#contact">Contact me <Mail :size="17" /></a>
         </div>
         <div class="role-ticker">
@@ -119,7 +140,7 @@ const intro = !prefersReducedMotion() && firstVisit('intro')
           <SectionHeading number="04" eyebrow="Contact" title="Have a thoughtful problem to solve?" />
           <p class="lead">I’m open to design, front-end, and product-minded software opportunities. Tell me what you’re building.</p>
           <div class="contact-links">
-            <a :href="`mailto:${profile.email}`">{{ profile.email }}</a>
+            <span class="contact-email"><a :href="`mailto:${profile.email}`">{{ profile.email }}</a><button type="button" class="copy-email-button" @click="copyEmail">Copy email</button><span class="copy-email-status" :class="{ 'is-copied': copySucceeded }" role="status">{{ copyStatus }}</span></span>
             <a :href="`tel:${profile.phone.replaceAll(' ', '')}`">{{ profile.phone }}</a>
             <a v-for="link in profile.links" :key="link.label" :href="link.href" target="_blank" rel="noreferrer">{{ link.label }} <ArrowUpRight :size="13" aria-hidden="true" /></a>
           </div>

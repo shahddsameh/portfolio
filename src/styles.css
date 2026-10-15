@@ -15,6 +15,8 @@
   --danger: #b13b3b;
   --success: #377047;
   --ease: cubic-bezier(.22, 1, .36, 1);
+  /* A slightly uneven pen line, used as a mask so it takes the colour of whatever paints it. */
+  --pen-stroke: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M1 4.4C18 2.4 36 3.7 54 3.1S84 2 99 3.4' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
   --band: #292625;
   --band-text: #f4efe7;
   --band-muted: #b3afa9;
@@ -81,22 +83,31 @@ main { min-height: calc(100svh - 76px); }
 .wordmark span { margin-left: .35rem; color: var(--accent); font-family: Manrope, sans-serif; font-size: .62rem; letter-spacing: .12em; }
 .desktop-nav { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.25rem); }
 .desktop-nav a, .desktop-nav button { position: relative; border: 0; background: none; cursor: pointer; font-size: .76rem; font-weight: 600; letter-spacing: .06em; }
-.desktop-nav a::after, .desktop-nav button::after { content: ''; position: absolute; left: 0; bottom: -.45rem; width: 100%; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .22s var(--ease); }
-.desktop-nav a:hover::after, .desktop-nav button:hover::after, .desktop-nav a:focus-visible::after, .desktop-nav button:focus-visible::after, .desktop-nav a.router-link-active::after { transform: scaleX(1); }
+/* Nav marks are drawn with the editor's pen: the stroke is revealed left to right rather than stretched. */
+.desktop-nav a::after, .desktop-nav button::after { content: ''; position: absolute; left: -2px; right: -2px; bottom: -.62rem; height: 6px; background: var(--accent); -webkit-mask: var(--pen-stroke) center / 100% 100% no-repeat; mask: var(--pen-stroke) center / 100% 100% no-repeat; clip-path: inset(0 100% 0 0); transition: clip-path .35s var(--ease); }
+.desktop-nav a:hover::after, .desktop-nav button:hover::after, .desktop-nav a:focus-visible::after, .desktop-nav button:focus-visible::after, .desktop-nav a.router-link-active::after, .desktop-nav .nav-current::after { clip-path: inset(0 0 0 0); }
+.desktop-nav a:not(.router-link-active):not(.nav-current):not(:hover):not(:focus-visible)::after, .desktop-nav button:not(.nav-current):not(:hover):not(:focus-visible)::after { transition-duration: 0s; }
 .header-actions { justify-self: end; display: flex; gap: .6rem; align-items: center; }
 .icon-button { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 1px solid var(--border); background: transparent; cursor: pointer; transition: background .2s var(--ease), transform .2s var(--ease); }
 .icon-button:hover, .icon-button:focus-visible { background: var(--surface); transform: translateY(-2px); }
 .menu-button { display: none; }
 .mobile-nav { position: absolute; top: 76px; left: 0; right: 0; display: grid; padding: 2rem 1.5rem; background: var(--bg); border-bottom: 1px solid var(--border); box-shadow: 0 18px 40px var(--shadow); }
 .mobile-nav a:not(.button), .mobile-nav button { padding: 1rem 0; border: 0; border-bottom: 1px solid var(--border); background: none; text-align: left; font-family: "Cormorant Garamond"; font-size: 2rem; }
-.mobile-nav a.router-link-active:not(.button) { color: var(--accent); }
+.mobile-nav a.router-link-active:not(.button), .mobile-nav .nav-current { color: var(--accent); }
 
 .button { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 46px; padding: .75rem 1.1rem; border: 1px solid var(--border); background: transparent; font-size: .75rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease); }
 .button:hover, .button:focus-visible { transform: translateY(-3px); box-shadow: 4px 5px 0 var(--border); }
 .button-accent { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
 .button:disabled { cursor: progress; opacity: .6; transform: none; box-shadow: none; }
 .button-small { min-height: 39px; padding: .55rem .85rem; }
-.text-link { display: inline-flex; align-items: center; gap: .35rem; padding-block: .25rem; border-bottom: 1px solid currentColor; font-size: .78rem; font-weight: 700; }
+.cv-download { text-align: left; }
+.cv-download-copy { display: grid; gap: .15rem; line-height: 1.2; }
+.cv-download-copy small { font-size: .63rem; font-weight: 600; letter-spacing: .02em; opacity: .8; }
+.text-link { position: relative; display: inline-flex; align-items: center; gap: .35rem; padding-block: .25rem; border-bottom: 1px solid currentColor; font-size: .78rem; font-weight: 700; }
+/* The pen replaces the resting rule in the same position, so only one underline shows. */
+.text-link::after { content: ''; position: absolute; left: -2px; right: -2px; bottom: -3px; height: 6px; background: var(--accent); -webkit-mask: var(--pen-stroke) center / 100% 100% no-repeat; mask: var(--pen-stroke) center / 100% 100% no-repeat; clip-path: inset(0 100% 0 0); transition: clip-path .35s var(--ease); pointer-events: none; }
+.text-link:hover::after, .text-link:focus-visible::after, .project-card:hover .text-link::after, .project-card:focus-within .text-link::after { clip-path: inset(0 0 0 0); }
+.text-link:hover, .text-link:focus-visible, .project-card:hover .text-link, .project-card:focus-within .text-link { border-bottom-color: transparent; }
 .text-link svg { transition: transform .2s var(--ease); }
 .text-link:hover svg, .text-link:focus-visible svg { transform: translate(3px, -3px); }
 
@@ -208,6 +219,12 @@ main { min-height: calc(100svh - 76px); }
 .contact-section .section-number { display: block; margin-bottom: 2rem; }
 .contact-links { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; margin-top: 2rem; font-size: .78rem; font-weight: 700; }
 .contact-links a { display: inline-flex; align-items: center; gap: .25rem; border-bottom: 1px solid var(--border); }
+.contact-email { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+.copy-email-button { padding: .25rem .45rem; border: 1px solid var(--border); background: transparent; color: var(--accent); font-size: .7rem; font-weight: 700; cursor: pointer; }
+.copy-email-button:hover, .copy-email-button:focus-visible { border-color: var(--accent); background: var(--surface); }
+.copy-email-status { color: var(--danger); font-size: .68rem; }
+.copy-email-status:empty { display: none; }
+.copy-email-status.is-copied { padding: .12rem .35rem; background: var(--accent); color: var(--accent-contrast); font-weight: 700; }
 .contact-form { padding: clamp(1.5rem, 4vw, 3rem); background: var(--surface); border-top: 4px solid var(--accent); }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .field { margin-bottom: 1.1rem; }

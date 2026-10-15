@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Download } from 'lucide-vue-next'
+import DownloadCvLink from '@/components/DownloadCvLink.vue'
 import { experience } from '@/data/experience'
 import { profile } from '@/data/profile'
 import { projects } from '@/data/projects'
@@ -17,7 +17,7 @@ useSeo({
   <div class="page-shell resume-page">
     <header class="resume-header">
       <div><p class="eyebrow">Curriculum vitae · 2026</p><h1>Shahd Sameh<br /><em>Ahmed</em></h1></div>
-      <div><p>{{ profile.title }}</p><a :href="`mailto:${profile.email}`">{{ profile.email }}</a><p>{{ profile.location }}</p><a class="button button-accent" href="/files/Shahd_Sameh_CV.pdf" download><Download :size="17" /> Download CV</a></div>
+      <div><p>{{ profile.title }}</p><a :href="`mailto:${profile.email}`">{{ profile.email }}</a><p>{{ profile.location }}</p><DownloadCvLink class="button-accent" /></div>
     </header>
     <section class="resume-section"><p class="resume-label">Profile</p><p class="lead">{{ profile.biography }}</p></section>
     <section class="resume-section"><p class="resume-label">Education</p><div class="resume-entry"><div><h2>Helwan University</h2><p>BSc in Business Information Systems</p></div><div><p>Aug 2021 — Jun 2025</p><p>GPA: 3.95 / 4.0</p></div></div></section>
