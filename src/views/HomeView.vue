@@ -86,8 +86,8 @@ onBeforeUnmount(() => { if (copyStatusTimer) clearTimeout(copyStatusTimer) })
       <Motion
         tag="div"
         class="portrait-wrap"
-        :initial="intro ? { opacity: 0, y: -14, scale: 1.03, rotate: 1.8 } : false"
-        :animate="{ opacity: 1, y: 0, scale: 1, rotate: 1.8 }"
+        :initial="intro ? { opacity: 0, y: -14, scale: 1.03 } : false"
+        :animate="{ opacity: 1, y: 0, scale: 1 }"
         :transition="{ duration: 0.6, delay: 0.15, easing: [0.22, 1, 0.36, 1] }"
       >
         <PortraitCard />
