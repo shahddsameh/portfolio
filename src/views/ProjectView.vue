@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { ArrowLeft, ArrowUpRight, Download, ExternalLink, LockKeyhole, Mail, Maximize2, Plus, X } from 'lucide-vue-next'
+import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, LockKeyhole, Mail, Maximize2, Plus, X } from 'lucide-vue-next'
+import DownloadCvLink from '@/components/DownloadCvLink.vue'
 import { projectViewTransitionSlug } from '@/composables/useProjectViewTransition'
 import { getProject, projects } from '@/data/projects'
 import { useSeo } from '@/composables/useSeo'
@@ -43,7 +44,9 @@ const displaySections = computed(() => {
   }
   return display
 })
-const nextProject = computed(() => projects[(projects.findIndex((item) => item.slug === project.value.slug) + 1) % projects.length])
+const projectIndex = computed(() => projects.findIndex((item) => item.slug === project.value.slug))
+const previousProject = computed(() => projects[(projectIndex.value - 1 + projects.length) % projects.length])
+const nextProject = computed(() => projects[(projectIndex.value + 1) % projects.length])
 
 const viewer = ref<HTMLDialogElement>()
 const viewerImage = ref<CaseImage>()
@@ -81,8 +84,17 @@ useSeo(computed(() => ({
 
 <template>
   <article class="case-study">
+    <nav class="case-navigation" aria-label="Case study navigation">
+      <div class="case-navigation-inner page-shell">
+        <RouterLink class="case-navigation-all" to="/projects"><ArrowLeft :size="16" aria-hidden="true" /> All projects</RouterLink>
+        <span class="case-navigation-count" :aria-label="`Project ${projectIndex + 1} of ${projects.length}`">{{ String(projectIndex + 1).padStart(2, '0') }} / {{ String(projects.length).padStart(2, '0') }}</span>
+        <div class="case-navigation-steps">
+          <RouterLink :to="`/projects/${previousProject.slug}`" :aria-label="`Previous project: ${previousProject.name}`" :title="previousProject.name"><ArrowLeft :size="16" aria-hidden="true" /> Previous</RouterLink>
+          <RouterLink :to="`/projects/${nextProject.slug}`" :aria-label="`Next project: ${nextProject.name}`" :title="nextProject.name">Next <ArrowRight :size="16" aria-hidden="true" /></RouterLink>
+        </div>
+      </div>
+    </nav>
     <header class="case-hero case-hero--compact page-shell" :class="{ 'case-hero--natural': compact }">
-      <RouterLink class="text-link back-link" to="/projects"><ArrowLeft :size="16" /> All projects</RouterLink>
       <h1 class="case-title"><span>{{ titleParts[0] }}</span> <span v-if="titleParts[1]">{{ titleParts[1] }}</span></h1>
       <p class="lead case-lead">{{ hero.lead }}</p>
       <img class="case-hero-image" :src="project.image" :alt="project.imageAlt" :style="{ viewTransitionName: projectViewTransitionSlug === project.slug ? `project-${project.slug}` : 'none' }" :width="compact?.imageWidth ?? 1600" :height="compact?.imageHeight ?? 900" fetchpriority="high" />
@@ -186,12 +198,12 @@ useSeo(computed(() => ({
 
     <div class="case-close page-shell">
       <RouterLink class="button button-accent" to="/#contact"><Mail :size="17" aria-hidden="true" /> Contact me</RouterLink>
-      <a class="button" href="/files/Shahd_Sameh_CV.pdf" download><Download :size="17" aria-hidden="true" /> Download CV</a>
+      <DownloadCvLink />
     </div>
 
-    <nav class="next-project page-shell" aria-label="Next project">
-      <span>Next case study</span>
-      <RouterLink :to="`/projects/${nextProject.slug}`">{{ nextProject.name }} <ArrowUpRight :size="28" /></RouterLink>
+    <nav class="case-end-navigation page-shell" aria-label="More case studies">
+      <RouterLink :to="`/projects/${previousProject.slug}`"><span>Previous case study</span><strong><ArrowLeft :size="27" aria-hidden="true" /> {{ previousProject.name }}</strong></RouterLink>
+      <RouterLink :to="`/projects/${nextProject.slug}`"><span>Next case study</span><strong>{{ nextProject.name }} <ArrowRight :size="27" aria-hidden="true" /></strong></RouterLink>
     </nav>
 
     <dialog ref="viewer" class="image-viewer" :aria-label="viewerImage?.alt" @click="closeOnBackdrop" @close="viewerImage = undefined">
