@@ -8,6 +8,7 @@ A production-oriented Vue 3 portfolio for Shahd Sameh Ahmed, designed as an edit
 - Tailwind CSS design pipeline with a custom token system
 - Motion One for controlled hero animation
 - Lucide icons
+- Optional, lazy Three.js WebGPU/TSL project artwork with WebGL2 fallback and a real static capture when graphics are unavailable or reduced motion is requested
 - Configurable contact-form endpoint
 - Vercel SPA routing
 
@@ -66,6 +67,14 @@ The project is prepared for Vercel:
 `vercel.json` rewrites application routes to `index.html`, while static files remain directly cacheable. `robots.txt`, `sitemap.xml`, canonical metadata, Open Graph metadata, Twitter metadata, and route-specific JSON-LD are included.
 
 ## Verification
+
+Run the project-navigation regression check:
+
+```bash
+npm run test:project-navigation
+```
+
+It exercises the actual opening-state module for Skip while a slow hero image is pending, reduced-motion bypass, navigation cancellation, late-image isolation, and readiness-based dismissal. It complements the browser checks below.
 
 Before release:
 

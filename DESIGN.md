@@ -125,7 +125,7 @@ components:
 
 The site reads like a magazine spread at the proof stage. It sits on warm newsprint (or press black at night), uses big Cormorant Garamond display type, thin proof rules between every block, oversized section numbers in a barely-there tone, and burgundy marks where an editor would pencil corrections. Depth is printed: hard offset shadows like stacked card stock, a fine paper grain over the whole page, and a portrait clipped slightly askew on a tilted backing sheet. The tone is elegant and calm, never playful. The tactility is in the craft, not in props.
 
-The proof is a **frame**, and the work inside it stays quiet. The tactile marks belong to the editorial chrome: the header, section numbers, the homepage project cards, the hero, the contact panel and the footer. Case-study pages step down into a calmer monograph register, with long ruled sections, generous measure and muted body text. Project screenshots are never marked up. No burgundy, tilt or decoration is ever laid on top of a product capture.
+The proof is a **frame**, and the work inside it stays quiet. The tactile marks belong to the editorial chrome: the header, section numbers, the homepage project cards, the hero, the contact panel and the footer. Case-study pages step down into a calmer monograph register, with long ruled sections, generous measure and muted body text. Project screenshots are never marked up. The approved project-showcase extension below permits folded presentation, a static Home-only PwC phone preview and optional screenshot-layer inspection in their named surfaces; the rest of the system keeps its plain capture treatment.
 
 The pages are dense but the eye has plenty of room. Each section opens with a heading paired with its number and closes with a rule. The grids are deliberately uneven: 1.16 / .84 in the hero, 1 / 3 in case sections, and a staggered third project card. That unevenness keeps the page editorial rather than templated, while the content still scans in seconds.
 
@@ -133,7 +133,7 @@ The pages are dense but the eye has plenty of room. Each section opens with a he
 - Warm two-theme paper world: Warm Newsprint by day, Press Black by night, both with grain.
 - Serif display (Cormorant Garamond 600, tight -0.035em tracking) over a small, precise sans (Manrope).
 - One accent, Ink Burgundy, used as an editor's mark: emphasis in headlines, underlines, focus rings, one primary button per view.
-- Square corners everywhere. Hairline 1px rules carry the structure.
+- Square portfolio corners; the physical PwC phone and its captured UI retain their rounded forms. Hairline 1px rules carry the structure.
 - Hard print-offset shadows in the frame, never on top of the work.
 - Motion is small and quick, and it always has a static path.
 
@@ -203,7 +203,7 @@ A warm, low-chroma paper palette with a single deep burgundy accent. Each theme 
 
 ## Elevation & Depth
 
-Depth is printed, not lit. There are three devices:
+Depth is printed by default. The approved selected-work artwork adds directional light and folded paper; elsewhere there are three devices:
 1. **Hard offset shadows** in the Proof Rule colour, read as stacked card stock.
 2. **Soft ambient shadows** (`--shadow`) only where a physical object floats: the portrait, its backing sheet, and the open mobile menu.
 3. A **paper-grain overlay**: a fixed fractal-noise SVG over the whole page at low opacity, ignoring pointer events.
@@ -215,16 +215,18 @@ Depth is printed, not lit. There are three devices:
 - **Floating sheet** (`box-shadow: 0 18px 40px var(--shadow)` / `0 22px 50px var(--shadow)`): the portrait photo and its backing sheet, and the mobile menu.
 
 ### Named Rules
-**The Frame, Not the Work Rule.** Tactile depth, tilt and burgundy belong to the editorial frame. On case-study pages the frame recedes. A product capture may sit in a plain frame, but nothing decorative is ever laid over it.
+**The Frame, Not the Work Rule.** Tactile depth, tilt and burgundy belong to the editorial frame. On case-study pages the frame recedes. A product capture may sit in a plain frame, but nothing decorative is ever laid over it. The approved PwC Home preview uses a rounded physical phone shell with a soft shadow and a fixed visual navigation strip; this exception does not extend to portfolio cards or galleries.
 
 **Approved exception:** the "Open full capture" chip on gallery frames stays. It is a functional affordance in the inverted ink colour, not decoration, and the owner chose to keep it. The burgundy "Screenshot pending" badge for placeholder frames is inactive, because no project uses a placeholder. Don't revive it.
+
+**Approved project-showcase exception (2026-10-18):** selected work on `/` and `/projects` may print real capture crops onto one broad, continuous 3D paper sheet with unequal folds, fine grain, a paper border and directional lighting. Case-study pages alone may offer an explicit, reversible inspection of lifted screenshot details with soft ambient shadows. These exceptions do not extend to ordinary cards, galleries or screenshot annotations. Visual authority: `.impeccable/mocks/approved-folded-atlas.png`; approval and scope: the adjacent JSON file.
 
 ### Browser Surfaces
 Text selection uses the accent fill with Burgundy Ground text. Scrollbars use Proof Rule on the page colour, and native controls take `accent-color: var(--accent)`.
 
 ## Shapes
 
-Every corner is square (`border-radius: 0`, explicitly reset on inputs). Structure comes from 1px Proof Rule hairlines: border-top and border-bottom on sections, rows and list items, and 1px boxes on tags, links and icon buttons. The only round shape is the 7px availability dot. Rotation is the one organic gesture and stays small: the portrait at +1.8°, its backing sheet at −4°, the portrait note at +4°, and the hero underline at −2°.
+Portfolio corners are square (`border-radius: 0`, explicitly reset on inputs). Structure comes from 1px Proof Rule hairlines: border-top and border-bottom on sections, rows and list items, and 1px boxes on tags, links and icon buttons. The 7px availability dot is round. The approved PwC Home preview alone uses a physical phone shell (34px radius) and inset screen (23px radius), including the rounded language treatment from the captured UI. These forms describe the phone and its screen; they do not introduce rounded portfolio cards or controls. Rotation is the one organic gesture and stays small: the portrait at +1.8°, its backing sheet at −4°, the portrait note at +4°, and the hero underline at −2°.
 
 ## Components
 
@@ -267,20 +269,30 @@ The portrait hangs at +1.8° in front of a Newsprint Shade backing sheet at −4
 ### Motion
 The house easing is `--ease: cubic-bezier(.22, 1, .36, 1)`. Every CSS transition uses it, and the Motion One hero entrance (0.5s and 0.6s) uses the same curve. Other transitions are short (0.18s to 0.55s): scroll reveals rise 30px and fade in, page transitions move 12px, and the menu moves 10px. The role ticker loops for 22s and stops under reduced motion. Every effect has a static path under `prefers-reduced-motion`.
 
+### Approved extension: Project Showcase
+
+The shared selected-work collection keeps the existing palette, two fonts, square forms, burgundy emphasis, quiet captions and ruled project index. Its large Cormorant heading and artwork lead into real-text project identity, contribution, summary and case-study link; existing project data remains the content authority.
+
+- **Mwasalaty:** a folded transport-map sheet supports unfold/refold by pointer or keyboard. Interface details lift only in the separate case-study inspection, never in the selected-work artwork.
+- **PwC:** the real Home export alone sits inside a static rounded phone, approved in `.impeccable/mocks/approved-pwc-home-mobile.html`. A fixed visual navigation strip uses the cropped PwC wordmark, EN/Arabic treatment and Lucide search/menu icons; it is an `aria-hidden` presentation, not working product navigation. The labelled, focusable Home region scrolls natively by pointer, touch or keyboard, with a quiet Scroll to explore hint. Capture-specific white, ink and gray remain faithful in both portfolio themes. There are no page selectors, publication turns, original/redesign montage or phone motion; the existing case-study comparison remains separate.
+- **InnerAura:** a smaller, height-bounded illustrative neutral calendar leaves room around the heading and rotates by rows into the real landing capture. The entire paper is a native button that toggles between calendar and website, alongside the explicit Rotate calendar / Return to calendar action. It does not represent booking availability.
+- **Case navigation:** project-specific opening overlays show a connecting route and pin, access layers resolving into an opening, or rotating calendar days. Navigation loads behind the scene; readiness follows the actual hero image. Skip works while an image is pending, cancellation clears obsolete scenes, and late images cannot dismiss a later destination. Direct entry remains immediate.
+- **Accessible enhancement:** reduced motion uses static artwork and immediate navigation. Sounds follow deliberate project gestures, including their completion cues, and respect the independently persisted mute preference. Optional GPU rendering loads lazily, renders on demand and falls back to a real static capture when unavailable.
+
 ## Do's and Don'ts
 
 ### Do:
-- **Do** use only the token variables in both themes. Check every new colour against Warm Newsprint and against Press Black.
+- **Do** use the portfolio token variables in both themes. Preserve the capture-specific white, ink and gray inside the approved PwC Home phone preview. Check every new portfolio colour against Warm Newsprint and against Press Black.
 - **Do** keep text on Faded Ink and Ink Burgundy at 4.5:1 or better.
-- **Do** build structure from 1px Proof Rule hairlines and asymmetric grids, and keep corners square (`0`).
+- **Do** build structure from 1px Proof Rule hairlines and asymmetric grids, and keep portfolio corners square (`0`); preserve the physical PwC phone and captured UI exception.
 - **Do** give every hover state a matching `:focus-visible` state, and remove lifts and slides under `prefers-reduced-motion`.
 - **Do** keep case-study pages calm: ruled sections, muted body text, plain frames around real captures.
 - **Do** use `var(--ease)` for any new motion.
 - **Do** colour form feedback with `--danger` and `--success`, never with literal hex.
 
 ### Don't:
-- **Don't** put burgundy, badges, tilt, stickers or offset decoration on top of a project screenshot.
-- **Don't** round corners, add soft drop shadows to cards, or use glassmorphism beyond the header's functional blur.
+- **Don't** put burgundy, badges, stickers or offset decoration on top of a project screenshot, or apply tilt outside the approved folded artwork and case-only layer inspection.
+- **Don't** round portfolio corners beyond the approved physical PwC phone and its captured UI, add soft drop shadows to cards, or use glassmorphism beyond the header's functional blur.
 - **Don't** add a third typeface, set controls in Cormorant, or set headlines in Manrope.
 - **Don't** use Newsprint Shade (or its dark counterparts) for text anyone needs to read.
 - **Don't** use bright gradients, cartoonish scrapbook props, or stock imagery.

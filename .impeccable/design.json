@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-13T10:49:35.141Z",
+  "generatedAt": "2026-10-19T19:44:15.123Z",
   "title": "Design System: Shahd Sameh — Portfolio",
   "extensions": {
     "colorMeta": {
@@ -530,7 +530,27 @@
         "name": "mobile",
         "value": "600px"
       }
-    ]
+    ],
+    "projectShowcase": {
+      "approvedOn": "2026-10-18",
+      "visualAuthority": ".impeccable/mocks/approved-folded-atlas.png",
+      "approval": ".impeccable/mocks/approved-folded-atlas.json",
+      "surfaceContract": ".impeccable/surfaces/projects.md",
+      "pwcVisualAuthority": ".impeccable/mocks/approved-pwc-home-mobile.html",
+      "scope": ["Selected work on / and /projects", "Optional screenshot-layer inspection on case-study routes", "Project-specific navigation openings"],
+      "identity": "Extend The Editorial Proof using the existing palette, two fonts, square portfolio forms, burgundy emphasis, quiet captions and ruled index. The physical PwC phone and its captured UI retain their rounded forms and capture-specific colors. Existing project data and real captures supply all content.",
+      "depthException": "Selected work permits a continuous lit paper sheet with unequal folds, fine grain and a paper border. The approved PwC Home preview alone uses a rounded physical phone shell and screen, a soft device shadow and a fixed visual navigation strip. Lifted screenshot details and their soft ambient shadows are limited to explicit, reversible case-study inspection; ordinary cards and galleries retain their incumbent treatment.",
+      "artwork": {
+        "mwasalaty": "Interactive folded transport map; no lifted interface layers in selected work.",
+        "pwc-middle-east": "Only the real Home export sits inside a static rounded physical phone. The fixed visual navigation uses the actual cropped PwC wordmark, EN/Arabic treatment and Lucide search/menu icons; it is aria-hidden presentation, not working product navigation. The labelled, focusable Home region supports native pointer, touch and keyboard scrolling with a quiet Scroll to explore hint. Capture-specific white, ink and gray remain faithful in both portfolio themes. No page selectors, publication turns, original/redesign montage or phone motion; the existing case-study comparison remains separate.",
+        "inneraura": "A smaller, height-bounded illustrative neutral calendar leaves room around the heading and rotates by rows into the real landing capture. The whole paper is a native button toggling calendar and website, alongside the explicit Rotate calendar / Return to calendar action; no booking-availability claim."
+      },
+      "navigation": "Route-and-pin, resolving access layers, or rotating calendar-day openings load above navigation. Actual hero readiness dismisses the scene; Skip works while pending. Cancellation and late-image isolation protect later navigation. Direct entry is immediate.",
+      "motion": "Project artwork may exceed the default short transition range. Reduced motion provides static art and immediate navigation; screenshot inspection removes spatial movement.",
+      "sound": "Quiet gesture-initiated project sounds and their completion cues; independent persisted mute preference; no page-load audio.",
+      "graphics": "Lazy Three.js WebGPU/TSL, WebGL2 fallback, real static capture if unavailable, demand rendering, bounded pixel ratio and explicit resource disposal.",
+      "verification": "npm run test:project-navigation covers pending-image Skip, reduced motion, cancellation, late-image isolation and readiness-based dismissal; browser checks cover presentation and input."
+    }
   },
   "components": [
     {
@@ -600,12 +620,12 @@
   ],
   "narrative": {
     "northStar": "The Editorial Proof",
-    "overview": "The site reads like a magazine spread at the proof stage. It sits on warm newsprint (or press black at night), uses big Cormorant Garamond display type, thin proof rules between every block, oversized section numbers in a barely-there tone, and burgundy marks where an editor would pencil corrections. Depth is printed: hard offset shadows like stacked card stock, a fine paper grain over the whole page, and a portrait clipped slightly askew on a tilted backing sheet. The tone is elegant and calm, never playful. The tactility is in the craft, not in props.\n\nThe proof is a **frame**, and the work inside it stays quiet. The tactile marks belong to the editorial chrome: the header, section numbers, the homepage project cards, the hero, the contact panel and the footer. Case-study pages step down into a calmer monograph register, with long ruled sections, generous measure and muted body text. Project screenshots are never marked up. No burgundy, tilt or decoration is ever laid on top of a product capture.\n\nThe pages are dense but the eye has plenty of room. Each section opens with a heading paired with its number and closes with a rule. The grids are deliberately uneven: 1.16 / .84 in the hero, 1 / 3 in case sections, and a staggered third project card. That unevenness keeps the page editorial rather than templated, while the content still scans in seconds.",
+    "overview": "The site reads like a magazine spread at the proof stage. It sits on warm newsprint (or press black at night), uses big Cormorant Garamond display type, thin proof rules between every block, oversized section numbers in a barely-there tone, and burgundy marks where an editor would pencil corrections. Depth is printed: hard offset shadows like stacked card stock, a fine paper grain over the whole page, and a portrait clipped slightly askew on a tilted backing sheet. The tone is elegant and calm, never playful. The tactility is in the craft, not in props.\n\nThe proof is a **frame**, and the work inside it stays quiet. The tactile marks belong to the editorial chrome: the header, section numbers, the homepage project cards, the hero, the contact panel and the footer. Case-study pages step down into a calmer monograph register, with long ruled sections, generous measure and muted body text. Project screenshots are never marked up. The approved project-showcase extension permits folded presentation, a static Home-only PwC phone preview and optional screenshot-layer inspection in their named surfaces; the rest of the system keeps its plain capture treatment.\n\nThe pages are dense but the eye has plenty of room. Each section opens with a heading paired with its number and closes with a rule. The grids are deliberately uneven: 1.16 / .84 in the hero, 1 / 3 in case sections, and a staggered third project card. That unevenness keeps the page editorial rather than templated, while the content still scans in seconds.",
     "keyCharacteristics": [
       "Warm two-theme paper world: Warm Newsprint by day, Press Black by night, both with grain.",
       "Serif display (Cormorant Garamond 600, tight -0.035em tracking) over a small, precise sans (Manrope).",
       "One accent, Ink Burgundy, used as an editor's mark: emphasis in headlines, underlines, focus rings, one primary button per view.",
-      "Square corners everywhere. Hairline 1px rules carry the structure.",
+      "Square portfolio corners; the physical PwC phone and its captured UI retain their rounded forms. Hairline 1px rules carry the structure.",
       "Hard print-offset shadows in the frame, never on top of the work.",
       "Motion is small and quick, and it always has a static path."
     ],
@@ -637,22 +657,22 @@
       },
       {
         "name": "The Frame, Not the Work Rule",
-        "body": "Tactile depth, tilt and burgundy belong to the editorial frame. On case-study pages the frame recedes. A product capture may sit in a plain frame, but nothing decorative is ever laid over it.",
+        "body": "Tactile depth, tilt and burgundy belong to the editorial frame. On case-study pages the frame recedes. A product capture may sit in a plain frame, but nothing decorative is ever laid over it. The approved PwC Home preview uses a rounded physical phone shell with a soft shadow and a fixed visual navigation strip; this exception does not extend to portfolio cards or galleries.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** use only the token variables in both themes. Check every new colour against Warm Newsprint and against Press Black.",
+      "**Do** use the portfolio token variables in both themes. Preserve the capture-specific white, ink and gray inside the approved PwC Home phone preview. Check every new portfolio colour against Warm Newsprint and against Press Black.",
       "**Do** keep text on Faded Ink and Ink Burgundy at 4.5:1 or better.",
-      "**Do** build structure from 1px Proof Rule hairlines and asymmetric grids, and keep corners square (`0`).",
+      "**Do** build structure from 1px Proof Rule hairlines and asymmetric grids, and keep portfolio corners square (`0`); preserve the physical PwC phone and captured UI exception.",
       "**Do** give every hover state a matching `:focus-visible` state, and remove lifts and slides under `prefers-reduced-motion`.",
       "**Do** keep case-study pages calm: ruled sections, muted body text, plain frames around real captures.",
       "**Do** use `var(--ease)` for any new motion.",
       "**Do** colour form feedback with `--danger` and `--success`, never with literal hex."
     ],
     "donts": [
-      "**Don't** put burgundy, badges, tilt, stickers or offset decoration on top of a project screenshot.",
-      "**Don't** round corners, add soft drop shadows to cards, or use glassmorphism beyond the header's functional blur.",
+      "**Don't** put burgundy, badges, stickers or offset decoration on top of a project screenshot, or apply tilt outside the approved folded artwork and case-only layer inspection.",
+      "**Don't** round portfolio corners beyond the approved physical PwC phone and its captured UI, add soft drop shadows to cards, or use glassmorphism beyond the header's functional blur.",
       "**Don't** add a third typeface, set controls in Cormorant, or set headlines in Manrope.",
       "**Don't** use Newsprint Shade (or its dark counterparts) for text anyone needs to read.",
       "**Don't** use bright gradients, cartoonish scrapbook props, or stock imagery.",
