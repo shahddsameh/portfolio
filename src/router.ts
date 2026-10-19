@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { prefersReducedMotion } from '@/composables/useMotion'
+import { beginProjectOpening, cancelProjectOpening } from '@/composables/useProjectOpening'
+import { getProject } from '@/data/projects'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -36,9 +38,17 @@ const router = createRouter({
   },
 })
 
+router.beforeEach((to, from) => {
+  const project = to.params.slug && getProject(String(to.params.slug))
+  if (project && to.path !== from.path && from.matched.length && !prefersReducedMotion()) beginProjectOpening(project.slug)
+  else cancelProjectOpening()
+})
+router.afterEach((_to, _from, failure) => { if (failure) cancelProjectOpening() })
+
 // A deploy replaces the hashed view chunks, so a tab opened before it fails to load the next view.
 // Load the page fresh instead, once per path so a real outage cannot cause a reload loop.
 router.onError((error, to) => {
+  cancelProjectOpening()
   if (!/dynamically imported module|Importing a module script failed|error loading dynamically/i.test(String(error?.message))) return
   const key = `chunk-reload:${to.fullPath}`
   try {

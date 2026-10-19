@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import './styles.css'
+import './project-artwork.css'
 
 // A missing image leaves its frame's surface showing instead of the browser's broken-image icon.
 document.addEventListener('error', (event) => {

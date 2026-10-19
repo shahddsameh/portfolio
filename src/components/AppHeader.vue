@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { Menu, Moon, Sun, X } from 'lucide-vue-next'
+import { Menu, Moon, Sun, Volume2, VolumeX, X } from 'lucide-vue-next'
 import DownloadCvLink from '@/components/DownloadCvLink.vue'
 import { useTheme } from '@/composables/useTheme'
 import { prefersReducedMotion } from '@/composables/useMotion'
+import { projectSoundEnabled, toggleProjectSound } from '@/composables/useProjectSound'
 
 const open = ref(false)
 const route = useRoute()
@@ -99,6 +100,9 @@ watch(() => route.fullPath, () => {
       <button type="button" :class="{ 'nav-current': isHome && activeHomeSection === 'contact' }" :aria-current="isHome && activeHomeSection === 'contact' ? 'location' : undefined" @click="goToSection('contact')">Contact</button>
     </nav>
     <div class="header-actions">
+      <button class="icon-button" type="button" :aria-label="projectSoundEnabled ? 'Mute project sounds' : 'Enable project sounds'" :aria-pressed="projectSoundEnabled" @click="toggleProjectSound">
+        <Volume2 v-if="projectSoundEnabled" :size="18" aria-hidden="true" /><VolumeX v-else :size="18" aria-hidden="true" />
+      </button>
       <button class="icon-button" type="button" :aria-label="`Switch to ${currentTheme === 'dark' ? 'light' : 'dark'} theme`" @click="toggle">
         <Sun v-if="currentTheme === 'dark'" :size="19" aria-hidden="true" />
         <Moon v-else :size="19" aria-hidden="true" />

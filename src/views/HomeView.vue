@@ -5,12 +5,11 @@ import { Motion } from '@motionone/vue'
 import ContactForm from '@/components/ContactForm.vue'
 import DownloadCvLink from '@/components/DownloadCvLink.vue'
 import PortraitCard from '@/components/PortraitCard.vue'
-import ProjectCard from '@/components/ProjectCard.vue'
+import ProjectShowcase from '@/components/ProjectShowcase.vue'
 import RevealOnScroll from '@/components/RevealOnScroll.vue'
 import SectionHeading from '@/components/SectionHeading.vue'
 import { experience } from '@/data/experience'
 import { profile } from '@/data/profile'
-import { projects } from '@/data/projects'
 import { useSeo } from '@/composables/useSeo'
 import { firstVisit, prefersReducedMotion } from '@/composables/useMotion'
 
@@ -107,12 +106,8 @@ onBeforeUnmount(() => { if (copyStatusTimer) clearTimeout(copyStatusTimer) })
       </section>
     </RevealOnScroll>
 
-    <RevealOnScroll>
-      <section class="section projects-section">
-        <div class="page-shell"><SectionHeading number="02" eyebrow="Selected work" title="Three projects, three kinds of problem." /></div>
-        <div class="project-editorial page-shell">
-          <ProjectCard v-for="(project, index) in projects" :key="project.slug" :project="project" :featured="index === 0" />
-        </div>
+      <section class="section editorial-work-section">
+        <ProjectShowcase />
         <a class="behance-entry page-shell" :href="behance.href" target="_blank" rel="noreferrer">
           <span class="behance-name">{{ behance.label }}</span>
           <span class="behance-note">{{ profile.behanceNote }}</span>
@@ -120,7 +115,6 @@ onBeforeUnmount(() => { if (copyStatusTimer) clearTimeout(copyStatusTimer) })
         </a>
         <div class="section-action page-shell"><RouterLink class="text-link" to="/projects">See all project details <ArrowUpRight :size="17" /></RouterLink></div>
       </section>
-    </RevealOnScroll>
 
     <RevealOnScroll>
       <section class="section page-shell">

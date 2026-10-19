@@ -254,6 +254,8 @@ export const allProjects: Project[] = [
   },
 ]
 
+const presentationOrder: Partial<Record<Project['slug'], number>> = { mwasalaty: 0, 'pwc-middle-east': 1, inneraura: 2 }
 export const projects = allProjects.filter((project) => !project.hidden)
+  .sort((a, b) => (presentationOrder[a.slug] ?? 3) - (presentationOrder[b.slug] ?? 3))
 
 export const getProject = (slug: string) => projects.find((project) => project.slug === slug)

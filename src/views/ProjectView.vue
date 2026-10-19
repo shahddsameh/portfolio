@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, LockKeyhole, Mail, Maximize2, Plus, X } from 'lucide-vue-next'
 import DownloadCvLink from '@/components/DownloadCvLink.vue'
-import { projectViewTransitionSlug } from '@/composables/useProjectViewTransition'
+import ProjectLayers from '@/components/ProjectLayers.vue'
+import { markProjectReady } from '@/composables/useProjectOpening'
 import { getProject, projects } from '@/data/projects'
 import { useSeo } from '@/composables/useSeo'
 import type { CaseImage, Project } from '@/types'
 
 const route = useRoute()
+const heroImage = ref<HTMLImageElement>()
 const project = computed(() => getProject(String(route.params.slug))!)
 const compact = computed(() => project.value.compact)
 // Every case study shares one hero; projects without compact data fall back to their core fields.
@@ -55,6 +57,7 @@ const openViewer = (image: CaseImage) => {
   viewer.value?.showModal()
 }
 const closeOnBackdrop = (event: MouseEvent) => event.target === viewer.value && viewer.value?.close()
+onMounted(() => { if (heroImage.value?.complete) markProjectReady(project.value.slug) })
 
 useSeo(computed(() => ({
   title: `${project.value.name} Case Study — Shahd Sameh`,
@@ -95,9 +98,9 @@ useSeo(computed(() => ({
       </div>
     </nav>
     <header class="case-hero case-hero--compact page-shell" :class="{ 'case-hero--natural': compact }">
-      <h1 class="case-title"><span>{{ titleParts[0] }}</span> <span v-if="titleParts[1]">{{ titleParts[1] }}</span></h1>
+      <h1 class="case-title" tabindex="-1"><span>{{ titleParts[0] }}</span> <span v-if="titleParts[1]">{{ titleParts[1] }}</span></h1>
       <p class="lead case-lead">{{ hero.lead }}</p>
-      <img class="case-hero-image" :src="project.image" :alt="project.imageAlt" :style="{ viewTransitionName: projectViewTransitionSlug === project.slug ? `project-${project.slug}` : 'none' }" :width="compact?.imageWidth ?? 1600" :height="compact?.imageHeight ?? 900" fetchpriority="high" />
+      <img ref="heroImage" class="case-hero-image" :src="project.image" :alt="project.imageAlt" :width="compact?.imageWidth ?? 1600" :height="compact?.imageHeight ?? 900" fetchpriority="high" @load="markProjectReady(project.slug)" @error="markProjectReady(project.slug)" />
       <dl class="case-meta case-meta--row" :style="{ '--meta-count': hero.meta.length }">
         <div v-for="item in hero.meta" :key="item.label"><dt>{{ item.label }}</dt><dd>{{ item.value }}</dd></div>
       </dl>
@@ -106,6 +109,8 @@ useSeo(computed(() => ({
       </div>
       <p v-if="hero.note" class="case-note">{{ hero.note }}</p>
     </header>
+
+    <ProjectLayers :project="project" />
 
     <section class="case-section page-shell role-section">
       <div><p class="eyebrow">Contribution boundary</p><h2>What I personally worked on</h2><p class="lead">{{ project.contribution }}</p></div>
