@@ -338,10 +338,6 @@ main { min-height: calc(100svh - 76px); }
 .phone-frame:hover .phone-open, .phone-frame:focus-visible .phone-open { border-bottom-color: currentColor; }
 .wide-scroll { overflow-x: auto; border: 1px solid var(--border); background: var(--surface); }
 .wide-scroll img { width: 100%; height: auto; }
-.image-viewer { width: min(440px, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); padding: 0; border: 1px solid var(--border); background: var(--bg); color: var(--text); overflow: auto; overscroll-behavior: contain; }
-.image-viewer::backdrop { background: rgba(22, 20, 19, .82); }
-.image-viewer-close { position: sticky; top: .75rem; z-index: 1; float: right; margin: .75rem .75rem -3.5rem 0; background: var(--bg); }
-.image-viewer img { width: 100%; height: auto; }
 .how-list { margin-top: 1.5rem; border-top: 1px solid var(--border); }
 .how-row { border-bottom: 1px solid var(--border); }
 .how-row summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 0; cursor: pointer; list-style: none; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 600; line-height: 1.15; }

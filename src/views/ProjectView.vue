@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, LockKeyhole, Mail, Maximize2, Plus, X } from 'lucide-vue-next'
+import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, LockKeyhole, Mail, Maximize2, Plus } from 'lucide-vue-next'
 import DownloadCvLink from '@/components/DownloadCvLink.vue'
 import ProjectLayers from '@/components/ProjectLayers.vue'
+import CaptureViewer from '@/components/CaptureViewer.vue'
+import type { InspectionCapture } from '@/artwork/projectInspection'
 import { markProjectReady } from '@/composables/useProjectOpening'
 import { getProject, projects } from '@/data/projects'
 import { useSeo } from '@/composables/useSeo'
@@ -50,13 +52,15 @@ const projectIndex = computed(() => projects.findIndex((item) => item.slug === p
 const previousProject = computed(() => projects[(projectIndex.value - 1 + projects.length) % projects.length])
 const nextProject = computed(() => projects[(projectIndex.value + 1) % projects.length])
 
-const viewer = ref<HTMLDialogElement>()
-const viewerImage = ref<CaseImage>()
+const viewer = ref<InstanceType<typeof CaptureViewer>>()
+const phoneCaptures = computed<InspectionCapture[]>(() => project.value.sections.flatMap(section => section.imageLayout === 'phones' ? section.images ?? [] : []).map((image, index) => ({
+  id: image.src, title: `Figure ${index + 1}`, description: image.caption ?? image.alt,
+  src: image.src, alt: image.alt, width: image.width, height: image.height,
+})))
 const openViewer = (image: CaseImage) => {
-  viewerImage.value = image
-  viewer.value?.showModal()
+  const capture = phoneCaptures.value.find(item => item.src === image.src)
+  if (capture) void viewer.value?.open(capture)
 }
-const closeOnBackdrop = (event: MouseEvent) => event.target === viewer.value && viewer.value?.close()
 onMounted(() => { if (heroImage.value?.complete) markProjectReady(project.value.slug) })
 
 useSeo(computed(() => ({
@@ -211,9 +215,6 @@ useSeo(computed(() => ({
       <RouterLink :to="`/projects/${nextProject.slug}`"><span>Next case study</span><strong>{{ nextProject.name }} <ArrowRight :size="27" aria-hidden="true" /></strong></RouterLink>
     </nav>
 
-    <dialog ref="viewer" class="image-viewer" :aria-label="viewerImage?.alt" @click="closeOnBackdrop" @close="viewerImage = undefined">
-      <button type="button" class="icon-button image-viewer-close" aria-label="Close" @click="viewer?.close()"><X :size="19" aria-hidden="true" /></button>
-      <img v-if="viewerImage" :src="viewerImage.src" :alt="viewerImage.alt" :width="viewerImage.width" :height="viewerImage.height" />
-    </dialog>
+    <CaptureViewer ref="viewer" :captures="phoneCaptures" />
   </article>
 </template>

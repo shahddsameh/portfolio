@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, ref, useId } from 'vue'
-import { ExternalLink, RotateCw, X, ZoomIn, ZoomOut } from 'lucide-vue-next'
+import { ArrowLeft, ArrowRight, ExternalLink, RotateCw, X, ZoomIn, ZoomOut } from 'lucide-vue-next'
 import type { InspectionCapture } from '@/artwork/projectInspection'
 
-defineProps<{ captures: InspectionCapture[] }>()
+const props = defineProps<{ captures: InspectionCapture[] }>()
 const id = `capture-${useId()}`
 const dialog = ref<HTMLDialogElement>()
 const scrollRegion = ref<HTMLElement>()
@@ -16,6 +16,30 @@ let opener: HTMLElement | null = null
 let previousOverflow: string | undefined
 const source = computed(() => selected.value ? `${selected.value.src}${attempt.value ? `?retry=${attempt.value}` : ''}` : '')
 const captureWidth = computed(() => selected.value?.crop?.[2] ?? selected.value?.width ?? 0)
+const selectedIndex = computed(() => props.captures.findIndex(capture => capture.id === selected.value?.id))
+let touchStart: { x: number; y: number } | undefined
+
+function move(direction: number) {
+  const capture = props.captures[selectedIndex.value + direction]
+  if (capture) void select(capture)
+}
+function navigateKey(event: KeyboardEvent) {
+  if (zoomed.value || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    event.preventDefault()
+    move(event.key === 'ArrowLeft' ? -1 : 1)
+  }
+}
+function startSwipe(event: TouchEvent) {
+  touchStart = !zoomed.value && event.touches.length === 1 ? { x: event.touches[0].clientX, y: event.touches[0].clientY } : undefined
+}
+function endSwipe(event: TouchEvent) {
+  if (!touchStart || zoomed.value || !event.changedTouches.length) { touchStart = undefined; return }
+  const dx = event.changedTouches[0].clientX - touchStart.x
+  const dy = event.changedTouches[0].clientY - touchStart.y
+  touchStart = undefined
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) move(dx < 0 ? 1 : -1)
+}
 
 async function select(capture: InspectionCapture) {
   if (selected.value?.id === capture.id && !failed.value) return
@@ -57,7 +81,7 @@ defineExpose({ open })
 </script>
 
 <template>
-  <dialog ref="dialog" class="capture-viewer" :aria-labelledby="`${id}-title`" :aria-describedby="`${id}-description`" @close="closed">
+  <dialog ref="dialog" class="capture-viewer" :aria-labelledby="`${id}-title`" :aria-describedby="`${id}-description`" @close="closed" @keydown="navigateKey">
     <template v-if="selected">
       <header class="capture-viewer-header">
         <div class="capture-viewer-title">
@@ -66,8 +90,10 @@ defineExpose({ open })
         </div>
         <p :id="`${id}-description`">{{ selected.description }}</p>
         <div class="capture-viewer-tools">
-          <nav aria-label="Choose a capture">
-            <button v-for="capture in captures" :key="capture.id" type="button" :aria-pressed="selected.id === capture.id" @click="select(capture)">{{ capture.id === 'full' ? 'Full capture' : capture.title }}</button>
+          <nav v-if="captures.length > 1" class="capture-viewer-pagination" aria-label="Browse figures">
+            <button type="button" aria-label="Previous figure" :disabled="selectedIndex <= 0" @click="move(-1)"><ArrowLeft :size="16" aria-hidden="true" /> Previous</button>
+            <span aria-live="polite" aria-atomic="true">{{ selectedIndex + 1 }} / {{ captures.length }}</span>
+            <button type="button" aria-label="Next figure" :disabled="selectedIndex >= captures.length - 1" @click="move(1)">Next <ArrowRight :size="16" aria-hidden="true" /></button>
           </nav>
           <div class="capture-viewer-actions">
             <button type="button" :aria-pressed="zoomed" :disabled="failed || loading" @click="toggleZoom"><component :is="zoomed ? ZoomOut : ZoomIn" :size="17" aria-hidden="true" />{{ zoomed ? 'Fit to width' : 'Zoom in' }}</button>
@@ -75,7 +101,7 @@ defineExpose({ open })
           </div>
         </div>
       </header>
-      <div ref="scrollRegion" class="capture-viewer-scroll" :class="{ 'is-zoomed': zoomed }" role="region" aria-label="Image preview; scroll to explore" tabindex="0" :aria-busy="loading">
+      <div ref="scrollRegion" class="capture-viewer-scroll" :class="{ 'is-zoomed': zoomed }" role="region" aria-label="Image preview; scroll to explore" tabindex="0" :aria-busy="loading" @touchstart.passive="startSwipe" @touchend.passive="endSwipe" @touchcancel="touchStart = undefined">
         <p v-if="loading" class="capture-viewer-status" role="status">Loading capture…</p>
         <div v-if="failed" class="capture-viewer-error" role="alert">
           <p>The capture could not load. Check your connection and try again.</p>
