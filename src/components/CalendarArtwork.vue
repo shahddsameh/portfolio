@@ -24,7 +24,7 @@ function resize() {
     cell.style.setProperty('--side', `${w / 2}px`)
     board.value.style.setProperty('--plane-depth', `${h / 2 + .3}px`)
     const face = cell.querySelector<HTMLElement>('.calendar-image')!
-    const imageHeight = width * 3846 / 1600
+    const imageHeight = width * 3324 / 1600
     face.style.backgroundSize = `${width / w * 100}% ${imageHeight / h * 100}%`
     face.style.backgroundPosition = `${i % 7 / 6 * 100}% ${Math.floor(i / 7) * h / (imageHeight - h) * 100}%`
   }

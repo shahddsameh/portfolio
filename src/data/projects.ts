@@ -180,11 +180,11 @@ export const allProjects: Project[] = [
     year: '2025',
     team: 'Two members',
     technologies: ['Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS', 'Jitsi API', 'JWT', 'bcrypt', 'REST APIs'],
-    image: '/images/projects/inneraura/landing-page.webp',
+    image: '/images/projects/inneraura/landing-page.svg',
     imageAlt: 'InnerAura landing page introducing therapist discovery, secure sessions, and a three-step healing journey',
     gallery: [
       {
-        src: '/images/projects/inneraura/landing-page.webp',
+        src: '/images/projects/inneraura/landing-page.svg',
         alt: 'Full InnerAura landing page with therapist discovery, platform overview, three-step journey, testimonials, and footer',
         caption: 'Platform landing experience — therapist discovery, product positioning, the core three-step journey, and supporting trust content.',
         orientation: 'tall',

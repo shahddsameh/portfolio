@@ -58,7 +58,7 @@ export const projectInspections: Record<string, ProjectInspection> = {
     previewAspect: '1600 / 950',
     full: {
       id: 'full', title: 'Landing-page reference', description: 'The complete platform landing page. This is project context, rather than a capture of the scheduling or assessment interfaces.',
-      src: '/images/projects/inneraura/landing-page.webp', alt: 'Complete InnerAura platform landing page', width: 1600, height: 3846,
+      src: '/images/projects/inneraura/landing-page.svg', alt: 'Complete InnerAura platform landing page', width: 1600, height: 3324,
     },
     details: [],
   },

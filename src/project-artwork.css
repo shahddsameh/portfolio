@@ -65,9 +65,9 @@
 .calendar-face { position: absolute; inset: 0; backface-visibility: hidden; }
 .calendar-date { display: flex; justify-content: center; align-items: center; background: var(--surface); color: var(--text); box-shadow: 1px 4px 5px var(--shadow); font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(1rem, 2.5vw, 2rem); font-weight: 500; transform: translateZ(var(--half, 20px)); }
 .calendar-date.is-today { background: var(--surface-strong); color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent), 1px 5px 7px var(--shadow); }
-.calendar-image { background-image: url('/images/projects/inneraura/landing-page.webp'); background-repeat: no-repeat; transform: rotateX(90deg) translateZ(var(--half, 20px)); }
+.calendar-image { background-image: url('/images/projects/inneraura/landing-page.svg'); background-repeat: no-repeat; transform: rotateX(90deg) translateZ(var(--half, 20px)); }
 .calendar-side { background: var(--surface-strong); transform: rotateY(90deg) translateZ(var(--side, 20px)); }
-.calendar-complete { position: absolute; inset: 0; background: url('/images/projects/inneraura/landing-page.webp') top center / 100% auto no-repeat; opacity: 0; transform: translateZ(var(--plane-depth, 25px)); transition: opacity .2s var(--ease); pointer-events: none; }
+.calendar-complete { position: absolute; inset: 0; background: url('/images/projects/inneraura/landing-page.svg') top center / 100% auto no-repeat; opacity: 0; transform: translateZ(var(--plane-depth, 25px)); transition: opacity .2s var(--ease); pointer-events: none; }
 .calendar-artwork.is-assembled .calendar-cube { transform: rotateX(-90deg); }
 .calendar-artwork.is-assembled .calendar-spread { gap: 0; }
 .calendar-artwork.is-assembled .calendar-complete { opacity: 1; transition-delay: 1.65s; }
