@@ -63,7 +63,7 @@ function toggle() {
   playProjectSound('mwasalaty')
 }
 function pointerDown(event: PointerEvent) {
-  if (!interactive.value || event.button !== 0) return
+  if (!interactive.value || posterMode.value || event.button !== 0) return
   start = { x: event.clientX, amount: unfolded.value ? 0 : 1 }
   dragged = false
   ;(event.currentTarget as HTMLElement).setPointerCapture(event.pointerId)
