@@ -1,4 +1,5 @@
 import type { WebGPURenderer } from 'three/webgpu'
+import { mapAngles, mapCamera, mapCrops, mapHeight, mapPlate, mapSources, mapWidths } from './foldedMapLayout'
 
 export interface FoldedMapController {
   setFold(amount: number): void
@@ -24,8 +25,8 @@ function imageFrom(src: string, signal: AbortSignal): Promise<HTMLImageElement> 
 export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSignal, paper: string, dark: boolean): Promise<FoldedMapController> {
   const [THREE, TSL, results, planner] = await Promise.all([
     import('three/webgpu'), import('three/tsl'),
-    imageFrom('/images/projects/mwasalaty/route-results.webp', signal),
-    imageFrom('/images/projects/mwasalaty/route-planning.webp', signal),
+    imageFrom(mapSources.results.src, signal),
+    imageFrom(mapSources.planner.src, signal),
   ])
   signal.throwIfAborted()
   let disposed = false
@@ -43,9 +44,9 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
   renderer.toneMapping = THREE.NoToneMapping
 
   const scene = new THREE.Scene()
-  const camera = new THREE.OrthographicCamera(-5.7, 5.7, 3, -3, .1, 60)
-  camera.position.set(.15, 9.5, 18)
-  camera.lookAt(0, 1.9, 0)
+  const camera = new THREE.OrthographicCamera(-mapCamera.halfWidth, mapCamera.halfWidth, 3, -3, .1, 60)
+  camera.position.set(...mapCamera.eye)
+  camera.lookAt(...mapCamera.target)
   const ambient = new THREE.HemisphereLight(0xffffff, 0xb8a895, 1.1)
   scene.add(ambient)
   const light = new THREE.DirectionalLight(0xfff7ed, 1.8)
@@ -60,8 +61,8 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
   scene.add(light, light.target)
 
   const plate = document.createElement('canvas')
-  plate.width = 2800
-  plate.height = 1060
+  plate.width = mapPlate.width
+  plate.height = mapPlate.height
   const ink = plate.getContext('2d')!
   const mapTexture = new THREE.CanvasTexture(plate)
   mapTexture.colorSpace = THREE.SRGBColorSpace
@@ -72,11 +73,11 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
     // Preserve every screenshot's aspect ratio. Different crops occupy the map's panels.
     ink.fillStyle = '#f8f9fb'
     ink.fillRect(42, 42, 2716, 976)
-    ink.drawImage(results, 0, 0, 1600, 68, 42, 42, 2716, 115.43)
-    ink.drawImage(planner, 80, 540, 920, 1100, 70, 210, 535, 639.67)
-    ink.drawImage(results, 80, 100, 940, 200, 690, 225, 1360, 289.36)
-    ink.drawImage(results, 80, 329, 950, 252, 690, 565, 1360, 360.76)
-    ink.drawImage(results, 1060, 330, 456, 680, 2140, 187, 570, 850)
+    for (const area of mapCrops) {
+      const [sx, sy, sw, sh] = area.crop
+      const [dx, dy, dw, dh] = area.print
+      ink.drawImage(area.source === 'results' ? results : planner, sx, sy, sw, sh, dx, dy, dw, dh)
+    }
     // Fine paper grain is generated at runtime, never baked into the source captures.
     let seed = 919
     for (let i = 0; i < 85000; i++) {
@@ -113,9 +114,9 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
 
   const paperGroup = new THREE.Group()
   scene.add(paperGroup)
-  const widths = [2.55, 4.25, 1.45, 2.75]
+  const widths = mapWidths
   const totalWidth = widths.reduce((sum, width) => sum + width, 0)
-  const height = 4.35
+  const height = mapHeight
   const panels: InstanceType<typeof THREE.Group>[] = []
   let uvOffset = 0
   for (const width of widths) {
@@ -170,7 +171,7 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
   let frame = 0
   const render = () => { if (!disposed) renderer.render(scene, camera) }
   function pose() {
-    const angles = [-.52, .22, -.25, .45].map(angle => angle * amount)
+    const angles = mapAngles.map(angle => angle * amount)
     const projectedWidth = widths.reduce((sum, width, i) => sum + width * Math.cos(angles[i]), 0)
     let x = -projectedWidth / 2
     let z = 0
@@ -196,7 +197,7 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
       const box = canvas.getBoundingClientRect()
       if (!box.width || !box.height) return
       renderer.setSize(box.width, box.height, false)
-      const halfWidth = 5.7
+      const halfWidth = mapCamera.halfWidth
       const halfHeight = halfWidth * box.height / box.width
       Object.assign(camera, { left: -halfWidth, right: halfWidth, top: halfHeight, bottom: -halfHeight })
       camera.updateProjectionMatrix()
