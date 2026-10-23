@@ -174,7 +174,11 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
   let amount = 1
   let target = 1
   let frame = 0
-  const render = () => { if (!disposed) renderer.render(scene, camera) }
+  const render = () => {
+    if (disposed) return
+    try { renderer.render(scene, camera) }
+    catch { canvas.dispatchEvent(new Event('artwork-unavailable')) }
+  }
   function pose() {
     const angles = mapAngles.map(angle => angle * amount)
     const projectedWidth = widths.reduce((sum, width, i) => sum + width * Math.cos(angles[i]), 0)
@@ -223,6 +227,10 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
       plate.width = grainCanvas.width = shadowCanvas.width = 1
     },
   }
+  // Keep the poster visible while shader pipelines compile, especially on slower GPUs.
+  try { await renderer.compileAsync(scene, camera) }
+  catch (error) { controller.dispose(); throw error }
+  if (signal.aborted) { controller.dispose(); signal.throwIfAborted() }
   controller.setPaper(paper, dark)
   controller.resize()
   return controller

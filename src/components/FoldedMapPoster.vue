@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { useId } from 'vue'
+import { computed, useId } from 'vue'
 import { foldedMapPosterPanels, mapBorder, mapCrops, mapFrame, mapPaper, mapPlate, mapSources } from '@/artwork/foldedMapLayout'
 
 const id = `map-poster-${useId()}`
-const panels = foldedMapPosterPanels()
+const props = withDefaults(defineProps<{ amount?: number }>(), { amount: 1 })
+const panels = computed(() => foldedMapPosterPanels(props.amount))
 </script>
 
 <template>

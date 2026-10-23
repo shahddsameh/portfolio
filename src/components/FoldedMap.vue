@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { prefersReducedMotion } from '@/composables/useMotion'
 import { playProjectSound } from '@/composables/useProjectSound'
 import { useTheme } from '@/composables/useTheme'
@@ -10,6 +10,10 @@ const host = ref<HTMLElement>()
 const canvas = ref<HTMLCanvasElement>()
 const available = ref(false)
 const unfolded = ref(false)
+const lightweightMedia = matchMedia('(max-width: 600px), (pointer: coarse)')
+// Phones keep the printed map instead of replacing it with an expensive GPU canvas.
+const posterMode = ref(lightweightMedia.matches || prefersReducedMotion())
+const interactive = computed(() => posterMode.value || available.value)
 const { currentTheme } = useTheme()
 const abort = new AbortController()
 let controller: FoldedMapController | undefined
@@ -19,25 +23,28 @@ let media: MediaQueryList | undefined
 let start: { x: number; amount: number } | undefined
 let dragged = false
 let loading = false
+let rendererFailed = false
 
 function paintTheme() {
   const paper = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()
   controller?.setPaper(paper, currentTheme.value === 'dark')
 }
 function graphicsLost() {
+  rendererFailed = true
+  posterMode.value = true
   available.value = false
   resize?.disconnect()
   controller?.dispose()
   controller = undefined
 }
 async function initialise() {
-  if (loading || controller || !canvas.value || abort.signal.aborted || prefersReducedMotion()) return
+  if (loading || controller || !canvas.value || abort.signal.aborted || posterMode.value) return
   loading = true
   try {
     const { createFoldedMap } = await import('@/artwork/createFoldedMap')
     if (abort.signal.aborted || !canvas.value) return
     const created = await createFoldedMap(canvas.value, abort.signal, getComputedStyle(document.documentElement).getPropertyValue('--bg').trim(), currentTheme.value === 'dark')
-    if (abort.signal.aborted || prefersReducedMotion()) { created.dispose(); return }
+    if (abort.signal.aborted || posterMode.value) { created.dispose(); return }
     controller = created
     paintTheme()
     resize = new ResizeObserver(() => controller?.resize())
@@ -46,7 +53,7 @@ async function initialise() {
     // The canvas has measurable dimensions while hidden; reveal only after its first paint.
     await new Promise<void>(resolve => requestAnimationFrame(() => resolve()))
     if (!abort.signal.aborted && controller === created) available.value = true
-  } catch { /* The already-folded poster remains visible when graphics are unavailable. */ }
+  } catch { if (!abort.signal.aborted) graphicsLost() }
   finally { loading = false }
 }
 function toggle() {
@@ -56,7 +63,7 @@ function toggle() {
   playProjectSound('mwasalaty')
 }
 function pointerDown(event: PointerEvent) {
-  if (!available.value || event.button !== 0) return
+  if (!interactive.value || event.button !== 0) return
   start = { x: event.clientX, amount: unfolded.value ? 0 : 1 }
   dragged = false
   ;(event.currentTarget as HTMLElement).setPointerCapture(event.pointerId)
@@ -80,23 +87,26 @@ watch(currentTheme, paintTheme)
 onMounted(() => {
   media = matchMedia('(prefers-reduced-motion: reduce)')
   media.addEventListener('change', motionChanged)
+  lightweightMedia.addEventListener('change', motionChanged)
+  if (posterMode.value) return
   if (!('IntersectionObserver' in window)) { void initialise(); return }
   observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { void initialise(); observer?.disconnect() } }, { rootMargin: '200px' })
   observer.observe(host.value!)
 })
 function motionChanged() {
-  if (prefersReducedMotion()) { controller?.dispose(); controller = undefined; available.value = false; resize?.disconnect() }
-  else void initialise()
+  posterMode.value = rendererFailed || lightweightMedia.matches || prefersReducedMotion()
+  if (posterMode.value) { controller?.dispose(); controller = undefined; available.value = false; resize?.disconnect() }
+  else void nextTick(initialise)
 }
-onBeforeUnmount(() => { abort.abort(); observer?.disconnect(); resize?.disconnect(); media?.removeEventListener('change', motionChanged); controller?.dispose() })
+onBeforeUnmount(() => { abort.abort(); observer?.disconnect(); resize?.disconnect(); media?.removeEventListener('change', motionChanged); lightweightMedia.removeEventListener('change', motionChanged); controller?.dispose() })
 </script>
 
 <template>
-  <div ref="host" class="folded-map" :class="{ 'has-renderer': available }">
-    <FoldedMapPoster :aria-hidden="available ? true : undefined" />
-    <button type="button" class="folded-map-surface" :disabled="!available" :aria-hidden="!available ? true : undefined" :aria-label="unfolded ? 'Fold the Mwasalaty map' : 'Unfold the Mwasalaty map'" :aria-pressed="unfolded" @click="toggle" @pointerdown="pointerDown" @pointermove="pointerMove" @pointerup="pointerUp" @pointercancel="cancelPointer">
-      <canvas ref="canvas" aria-hidden="true" @artwork-unavailable="graphicsLost" />
+  <div ref="host" class="folded-map" :class="{ 'has-renderer': available, 'has-poster-input': posterMode }">
+    <FoldedMapPoster :amount="posterMode && unfolded ? 0 : 1" :aria-hidden="available ? true : undefined" />
+    <button type="button" class="folded-map-surface" :disabled="!interactive" :aria-hidden="!interactive ? true : undefined" :aria-label="unfolded ? 'Fold the Mwasalaty map' : 'Unfold the Mwasalaty map'" :aria-pressed="unfolded" @click="toggle" @pointerdown="pointerDown" @pointermove="pointerMove" @pointerup="pointerUp" @pointercancel="cancelPointer">
+      <canvas v-if="!posterMode" ref="canvas" aria-hidden="true" @artwork-unavailable="graphicsLost" @webglcontextlost.prevent="graphicsLost" />
     </button>
-    <button v-if="available" type="button" class="artwork-action" @click="toggle">{{ unfolded ? 'Fold map' : 'Unfold map' }}</button>
+    <button v-if="interactive" type="button" class="artwork-action" @click="toggle">{{ unfolded ? 'Fold map' : 'Unfold map' }}</button>
   </div>
 </template>

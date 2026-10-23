@@ -32,7 +32,7 @@
 .folded-map-poster { pointer-events: none; }
 .folded-map.has-renderer .folded-map-poster { visibility: hidden; }
 .folded-map-surface { padding: 0; border: 0; background: transparent; touch-action: pan-y; cursor: grab; visibility: hidden; }
-.folded-map.has-renderer .folded-map-surface { visibility: visible; }
+.folded-map.has-renderer .folded-map-surface, .folded-map.has-poster-input .folded-map-surface { visibility: visible; }
 .folded-map-surface:active { cursor: grabbing; }
 .folded-map-surface:focus-visible { outline-offset: -10px; }
 .folded-map canvas { display: block; width: 100%; height: 100%; }
