@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, START_LOCATION } from 'vue-router'
 import { prefersReducedMotion } from '@/composables/useMotion'
 import { beginProjectOpening, cancelProjectOpening } from '@/composables/useProjectOpening'
 import { getProject } from '@/data/projects'
@@ -13,6 +13,9 @@ const router = createRouter({
     { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFoundView.vue') },
   ],
   scrollBehavior(to, from, saved) {
+    // A refresh also carries history.state.scroll. Only Back/Forward should restore it;
+    // a fresh home load starts at the hero unless the URL names a section.
+    if (from === START_LOCATION && to.path === '/' && !to.hash) return { top: 0, behavior: 'instant' }
     if (saved) return saved
     if (to.hash) {
       // The out-in page transition mounts the next view late, so wait for the target to exist.
