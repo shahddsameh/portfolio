@@ -1,5 +1,5 @@
 import type { WebGPURenderer } from 'three/webgpu'
-import { mapAngles, mapCamera, mapCrops, mapHeight, mapPlate, mapSources, mapWidths } from './foldedMapLayout'
+import { mapAngles, mapBorder, mapCamera, mapCameraFov, mapCrops, mapFrame, mapHeight, mapPaper, mapPlate, mapSources, mapWidths } from './foldedMapLayout'
 
 export interface FoldedMapController {
   setFold(amount: number): void
@@ -23,10 +23,10 @@ function imageFrom(src: string, signal: AbortSignal): Promise<HTMLImageElement> 
 
 /** Demand-rendered paper geometry. The texture contains only crops of real product captures. */
 export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSignal, paper: string, dark: boolean): Promise<FoldedMapController> {
-  const [THREE, TSL, results, planner] = await Promise.all([
+  const [THREE, TSL, results, details] = await Promise.all([
     import('three/webgpu'), import('three/tsl'),
     imageFrom(mapSources.results.src, signal),
-    imageFrom(mapSources.planner.src, signal),
+    imageFrom(mapSources.details.src, signal),
   ])
   signal.throwIfAborted()
   let disposed = false
@@ -44,13 +44,13 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
   renderer.toneMapping = THREE.NoToneMapping
 
   const scene = new THREE.Scene()
-  const camera = new THREE.OrthographicCamera(-mapCamera.halfWidth, mapCamera.halfWidth, 3, -3, .1, 60)
+  const camera = new THREE.PerspectiveCamera(mapCameraFov, mapFrame.width / mapFrame.height, .1, 80)
   camera.position.set(...mapCamera.eye)
   camera.lookAt(...mapCamera.target)
-  const ambient = new THREE.HemisphereLight(0xffffff, 0xb8a895, 1.1)
+  const ambient = new THREE.HemisphereLight(0xffffff, 0xb8a895, .85)
   scene.add(ambient)
-  const light = new THREE.DirectionalLight(0xfff7ed, 1.8)
-  light.position.set(-4, 8, 7)
+  const light = new THREE.DirectionalLight(0xfff7ed, 2.1)
+  light.position.set(-6, 9, 8)
   light.target.position.set(0, 1.7, 0)
   light.castShadow = true
   light.shadow.mapSize.set(2048, 2048)
@@ -67,30 +67,35 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
   const mapTexture = new THREE.CanvasTexture(plate)
   mapTexture.colorSpace = THREE.SRGBColorSpace
   mapTexture.anisotropy = 8
-  function printPlate(color: string) {
-    ink.fillStyle = color
+  function printPlate() {
+    ink.fillStyle = mapPaper
     ink.fillRect(0, 0, plate.width, plate.height)
     // Preserve every screenshot's aspect ratio. Different crops occupy the map's panels.
     ink.fillStyle = '#f8f9fb'
-    ink.fillRect(42, 42, 2716, 976)
+    ink.fillRect(mapBorder, mapBorder, plate.width - mapBorder * 2, plate.height - mapBorder * 2)
     for (const area of mapCrops) {
       const [sx, sy, sw, sh] = area.crop
       const [dx, dy, dw, dh] = area.print
-      ink.drawImage(area.source === 'results' ? results : planner, sx, sy, sw, sh, dx, dy, dw, dh)
+      ink.drawImage(area.source === 'results' ? results : details, sx, sy, sw, sh, dx, dy, dw, dh)
     }
+    // The source captures are printed on warm stock rather than glowing white screens.
+    ink.globalCompositeOperation = 'multiply'
+    ink.fillStyle = '#faf7f1'
+    ink.fillRect(mapBorder, mapBorder, plate.width - mapBorder * 2, plate.height - mapBorder * 2)
+    ink.globalCompositeOperation = 'source-over'
     // Fine paper grain is generated at runtime, never baked into the source captures.
     let seed = 919
-    for (let i = 0; i < 85000; i++) {
+    for (let i = 0; i < 180000; i++) {
       seed = (Math.imul(seed, 1664525) + 1013904223) | 0
       const x = (seed >>> 0) % plate.width
       seed = (Math.imul(seed, 1664525) + 1013904223) | 0
       const y = (seed >>> 0) % plate.height
-      ink.fillStyle = i % 2 ? 'rgba(55,42,35,.035)' : 'rgba(255,255,255,.05)'
+      ink.fillStyle = i % 2 ? 'rgba(55,42,35,.08)' : 'rgba(255,255,255,.12)'
       ink.fillRect(x, y, 1, 1)
     }
     mapTexture.needsUpdate = true
   }
-  printPlate(paper)
+  printPlate()
 
   const grainCanvas = document.createElement('canvas')
   grainCanvas.width = grainCanvas.height = 128
@@ -108,9 +113,9 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
   // A diffuse fill preserves printed screenshot colors while directional light
   // remains visible on the creases and paper grain.
   front.colorNode = TSL.texture(mapTexture).mul(TSL.float(.7))
-  front.emissiveNode = TSL.texture(mapTexture).mul(TSL.float(.6))
-  front.normalNode = TSL.bumpMap(TSL.texture(grainTexture), TSL.float(.018))
-  const back = new THREE.MeshStandardNodeMaterial({ color: paper, roughness: 1, side: THREE.BackSide })
+  front.emissiveNode = TSL.texture(mapTexture).mul(TSL.float(.5))
+  front.normalNode = TSL.bumpMap(TSL.texture(grainTexture), TSL.float(.028))
+  const back = new THREE.MeshStandardNodeMaterial({ color: mapPaper, roughness: 1, side: THREE.BackSide })
 
   const paperGroup = new THREE.Group()
   scene.add(paperGroup)
@@ -157,13 +162,13 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
   }
   shadowContext.putImageData(shadowData, 0, 0)
   const shadowTexture = new THREE.CanvasTexture(shadowCanvas)
-  const shadowStrength = TSL.uniform(.7)
-  const shadow = new THREE.MeshBasicNodeMaterial({ color: 0x000000, transparent: true, depthWrite: false })
+  const shadowStrength = TSL.uniform(.65)
+  const shadow = new THREE.MeshBasicNodeMaterial({ color: 0x000000, transparent: true, depthWrite: false, side: THREE.DoubleSide })
   shadow.opacityNode = TSL.texture(shadowTexture).a.mul(shadowStrength)
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 2), shadow)
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(13.1, 3.1), shadow)
   floor.rotation.x = -Math.PI / 2
   floor.position.y = -.04
-  floor.position.set(.25, -.04, .8)
+  floor.position.set(.15, -.12, -1)
   scene.add(floor)
 
   let amount = 1
@@ -181,6 +186,13 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
       x += widths[i] * Math.cos(angles[i])
       z -= widths[i] * Math.sin(angles[i])
     })
+    // Leave breathing room at either end as the full-width sheet unfolds.
+    const box = canvas.getBoundingClientRect()
+    if (box.width && box.height) {
+      camera.aspect = box.width / box.height
+      camera.zoom = mapCamera.halfWidth / (mapCamera.halfWidth + Math.max(0, 1 - amount) * .85)
+      camera.updateProjectionMatrix()
+    }
     render()
   }
   function animate() {
@@ -197,13 +209,9 @@ export async function createFoldedMap(canvas: HTMLCanvasElement, signal: AbortSi
       const box = canvas.getBoundingClientRect()
       if (!box.width || !box.height) return
       renderer.setSize(box.width, box.height, false)
-      const halfWidth = mapCamera.halfWidth
-      const halfHeight = halfWidth * box.height / box.width
-      Object.assign(camera, { left: -halfWidth, right: halfWidth, top: halfHeight, bottom: -halfHeight })
-      camera.updateProjectionMatrix()
       pose()
     },
-    setPaper(color, isDark) { printPlate(color); back.color.set(color); shadowStrength.value = isDark ? .95 : .7; ambient.intensity = isDark ? 1 : 1.1; render() },
+    setPaper(_color, isDark) { shadowStrength.value = isDark ? .9 : .65; render() },
     dispose() {
       disposed = true
       cancelAnimationFrame(frame)
